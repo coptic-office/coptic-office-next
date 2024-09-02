@@ -45,7 +45,7 @@ export const Header = ({ lang }: { lang: string }) => {
     if (localStorage.getItem("user") != null)
       return JSON.parse(localStorage.getItem("user") as any);
     else return null;
-  }, [window as any]);
+  }, []);
   return (
     <>
       <div className='flex md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
