@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Edit</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="24" height="24" rx="12"></rect>
+        <rect id="path-3" x="1.24344979e-14" y="1.24344979e-14" width="24" height="24" rx="12"></rect>
+    </defs>
+    <g id="🌕-APP-Light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Enter-mobile-number---OTB" transform="translate(-244, -174)">
+            <g id="Group-2" transform="translate(107, 174)">
+                <g id="Edit_Fab" transform="translate(137.5, 0)">
+                    <g id="Edit" transform="translate(-0, -0)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="☁️-Elevation" fill="#121212" xlink:href="#path-1"></use>
+                        <rect id="🎨-FAB-Color" fill="#257DDB" mask="url(#mask-2)" x="0" y="0" width="24" height="24"></rect>
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="💡States-"></g>
+                        <g id="📍Icon" mask="url(#mask-4)">
+                            <g transform="translate(6.8571, 6.8571)" id="-Round-/-Image-/-edit">
+                                <polygon id="Path" points="0 0 10.2857143 0 10.2857143 10.2857143 0 10.2857143"></polygon>
+                                <path d="M1.28571429,7.48285714 L1.28571429,8.78571429 C1.28571429,8.90571429 1.38,9 1.5,9 L2.80285714,9 C2.85857143,9 2.91428571,8.97857143 2.95285714,8.93571429 L7.63285714,4.26 L6.02571429,2.65285714 L1.35,7.32857143 C1.30714286,7.37142857 1.28571429,7.42285714 1.28571429,7.48285714 Z M8.87571429,3.01714286 C9.04285714,2.85 9.04285714,2.58 8.87571429,2.41285714 L7.87285714,1.41 C7.70571429,1.24285714 7.43571429,1.24285714 7.26857143,1.41 L6.48428571,2.19428571 L8.09142857,3.80142857 L8.87571429,3.01714286 Z" id="🔹-Icon-Color" fill="#FFFFFF"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
