@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import OTPInput from "react-otp-input";
-import { AUTH_STEP_ENUM, checkUserModal } from "../../../types";
+import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";
 import { LoadingSpinner } from "../components/loading";
 import { resendOtpApi, verifyOtp } from "@/src/network/auth";
 import { usePathname } from "next/navigation";

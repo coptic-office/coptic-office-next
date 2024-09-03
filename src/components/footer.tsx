@@ -1,7 +1,7 @@
 "use client";
-import { useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { getCookie } from "cookies-next";
 
 export const Footer = ({ lang }: { lang: string }) => {
   const pathname = usePathname();
@@ -9,12 +9,7 @@ export const Footer = ({ lang }: { lang: string }) => {
 
   const translate = useTranslations();
 
-  // const userData = useMemo(() => {
-  //   if (localStorage.getItem("user") != null)
-  //     return JSON.parse(localStorage.getItem("user") as any);
-  //   else return null;
-  // }, [localStorage]);
-  const userData = null;
+  const userData = getCookie("user");
   return (
     <div className='w-full bg-white pt-[54px] md:pt-[46px]'>
       <div className='bg-THEME_PRIMARY_COLOR text-white flex flex-col w-full items-center  pt-5 pb-8 '>

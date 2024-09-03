@@ -8,7 +8,6 @@ instance.defaults.timeout = 25000;
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
-    console.log("config", config);
     // Do something before request is sent
     if (typeof window !== "undefined" && localStorage?.getItem("authToken")) {
       (config.headers["Authorization"] as any) = `Bearer ${

@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Header } from "../components/Header";
-import { AUTH_STEP_ENUM, checkUserModal } from "../../../types";
+import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";
 import { LoadingSpinner } from "../components/loading";
 import { PasswordInput } from "../components/passwordInput";
 import { resetPassword } from "@/src/network/auth";

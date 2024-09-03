@@ -1,12 +1,13 @@
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Header } from "../components/Header";
-import { AUTH_STEP_ENUM, checkUserModal } from "../../../types";
+import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";
 import { LoadingSpinner } from "../components/loading";
 import { PasswordInput } from "../components/passwordInput";
 import { Login } from "@/src/network/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { setCookie } from "cookies-next";
 
 export const CheckPassword = ({
   handleChangeStep,
@@ -42,15 +43,11 @@ export const CheckPassword = ({
       )
         .then((response) => {
           setLoading(false);
-          localStorage.setItem(
-            "user",
-            JSON.stringify(response?.data?.message?.user)
-          );
-          localStorage.setItem(
-            "authToken",
-            response?.data?.message?.accessToken
-          );
-          //window.location.reload();
+          setCookie("user", JSON.stringify(response?.data?.message?.user));
+          setCookie("authToken", response?.data?.message?.accessToken);
+          localStorage.setItem("authToken", response?.data?.message?.accessToken);
+
+          window.location.reload();
 
           closeModal();
         })

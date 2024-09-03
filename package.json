@@ -11,6 +11,7 @@
   "dependencies": {
     "accept-language": "^3.0.20",
     "axios": "^1.7.5",
+    "cookies-next": "^4.2.1",
     "i18next": "^23.14.0",
     "i18next-resources-to-backend": "^1.2.1",
     "next": "14.2.6",

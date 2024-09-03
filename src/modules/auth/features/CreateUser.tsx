@@ -4,9 +4,10 @@ import { useTranslations } from "next-intl";
 import { PasswordInput } from "../components/passwordInput";
 import { TextInput } from "../components/TextInput";
 import { LoadingSpinner } from "../components/loading";
-import { checkUserModal } from "../../../types";
 import { createUser } from "@/src/network/auth";
 import { usePathname } from "next/navigation";
+import { checkUserModal } from "@/src/types";
+import { setCookie } from "cookies-next";
 
 export const CreateUser = ({
   checkUserData,
@@ -60,12 +61,11 @@ export const CreateUser = ({
       pathname?.includes("/ar") ? "ar" : "en"
     )
       .then((response) => {
-        localStorage.setItem(
-          "user",
-          JSON.stringify(response?.data?.message?.user)
-        );
+        setCookie("user", JSON.stringify(response?.data?.message?.user));
+        setCookie("authToken", response?.data?.message?.accessToken);
         localStorage.setItem("authToken", response?.data?.message?.accessToken);
-      // window.location.reload();
+
+        window.location.reload();
         closeModal();
       })
       .catch((err) => {

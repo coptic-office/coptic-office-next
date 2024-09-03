@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { MobileNumber } from "./features/MobileNumberStep";
 import { OtpStep } from "./features/OTPStep";
-import { AUTH_STEP_ENUM, checkUserModal } from "../../types";
+import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";;
 import { CheckPassword } from "./features/CheckPassword";
 import { ForgetPassword } from "./features/forgetPassword";
 import { ResetPassword } from "./features/ResetPassword";

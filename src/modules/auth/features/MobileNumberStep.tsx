@@ -3,7 +3,7 @@ import { checkUser } from "@/src/network/auth";
 import { Dispatch, SetStateAction, useState } from "react";
 import { LoadingSpinner } from "../components/loading";
 import { Header } from "../components/Header";
-import { AUTH_STEP_ENUM, checkUserModal } from "../../../types";
+import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";
 import { usePathname } from "next/navigation";
 
 export const MobileNumber = ({
