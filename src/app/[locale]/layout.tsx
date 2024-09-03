@@ -8,9 +8,8 @@ import { getMessages } from "next-intl/server";
 
 import { unstable_setRequestLocale } from "next-intl/server";
 import dynamic from "next/dynamic";
-const Header = dynamic(() => import("../../components/Header"), {
-  ssr: false,
-});
+import Header from "@/src/components/Header";
+
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
 }
