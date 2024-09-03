@@ -65,7 +65,7 @@ export const CreateUser = ({
           JSON.stringify(response?.data?.message?.user)
         );
         localStorage.setItem("authToken", response?.data?.message?.accessToken);
-       window.location.reload();
+      // window.location.reload();
         closeModal();
       })
       .catch((err) => {

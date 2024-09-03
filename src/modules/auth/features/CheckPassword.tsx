@@ -50,7 +50,7 @@ export const CheckPassword = ({
             "authToken",
             response?.data?.message?.accessToken
           );
-          window.location.reload();
+          //window.location.reload();
 
           closeModal();
         })

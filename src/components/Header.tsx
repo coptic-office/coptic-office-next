@@ -40,11 +40,12 @@ export default function Header({ lang }: { lang: string }) {
     else setIsSelected(0);
   }, [pathname]);
 
-  const userData = useMemo(() => {
-    if (localStorage.getItem("user") != null)
-      return JSON.parse(localStorage.getItem("user") as any);
-    else return null;
-  }, [window]);
+  const userData = null
+  //  useMemo(() => {
+  //    if (localStorage.getItem("user") != null)
+  //      return JSON.parse(localStorage.getItem("user") as any);
+  //    else return null;
+  //  }, [window]);
   return (
     <>
       <div className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
@@ -166,7 +167,7 @@ export default function Header({ lang }: { lang: string }) {
                       height={"38px"}
                     />
                     <p className='text-base text-white underline'>
-                      {userData?.firstName}
+                      {/* {userData?.firstName} */}
                     </p>
                   </div>
                   <img
