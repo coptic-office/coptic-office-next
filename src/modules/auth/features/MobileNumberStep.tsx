@@ -64,7 +64,7 @@ export const MobileNumber = ({
         className='relative h-[55px] w-full  rounded-lg border-0 mb-2'>
         <div className='absolute top-[14.5px] start-0 flex items-center ps-3 md:ps-5 pointer-events-none'>
           <img
-            src='assets/egypt.png'
+            src='/assets/egypt.png'
             className='w-6 h-6 md:w-[30px] md:h-[30px]'
           />
         </div>
@@ -83,7 +83,7 @@ export const MobileNumber = ({
         {mobileNumber != "" ? (
           <div className='absolute top-[22px] md:top-[18px] end-0 flex items-center pe-3 cursor-pointer'>
             <img
-              src='assets/close.png'
+              src='/assets/close.png'
               className='w-3 h-3 md:w-5 md:h-5'
               onClick={() => {
                 if (error) setError(null);

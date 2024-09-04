@@ -10,20 +10,20 @@ export default function Steps({ lang }: { lang: string }) {
       <div className='w-full flex flex-col md:flex-row gap-[367px] md:gap-[55px] justify-between items-start'>
         <div className='flex flex-1 mt-[31px] md:mt-[38px] justify-end relative px-4 md:px-0'>
           <img
-            src='assets/steps/main.png'
+            src='/assets/steps/main.png'
             className='rounded-lg z-50 object-cover h-[328px] ms-[30px] md:ms-0  md:h-[560px] w-[268px] md:w-[457px]'
           />
           <img
-            src='assets/steps/Base.png'
+            src='/assets/steps/Base.png'
             className='rounded-lg absolute  start-4 md:start-0 ltr:rotate-180 ltr:-top-[42px] rtl:top-[29px] md:rtl:top-[49px] md:ltr:top-[49px] z-40 object-cover w-[239px] md:w-[337px] h-[217px] md-h[300px]'
           />
           <img
-            src='assets/steps/main2.png'
+            src='/assets/steps/main2.png'
             className='rounded-lg absolute start-4 md:start-0 top-[290px] md:top-[445px] z-[55] border-[2px] border-solid border-white bg-white object-none    w-[163px] md:w-[276px] h-[199px] md:h-[339px]  '
           />
 
           <img
-            src='assets/steps/base2.png'
+            src='/assets/steps/base2.png'
             className=' absolute -bottom-[263px] md:-bottom-[373px]  -end-[52px] md:end-[10px] ltr:end-[77px] ltr:md:end-[111px] w-[239px] md:w-[337px] h-[217px] md-h[300px] '
           />
         </div>

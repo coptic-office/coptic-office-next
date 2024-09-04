@@ -59,7 +59,7 @@ export const ForgetPassword = ({
         dir='ltr'
         className='relative h-[55px] w-full  rounded-lg border-0 mb-2'>
         <div className='absolute top-[14.5px] start-0 flex items-center ps-3 pointer-events-none'>
-          <img src='assets/egypt.png' width={"24px"} height={"24px"} />
+          <img src='/assets/egypt.png' width={"24px"} height={"24px"} />
         </div>
         <input
           value={mobileNumber}
@@ -76,7 +76,7 @@ export const ForgetPassword = ({
         {mobileNumber != "" ? (
           <div className='absolute top-[22px] end-0 flex items-center pe-3 cursor-pointer'>
             <img
-              src='assets/close.png'
+              src='/assets/close.png'
               width={"12px"}
               height={"15px"}
               onClick={() => {

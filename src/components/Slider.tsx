@@ -2,7 +2,7 @@
 import { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,15 +13,13 @@ export const ImageSlider = ({ lang }: { lang: string }) => {
 
   return (
     <div className=' h-[350px] md:h-[700px] w-full absolute top-0 z-50'>
-      {/* <div className='absolute top-0 left-0 bg-gradient-to-b from-[#005fb066] z-[100] to-transparent min-h-[150px] md:min-h-[300px]  min-w-full'></div> */}
       <Swiper
         pagination={{
           dynamicBullets: true,
           clickable: true,
         }}
         className='mySwiper'
-        autoplay
-        modules={[Pagination]}>
+        modules={[Pagination, Autoplay]}>
         {[1, 2, 3, 4, 5, 6].map((item) => (
           <SwiperSlide>
             <Slide
@@ -57,10 +55,13 @@ export const Slide = ({
 }) => {
   return (
     <div className='relative h-[350px] md:h-[700px] w-full justify-center flex'>
+      <div className='absolute min-h-[350px] md:min-h-[700px] min-w-full bg-gradient-to-b from-[#005faf66] to-[#005faf33] z-[80] '></div>
       <img
         src={src}
         width={"100%"}
-        className='sliderImg h-[350px] md:!h-[700px]'
+        className={`sliderImg h-[350px] md:!h-[700px]  ${
+          src.includes("5") ? "object-top" : "object-right"
+        } object-cover`}
       />
       <div className='flex flex-col gap-[2px] md:gap-8 items-center z-[100] absolute bottom-[207px] md:bottom-[335px]'>
         <p className='text-lg font-bold md:text-[48px] text-white'>

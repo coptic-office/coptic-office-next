@@ -19,29 +19,43 @@ export const CategoryCard = ({
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Booking_Amount")}:
-          <span className='font-semibold'>{category.bookingAmount}</span>
+          <span className='font-semibold'>
+            {Number(category.bookingAmount).toLocaleString()}{" "}
+            {translate("locale.Pound")}
+          </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Contracting_Amount")}:
-          <span className='font-semibold'>{category.contractingAmount}</span>
+          <span className='font-semibold'>
+            {Number(category.contractingAmount).toLocaleString()}{" "}
+            {translate("locale.Pound")}
+          </span>
         </p>
 
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Installments")}:
           <span className='font-semibold tracking-tight'>
-            {translate?.("InstallmentPlan")
-              ?.replace("{}", category.installments.count as any)
-              ?.replace("{}", category.installments.spanInMonths as any)}
+            {`${category.installments.count} ${translate(
+              "locale.Installment"
+            )} ${translate("locale.every")} ${
+              category.installments.spanInMonths
+            } ${translate("locale.month")}`}
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Installment_Amount")}:
-          <span className='font-semibold'>{category.installments.amount}</span>
+          <span className='font-semibold'>
+            {Number(category.installments.amount).toLocaleString()}{" "}
+            {translate("locale.Pound")}
+          </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Cash_Discount")}:
           <span className='font-semibold'>
-            {category.grossAmount - category.cashAmount}
+            {Number(
+              category.grossAmount - category.cashAmount
+            ).toLocaleString()}{" "}
+            {translate("locale.Pound")}
           </span>
         </p>
       </div>

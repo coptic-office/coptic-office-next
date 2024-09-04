@@ -34,7 +34,7 @@ export default async function RootLayout({
     <html lang={locale} dir={locale == "ar" ? "rtl" : "ltr"}>
       <body id='body' className={" flex flex-col"}>
         <NextIntlClientProvider messages={messages}>
-          <Header lang={locale} />
+          <Header />
           <ImageSlider lang={locale} />
           <>{children}</>
           <Footer lang={locale} />

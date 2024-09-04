@@ -11,7 +11,7 @@ export default function HomePage({ lang }: { lang: string }) {
       <div className='w-full px-[70px] py-10 bg-white flex flex-col gap-10 rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] mb-[14px]'>
         <div className='flex flex-row gap-[14px] items-start text-lg font-medium text-THEME_SECONDARY_COLOR'>
           <img
-            src='assets/check.svg'
+            src='/assets/check.svg'
             width={"14px"}
             height={"16px"}
             className='mt-2.5'
@@ -20,7 +20,7 @@ export default function HomePage({ lang }: { lang: string }) {
         </div>
         <div className='flex flex-row gap-[14px] items-start text-lg font-medium text-THEME_SECONDARY_COLOR'>
           <img
-            src='assets/check.svg'
+            src='/assets/check.svg'
             width={"14px"}
             height={"16px"}
             className='mt-2.5'
@@ -29,7 +29,7 @@ export default function HomePage({ lang }: { lang: string }) {
         </div>
         <div className='flex flex-row gap-[14px] items-start text-lg font-medium text-THEME_SECONDARY_COLOR'>
           <img
-            src='assets/check.svg'
+            src='/assets/check.svg'
             width={"14px"}
             height={"16px"}
             className='mt-2.5'

@@ -6,7 +6,6 @@ import { LoadingSpinner } from "../components/loading";
 import { PasswordInput } from "../components/passwordInput";
 import { Login } from "@/src/network/auth";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
 
 export const CheckPassword = ({
@@ -26,7 +25,6 @@ export const CheckPassword = ({
   const [password, setPassword] = useState("");
   const translate = useTranslations();
   const pathname = usePathname();
-  const router = useRouter();
 
   const submit = () => {
     if (password == "" || password.length < 6) {

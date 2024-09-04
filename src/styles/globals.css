@@ -56,6 +56,7 @@ body {
   background-color: #D9D9D9;
   margin-inline: 10px;
   border-radius: 70px;
+  cursor: pointer !important;
 
 }
 
@@ -66,6 +67,7 @@ body {
   background-color: #005fb0;
   margin-inline: 10px;
   border-radius: 70px;
+  cursor: pointer !important;
 }
 
 .swiper {
@@ -79,6 +81,7 @@ body {
 
 .swiper-slider {
   width: 100% !important;
+  position: relative !important;
 
 }
 

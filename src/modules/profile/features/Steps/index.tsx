@@ -10,26 +10,26 @@ export default function Steps({ lang }: { lang: string }) {
       <div className='w-full flex flex-row gap-[55px] justify-between items-start'>
         <div className='flex flex-1 mt-[38px] justify-end relative'>
           <img
-            src='assets/steps/main.png'
+            src='/assets/steps/main.png'
             height={"560px"}
             width={"457px"}
             className='rounded-lg z-50 object-cover'
           />
           <img
-            src='assets/steps/Base.png'
+            src='/assets/steps/Base.png'
             height={"300px"}
             width={"337px"}
             className='rounded-lg absolute start-0 ltr:rotate-180 top-[49px] z-40 object-cover'
           />
           <img
-            src='assets/steps/main2.png'
+            src='/assets/steps/main2.png'
             height={"339px"}
             width={"276px"}
             className='rounded-lg absolute start-0 top-[445px] z-[55] border-[2px] border-solid border-white bg-white object-none'
           />
 
           <img
-            src='assets/steps/base2.png'
+            src='/assets/steps/base2.png'
             width={"337px"}
             height={"300px"}
             className=' absolute -bottom-[373px]  end-[10px] ltr:end-[111px] '

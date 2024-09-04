@@ -34,3 +34,22 @@ export interface Installments {
   amount: number;
   spanInMonths: number;
 }
+
+
+export interface Payment {
+  id: string;
+  paymentMethod: string;
+  amount: number;
+  adviceDate: string;
+  unitId: string;
+  paymentMethodText: string;
+}
+export interface bankChecks {
+  number: string;
+  dueDate: string;
+  amount: number;
+  bankName: string;
+  status: string;
+  statusText: string;
+  unitId: string;
+}
