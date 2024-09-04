@@ -10,7 +10,14 @@ import { useTranslations } from "next-intl";
 
 export const ImageSlider = ({ lang }: { lang: string }) => {
   const translate = useTranslations();
-
+  const slides = [
+    "/1-Front1.jpg",
+    "/2-Elevation.jpg",
+    "/3-Plan2.jpg",
+    "/4-Front2.jpg",
+    "/5-Plan1.jpg",
+    "/6-Gates.jpg",
+  ];
   return (
     <div className=' h-[350px] md:h-[700px] w-full absolute top-0 z-50'>
       <Swiper
@@ -20,11 +27,11 @@ export const ImageSlider = ({ lang }: { lang: string }) => {
         }}
         className='mySwiper'
         modules={[Pagination, Autoplay]}>
-        {[1, 2, 3, 4, 5, 6].map((item) => (
+        {slides.map((item) => (
           <SwiperSlide>
             <Slide
               handleClick={() => {}}
-              src={`/assets/slider${item}.jpg`}
+              src={item}
               label={translate("locale.Book_Now")}
               desc={translate("locale.New_Cairo")}
               headText={translate("locale.Coptic_Cemeteries")}
@@ -57,7 +64,7 @@ export const Slide = ({
     <div className='relative h-[350px] md:h-[700px] w-full justify-center flex'>
       <div className='absolute min-h-[350px] md:min-h-[700px] min-w-full bg-gradient-to-b from-[#005faf66] to-[#005faf33] z-[80] '></div>
       <img
-        src={src}
+        src={`https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/app${src}`}
         width={"100%"}
         className={`sliderImg h-[350px] md:!h-[700px]  ${
           src.includes("5") ? "object-top" : "object-right"

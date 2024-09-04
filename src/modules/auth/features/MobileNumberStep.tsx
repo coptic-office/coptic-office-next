@@ -70,6 +70,7 @@ export const MobileNumber = ({
         </div>
         <input
           value={mobileNumber}
+          type='tel'
           onChange={(e) => {
             setMobileNumber(e.target.value);
             if (error) setError(null);

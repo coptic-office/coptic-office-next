@@ -138,16 +138,17 @@ export const OtpStep = ({
               setOtp(otp);
             }}
             numInputs={6}
+            inputType='tel'
             renderSeparator={<span className='mx-1' />}
             renderInput={(props: any) => (
               <input
-                type='number'
                 {...props}
-                className={`bg-white !h-[50px] !w-[50px]  !rounded-md  !border-[1px] !border-solid ${
+                className={`bg-white !h-[50px] !w-[50px] text-black  !rounded-md  !border-[1px] !border-solid ${
                   error
                     ? "!border-THEME_ERROR_COLOR"
                     : "!border-[#0000001f] focus:bg-[#88735026] focus:outline-none"
                 }`}
+                type='tel'
               />
             )}
           />
