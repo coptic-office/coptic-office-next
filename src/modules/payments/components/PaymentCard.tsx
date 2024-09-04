@@ -8,7 +8,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>
-        <div className='flex pb-4 flex-row  gap-[32px] justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
+        <div className='flex pb-4 flex-row  gap-5 md:gap-[32px] justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
           <p className='text-THEME_PRIMARY_COLOR text-[15px] md:text-xl font-semibold'>
             {translate("locale.Amount")}{" "}
             {Number(payment.amount).toLocaleString()}{" "}

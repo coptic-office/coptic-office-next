@@ -7,7 +7,7 @@ export default function BankCard({ payment }: { payment: bankChecks }) {
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-[20px]  w-full md:w-[49%]  '>
-        <div className='flex pb-4 flex-row  gap-[68px] justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
+        <div className='flex pb-4 flex-row  gap-6 md:gap-[68px] justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
           <p className='text-THEME_PRIMARY_COLOR text-lg md:text-xl font-semibold'>
             {translate("locale.Amount")}{" "}
             {Number(payment.amount).toLocaleString()}{" "}
