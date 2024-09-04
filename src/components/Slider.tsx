@@ -40,7 +40,7 @@ export const ImageSlider = ({ lang }: { lang: string }) => {
         ))}
       </Swiper>
       <img
-        src='/assets/wave.svg'
+        src='/assets/WaveWavy.svg'
         className='w-full h-[100px] md:h-[180px] absolute bottom-0 md:-bottom-1 z-[100] object-cover'
       />
     </div>
