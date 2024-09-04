@@ -118,8 +118,8 @@ export default function MyPayments() {
           </>
         </div>
       </div>
-      <div className='w-full flex justify-end'>
-        <button className='ps-10 pe-6 flex-row rtl:flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex  gap-8 items-center'>
+      <div className='w-full flex justify-end px-4 md:px-0'>
+        <button className='ps-10 pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex  gap-8 items-center'>
           <img
             src='/assets/left.svg'
             className='ltr:rotate-180'

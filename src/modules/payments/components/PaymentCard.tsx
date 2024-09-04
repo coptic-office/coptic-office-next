@@ -8,11 +8,13 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>
-        <div className='flex pb-4 flex-row  gap-5 md:gap-[32px] justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
-          <p className='text-THEME_PRIMARY_COLOR text-[15px] md:text-xl font-semibold'>
+        <div className='flex pb-4 flex-row  justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
+          <p className='text-THEME_PRIMARY_COLOR text-[15px] md:text-xl font-semibold flex flex-col md:flex-row gap-1'>
             {translate("locale.Amount")}{" "}
-            {Number(payment.amount).toLocaleString()}{" "}
-            {translate("locale.Pound")}
+            <span>
+              {Number(payment.amount).toLocaleString()}{" "}
+              {translate("locale.Pound")}
+            </span>
           </p>
           <div className='flex flex-row gap-3 items-start'>
             <img
@@ -26,7 +28,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               className={`${
                 payment?.paymentMethod == "bankTransfer"
                   ? "w-[29px]  h-[29px] md:w-[64px] md:h-[64px]"
-                  : "w-[29px]  h-[24px] md:w-[51px] md:h-[41px]"
+                  : "w-[29px]  h-[24px] md:w-[38px] md:h-[41px]"
               }`}
             />
             <div className='flex flex-col gap-1 text-[#048951]  text-sm md:text-lg'>
@@ -35,7 +37,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             </div>
           </div>
         </div>
-        <div className='flex mt-6 flex-row justify-between'>
+        <div className='flex mt-6 flex-row md:gap-[5.5rem] justify-between md:justify-start  rtl:md:gap-12'>
           <div className='flex flex-col gap-8'>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Date")}</p>
