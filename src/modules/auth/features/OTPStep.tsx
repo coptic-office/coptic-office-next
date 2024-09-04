@@ -141,6 +141,7 @@ export const OtpStep = ({
             renderSeparator={<span className='mx-1' />}
             renderInput={(props: any) => (
               <input
+                type='number'
                 {...props}
                 className={`bg-white !h-[50px] !w-[50px]  !rounded-md  !border-[1px] !border-solid ${
                   error

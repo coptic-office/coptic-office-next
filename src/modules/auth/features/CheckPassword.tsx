@@ -43,8 +43,10 @@ export const CheckPassword = ({
           setLoading(false);
           setCookie("user", JSON.stringify(response?.data?.message?.user));
           setCookie("authToken", response?.data?.message?.accessToken);
-          localStorage.setItem("authToken", response?.data?.message?.accessToken);
-
+          localStorage.setItem(
+            "authToken",
+            response?.data?.message?.accessToken
+          );
           window.location.reload();
 
           closeModal();
