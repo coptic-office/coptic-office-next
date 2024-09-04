@@ -35,7 +35,6 @@ export interface Installments {
   spanInMonths: number;
 }
 
-
 export interface Payment {
   id: string;
   paymentMethod: string;
@@ -52,4 +51,15 @@ export interface bankChecks {
   status: string;
   statusText: string;
   unitId: string;
+}
+export interface Units {
+  id: string;
+  bookingDate: string;
+  contractingDate: string;
+  category: string;
+  unitNumber: string;
+  totalCashAmount: number;
+  totalAmount: number;
+  totalChecksAmount: number;
+  contractDate: string | null;
 }

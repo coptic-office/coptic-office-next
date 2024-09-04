@@ -21,7 +21,7 @@ export default function NotificationModal({
               onClick={closeNotification}
             />
           </div>
-          <div className='mt-6'>
+          {/* <div className='mt-6'>
             {[1, 2, 3].map((item) => (
               <div
                 className={`p-6 border-b-[1px] border-gray-300   ${
@@ -45,6 +45,16 @@ export default function NotificationModal({
                 </p>
               </div>
             ))}
+          </div> */}
+          <div className='flex flex-col gap-[60px] w-full h-full items-center justify-center'>
+            <img
+              src='/assets/noNotifications.svg'
+              width={"62px"}
+              height={"62px"}
+            />
+            <p className='text-[26px] text-[#555F71] font-semibold'>
+              {translate("locale.noNotifications")}
+            </p>
           </div>
         </div>
       </div>
