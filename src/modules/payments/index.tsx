@@ -67,7 +67,7 @@ export default function MyPayments() {
                       width={"100px"}
                       height={"80px"}
                     />
-                    <p className='text-[26px] font-semibold text-[#555F71]'>
+                    <p className='text-base md:text-[26px] font-semibold text-[#555F71]'>
                       {translate("locale.noPayments")}
                     </p>
                   </div>

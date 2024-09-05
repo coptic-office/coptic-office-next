@@ -1,6 +1,7 @@
 {
   "locale": {
     "noPayments": "No payments yet",
+    "noUnits": "No Units yet",
     "Auspices": "Under the auspices of His Holiness and Beatitude",
     "Pope_Tawadros": "Pope Tawadros II",
     "Pope_of_Alexandria": "Pope of Alexandria and Patriarch of the See of St. Mark",
@@ -86,8 +87,8 @@
     "Editing_Date": "Editing Date",
     "Due_Date": "Due Date",
     "New_Payment": "New Payment",
-    "Booking_Date": "Date of Booking Amount",
-    "Contracting_Date": "Date of Contracting Amount",
+    "Booking_Date": "Booking Date",
+    "Contracting_Date": "Contracting Date",
     "Unit_Number": "Unit Number",
     "Total_Unit_Value": "Total Unit Value",
     "Total_Value_of_Payments": "Total Payments Value",
@@ -107,7 +108,7 @@
     "Incomplete_Payment": "We could not complete your payment. Please contact customer service",
     "Edit": "Edit",
     "Save": "Save",
-    "Select_Unit_Type": "Select Unit Type",
+    "Select_Unit_Type": "Select Unit",
     "Change_Unit_Type_Text": "You can change the unit type as long as the contracting procedures have not been completed.",
     "New_Booking": "New Booking",
     "Existing_Booking": "Existing Booking",
@@ -116,10 +117,11 @@
     "Other_Value": "Other value",
     "No_Date": "Not yet",
     "Contract_Date": "Contract Date",
+    "Book_Date": "Booking Date",
     "Units_Categories": "Units Categories",
     "Pound": "EGP",
     "Book_Now": "Book Now",
-    "noNotifications":"No notifications yet",
+    "noNotifications": "No notifications yet",
     "Check_Status": "Check Status"
   }
 }
