@@ -84,7 +84,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Booking_Code")}</p>
               <p className='font-medium' dir='ltr'>
-                {payment.unitId}
+                {payment.unitId  !=''?payment.unitId:translate("locale.No_Booking_Code")}
               </p>
             </div>
           </div>
