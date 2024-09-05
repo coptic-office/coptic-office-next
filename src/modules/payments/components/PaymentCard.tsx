@@ -8,7 +8,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>
-        <div className='flex pb-4 flex-row  justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
+        <div className='flex pb-4 flex-row  justify-between md:justify-start gap-0  md:gap-[86px] items-center border-b-[1px] border-[#D8D8D8] border-solid'>
           <p className='text-THEME_PRIMARY_COLOR text-[15px] md:text-xl font-semibold flex flex-col md:flex-row gap-1'>
             {translate("locale.Amount")}{" "}
             <span>
@@ -32,12 +32,11 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               }`}
             />
             <div className='flex flex-col gap-1 text-[#048951]  text-sm md:text-lg'>
-              <p>{translate("locale.Payment_Method")}</p>
               <p className='font-semibold'>{payment.paymentMethodText}</p>
             </div>
           </div>
         </div>
-        <div className='flex mt-6 flex-row md:gap-[5.5rem] justify-between md:justify-start  rtl:md:gap-12'>
+        <div className='flex mt-6 flex-row md:gap-[5.5rem] justify-between md:justify-start  rtl:md:gap-28'>
           <div className='flex flex-col gap-8'>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Date")}</p>
@@ -53,7 +52,9 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             </div>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Trans_Reference_Number")}</p>
-              <p className='font-medium flex flex-row gap-1 items-center'>
+              <p
+                className='font-medium flex flex-row gap-1 items-center'
+                dir='ltr'>
                 {`${payment.id?.substring(0, 13)}...`}
                 <img
                   className='cursor-pointer'
@@ -72,7 +73,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               <p>{translate("locale.Time")}</p>
               <p className='font-medium'>
                 {new Date(payment.adviceDate)
-                  ?.toLocaleTimeString(local == "ar" ? "ar-EG" : "en", {
+                  ?.toLocaleTimeString(local == "ar" ? "ar-AE" : "en", {
                     hour: "2-digit",
                     minute: "2-digit",
                     hourCycle: "h12",
@@ -82,7 +83,9 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             </div>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Booking_Code")}</p>
-              <p className='font-medium'>{payment.unitId}</p>
+              <p className='font-medium' dir='ltr'>
+                {payment.unitId}
+              </p>
             </div>
           </div>
         </div>

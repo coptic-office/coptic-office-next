@@ -52,7 +52,7 @@ export interface bankChecks {
   statusText: string;
   unitId: string;
 }
-export interface Units {
+export interface Unit {
   id: string;
   bookingDate: string;
   contractingDate: string;

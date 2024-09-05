@@ -50,7 +50,9 @@ export default function MyPayments() {
   return (
     <div className='z-10   flex-col gap-[60px] items-center justify-center font-mono text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0 '>
-        <div className='w-full   py-6 pb-10 md:py-10 bg-white flex flex-col  rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] mb-[45px] md:mb-[14px]'>
+        <div
+          id='mypayments'
+          className='w-full   py-6 pb-10 md:py-10 bg-white flex flex-col  rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] mb-[45px] md:mb-[14px]'>
           <p className='text-[#183B56] text-lg md:text-2xl font-bold px-4 md:px-6'>
             {translate("locale.My_Payments")}
           </p>
