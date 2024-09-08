@@ -18,7 +18,7 @@ export const NavLink = ({
   return (
     <p
       onClick={() => {
-        router.push(`/${locale}${url ? `/${url}#my${url}` : ""}`, {
+        router.push(`/${locale}${url ? `/${url}` : ""}`, {
           scroll: true,
           
         });

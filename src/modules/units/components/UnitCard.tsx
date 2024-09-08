@@ -1,6 +1,8 @@
+"use client"
 import { Modal } from "@/src/components/Modal";
-import { Payment, Unit } from "@/src/types";
+import { Unit } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
+
 
 export default function UnitCard({ item }: { item: Unit }) {
   const translate = useTranslations();
@@ -129,9 +131,7 @@ export default function UnitCard({ item }: { item: Unit }) {
           ""
         )}
       </div>
-      <Modal>
-        <div> HELLO</div>
-      </Modal>
+      
     </>
   );
 }

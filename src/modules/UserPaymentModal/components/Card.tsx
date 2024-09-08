@@ -129,7 +129,7 @@ export const PaymentOptionCard = ({ method }: { method: number }) => {
             {translate("locale.PayNow")}
             <img
               src='/assets/leftWhite.svg'
-              className='ltr:rotate-180'
+              className='hidden md:flex ltr:rotate-180'
               width={"13px"}
               height={"16px"}
             />
