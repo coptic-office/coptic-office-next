@@ -57,7 +57,7 @@ export default function Steps({ lang }: { lang: string }) {
         </p>
         <img
           src='/assets/left.svg'
-          className='ltr:rotate-180'
+          className='hidden md:flex ltr:rotate-180'
           width={"13px"}
           height={"16px"}
         />

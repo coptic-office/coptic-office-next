@@ -76,8 +76,8 @@ export default function MyUnits() {
       <div className='w-full flex justify-end px-4 md:px-0'>
         <button className='px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex  gap-3 md:gap-8 items-center'>
           <img
-            src='/assets/left.svg'
-            className='ltr:rotate-180'
+            src=' /assets/left.svg'
+            className='hidden md:flex ltr:rotate-180'
             width={"13px"}
             height={"16px"}
           />

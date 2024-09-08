@@ -17,8 +17,8 @@ export default function BankCard({ payment }: { payment: bankChecks }) {
           </p>
           <div className='flex flex-row gap-3 items-start tracking-tighter  w-[55%] md:w-[50%] '>
             <img
-              src={"/assets/credit.svg"}
-              className='w-[29px]  h-[24px] md:w-[38px] md:h-[41px]'
+              src={"/assets/bank.svg"}
+              className='w-[29px]  h-[24px] md:w-[41px] md:h-[41px]'
             />
             <div className='flex flex-col gap-1 text-[#048951]   text-sm md:text-[17px]'>
               {payment.bankName}

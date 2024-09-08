@@ -69,10 +69,10 @@ export const Footer = ({ lang }: { lang: string }) => {
               <a
                 className='text-xl font-bold flex flex-row rtl:flex-row items-center gap-2'
                 dir='ltr'
-                href='tel:+1800229933'>
+                href='tel:+201222 222 883'>
                 <img
                   src='/assets/call.svg'
-                  className='flex w-[14px] md:w-4 h-[14px] md:h-4'
+                  className='flex w-[20px] md:w-4 h-[20px] md:h-4'
                 />
                 01222 222 883
               </a>
@@ -87,9 +87,11 @@ export const Footer = ({ lang }: { lang: string }) => {
               }}>
               <img
                 src='/assets/location.svg'
-                className='flex w-[14px] md:w-4 h-[14px] md:h-6'
+                className='flex w-[20px] md:w-4 h-[20px] md:h-6'
               />
-              <p className='text-base'>{translate("locale.Headquarters")}</p>
+              <p className='text-base text-center md:text-start w-[80%] md:w-auto'>
+                {translate("locale.Headquarters")}
+              </p>
             </div>
           </div>
         </div>

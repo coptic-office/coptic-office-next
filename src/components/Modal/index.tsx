@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export const Modal = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    (document.getElementById("body") as any).style.overflowY = "hidden";
+    (document.getElementById("body") as any).style.overflow = "hidden";
   }, []);
 
   return (
