@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosInstance from "./axiosInstance";
 
 export const getPayments = ( lang: string) =>
@@ -12,3 +11,15 @@ export const getPayments = ( lang: string) =>
       },
     }
   );
+
+  export const getPaymentsOptions = (lang: string) =>
+    axiosInstance.post(
+      `users/get-payment-options
+`,
+      {},
+      {
+        headers: {
+          "accept-language": lang ?? "ar",
+        },
+      }
+    );

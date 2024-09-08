@@ -7,7 +7,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { unstable_setRequestLocale } from "next-intl/server";
-import dynamic from "next/dynamic";
 import Header from "@/src/components/Header";
 
 export function generateStaticParams() {
@@ -29,13 +28,13 @@ export default async function RootLayout({
 }>) {
   const messages = (await getMessages()) as any;
   unstable_setRequestLocale(locale);
-
   return (
     <html lang={locale} dir={locale == "ar" ? "rtl" : "ltr"}>
       <body id='body' className={" flex flex-col"}>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <ImageSlider lang={locale} />
+          <ImageSlider  />
+
           <>{children}</>
           <Footer lang={locale} />
         </NextIntlClientProvider>

@@ -1,8 +1,8 @@
+import PersonalProfile from "@/src/modules/profile";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
-import HomePage from "@/src/modules/Home";
 
-export default function Home({
+export default function Profile({
   params: { locale },
 }: {
   params: { locale: string };
@@ -12,7 +12,7 @@ export default function Home({
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between mt-[245px] md:mt-[500px] z-[80] md:z-[100] bg-white  '>
-      <HomePage lang={locale} />
+      <PersonalProfile  />
     </main>
   );
 }

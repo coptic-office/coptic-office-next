@@ -12,7 +12,11 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+
+        "hero-front": "url('/assets/front.svg')",
+        "hero-Back": "url('/assets/back.svg')",
       },
+
       screens: {
         // "max-taplet-rotate": { max: "1180px" },
         sm: "640px",

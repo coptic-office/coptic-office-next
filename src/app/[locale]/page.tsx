@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import HomePage from "../../modules/Home";
 import { unstable_setRequestLocale } from "next-intl/server";
 import "../../styles/globals.css";
+import { Modal } from "@/src/components/Modal";
 
 export default function Home({
   params: { locale },

@@ -1,15 +1,16 @@
 "use client";
 import { useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-
-// Import Swiper styles
 import "swiper/css";
 import { useTranslations } from "next-intl";
+import { Modal } from "./Modal";
+import { PaymentOptionsModal } from "../modules/UserPaymentModal/PaymentOptionsModal";
+import { PaymentModal } from "../modules/UserPaymentModal/PaymentModal";
 
-export const ImageSlider = ({ lang }: { lang: string }) => {
+export const ImageSlider = () => {
   const translate = useTranslations();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const slides = [
     "/1-Front1.jpg",
     "/2-Elevation.jpg",
@@ -19,31 +20,53 @@ export const ImageSlider = ({ lang }: { lang: string }) => {
     "/6-Gates.jpg",
   ];
   return (
-    <div className=' h-[350px] md:h-[700px] w-full absolute top-0 z-50'>
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-          clickable: true,
-        }}
-        className='mySwiper'
-        modules={[Pagination, Autoplay]}>
-        {slides.map((item) => (
-          <SwiperSlide>
-            <Slide
-              handleClick={() => {}}
-              src={item}
-              label={translate("locale.Book_Now")}
-              desc={translate("locale.New_Cairo")}
-              headText={translate("locale.Coptic_Cemeteries")}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <img
-        src='/assets/WaveWavy.svg'
-        className='w-full h-[100px] md:h-[180px] absolute bottom-0 md:-bottom-1 z-[100] object-cover'
-      />
-    </div>
+    <>
+      <div className=' h-[350px] md:h-[700px] w-full absolute top-0 z-50'>
+        <Swiper
+          pagination={{
+            dynamicBullets: true,
+            clickable: true,
+          }}
+          className='mySwiper'
+          modules={[Pagination, Autoplay]}>
+          {slides.map((item) => (
+            <SwiperSlide>
+              <Slide
+                handleClick={() => {
+                  setIsModalOpen(true);
+                }}
+                src={item}
+                label={translate("locale.Book_Now")}
+                desc={translate("locale.New_Cairo")}
+                headText={translate("locale.Coptic_Cemeteries")}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <img
+          src='/assets/WaveWavy.svg'
+          className='w-full h-[100px] md:h-[180px] absolute bottom-0 md:-bottom-1 z-[100] object-cover'
+        />
+      </div>
+      {isModalOpen ? (
+        <Modal>
+          <PaymentOptionsModal
+            closeModal={() => {
+              setIsModalOpen(false);
+              (document.getElementById("body") as any).style.overflow =
+                "scroll";
+            }}
+          />
+          {/* <PaymentModal
+            closeModal={() => {
+              setIsModalOpen(false);
+              (document.getElementById("body") as any).style.overflow =
+                "scroll";
+            }}
+          /> */}
+        </Modal>
+      ) : null}
+    </>
   );
 };
 
@@ -76,7 +99,9 @@ export const Slide = ({
         </p>
         <p className='text-sm font-bold md:text-[38px] text-white'>{desc}</p>
       </div>
-      <button className='absolute bottom-[161px] md:bottom-[240px] w-[106px] md:w-[196px] h-[30px] md:h-[56px] z-[100] bg-white text-THEME_PRIMARY_COLOR text-base md:text-[28px] font-bold rounded-2xl'>
+      <button
+        className='absolute bottom-[161px] md:bottom-[240px] w-[106px] md:w-[196px] h-[30px] md:h-[56px] z-[100] bg-white text-THEME_PRIMARY_COLOR text-base md:text-[28px] font-bold rounded-2xl cursor-pointer'
+        onClick={handleClick}>
         {label}
       </button>
     </div>

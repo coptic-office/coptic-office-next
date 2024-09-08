@@ -20,6 +20,7 @@ export const NavLink = ({
       onClick={() => {
         router.push(`/${locale}${url ? `/${url}#my${url}` : ""}`, {
           scroll: true,
+          
         });
         toggleNav?.();
       }}

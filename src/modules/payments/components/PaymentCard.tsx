@@ -4,7 +4,6 @@ import { useLocale, useTranslations } from "next-intl";
 export default function PaymentCard({ payment }: { payment: Payment }) {
   const translate = useTranslations();
   const local = useLocale();
-  console.log("local", local);
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>

@@ -63,3 +63,29 @@ export interface Unit {
   totalChecksAmount: number;
   contractDate: string | null;
 }
+export interface PaymentOption {
+  id: string;
+  bookingDate: string;
+  contractingDate: string;
+  category: string;
+  unitNumber: string;
+  totalCashAmount: number;
+  totalAmount: number;
+  totalChecksAmount: number;
+  contractDate: string | null;
+}
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  mobile: {
+    alternate: Object;
+    isVerified: boolean;
+    primary: {
+      country: string;
+      number: string;
+    };
+  };
+  profilePhoto: string;
+  email:string
+}

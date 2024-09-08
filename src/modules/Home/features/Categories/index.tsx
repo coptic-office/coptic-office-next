@@ -12,9 +12,15 @@ export default function Categories({ lang }: { lang: string }) {
   }, []);
   return (
     <div className='w-full flex flex-wrap px-4 md:px-0   flex-col md:flex-row gap-4 md:gap-[30px] justify-between items-start'>
-      {categories?.map((item) => (
-        <CategoryCard category={item} lang={lang} />
-      ))}
+      {categories
+        .sort(
+          (a, b) =>
+            (a.category.replace("category", "") as any) -
+            (b.category.replace("category", "") as any)
+        )
+        ?.map((item) => (
+          <CategoryCard category={item} />
+        ))}
     </div>
   );
 }

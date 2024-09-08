@@ -51,7 +51,7 @@ export default function Steps({ lang }: { lang: string }) {
           </div>
         </div>
       </div>
-      <button className='flex flex-row gap px-6 py-3 rtl:ps-[39px]   cursor-pointer justify-between min-w-[181px] ltr:min-w-[194px] rounded-lg items-center border-[1px] border-THEME_PRIMARY_COLOR '>
+      <button className='flex flex-row gap px-6 py-3 rtl:md:ps-[39px]   cursor-pointer justify-around md:justify-between min-w-[181px] ltr:min-w-[194px] rounded-lg items-center border-[1px] border-THEME_PRIMARY_COLOR '>
         <p className='text-THEME_PRIMARY_COLOR text-base font-bold'>
           {translate("locale.Unit_Booking")}
         </p>
