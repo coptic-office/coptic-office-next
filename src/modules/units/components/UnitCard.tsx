@@ -1,8 +1,7 @@
-"use client"
+"use client";
 import { Modal } from "@/src/components/Modal";
 import { Unit } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
-
 
 export default function UnitCard({ item }: { item: Unit }) {
   const translate = useTranslations();
@@ -22,10 +21,9 @@ export default function UnitCard({ item }: { item: Unit }) {
               </span>
             </p>
           </div>
-          {item.unitNumber?.includes("--") ? (
-            <button className='bg-THEME_PRIMARY_COLOR px-6 py-1.5 hidden md:flex text-white text-base font-bold rounded-lg'>
-              {translate("locale.Select_Unit_Type")}
-            </button>
+          {item.category?.includes("لم يتحدد") ||
+          item.category?.toLowerCase()?.includes("not selected") ? (
+            <img src='/assets/edit2.svg' />
           ) : (
             <img
               src='/assets/categoriesType.png'
@@ -121,17 +119,10 @@ export default function UnitCard({ item }: { item: Unit }) {
             </div>
           </div>
         </div>
-        {item.unitNumber?.includes("--") ? (
-          <div className='w-full mt-4  flex items-center justify-center'>
-            <button className='bg-THEME_PRIMARY_COLOR px-4 flex md:hidden py-1.5 text-white text-base font-bold rounded-lg'>
-              {translate("locale.Select_Unit_Type")}
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
       </div>
-      
+      <Modal>
+        <div className='bg-white min-h-[300px] min-w-[300px]'></div>
+      </Modal>
     </>
   );
 }
