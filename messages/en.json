@@ -154,6 +154,8 @@
     "Verification_Code_Text": "We have sent the verification code to your mobile",
     "Verify": "Verify",
     "noPayments": "No payments yet",
-    "security": "security"
+    "security": "security",
+    "Contracting_Deposit": "70,000 EGP contract payment",
+    "Input_Error": "Number should be multiplier of amount 1000"
   }
 }

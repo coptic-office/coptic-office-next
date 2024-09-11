@@ -87,5 +87,21 @@ export interface User {
     };
   };
   profilePhoto: string;
-  email:string
+  email: string;
+}
+
+export interface Notification {
+  text: string;
+  date: string;
+  isRead: boolean;
+  timeAgo: string;
+}
+export interface PaymentOptions {
+  unitId: string;
+  value: 0;
+  text: string;
+  paymentType: string;
+  memo: string;
+  action: string;
+  actionText: string;
 }

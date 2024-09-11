@@ -11,7 +11,7 @@ export const getSelectedUnitTypes = (unitId: string, lang: string) =>
     `users/get-unit-types
 `,
     {
-      'unitId': unitId,
+      unitId: unitId,
     },
     {
       headers: {

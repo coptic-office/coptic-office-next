@@ -120,9 +120,9 @@ export default function UnitCard({ item }: { item: Unit }) {
           </div>
         </div>
       </div>
-      <Modal>
+      {/* <Modal>
         <div className='bg-white min-h-[300px] min-w-[300px]'></div>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

@@ -1,10 +1,16 @@
 "use client";
 import { PaymentOptionCard } from "@/src/modules/UserPaymentModal/components/Card";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
-export const PaymentOptionsModal = ({ closeModal }: { closeModal(): void }) => {
+export const PaymentOptionsModal = ({
+  closeModal,
+  onClick,
+}: {
+  closeModal(): void;
+  onClick: VoidFunction;
+}) => {
   const translate = useTranslations();
-
   return (
     <div className=' min-w-full '>
       <div className='h-[56px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
@@ -24,7 +30,7 @@ export const PaymentOptionsModal = ({ closeModal }: { closeModal(): void }) => {
         <div className=' h-[350px] overflow-scroll md:overflow-hidden md:h-auto  flex flex-col md:flex-row gap-7'>
           <PaymentOptionCard method={1} />
           <PaymentOptionCard method={2} />
-          <PaymentOptionCard method={3} />
+          <PaymentOptionCard onClick={onClick} method={3} />
         </div>
         <div className='w-full flex justify-center'>
           {" "}

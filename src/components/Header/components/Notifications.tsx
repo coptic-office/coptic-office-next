@@ -1,4 +1,7 @@
-import { useTranslations } from "next-intl";
+import { getNotifications } from "@/src/network/notifications";
+import { Notification } from "@/src/types";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 export default function NotificationModal({
   closeNotification,
@@ -6,7 +9,13 @@ export default function NotificationModal({
   closeNotification: () => void;
 }) {
   const translate = useTranslations();
-
+  const locale=useLocale()
+const [data, setData] = useState<Notification[]>([]);
+  useEffect(() => {
+    getNotifications(locale).then((response) => {
+      setData(response.data.message.notifications);
+    })
+  },[])
   return (
     <>
       <div className='absolute top-0 end-0 flex  flex-row  justify-end  min-w-full min-h-screen bg-[#0000006e] z-[150]  '>
@@ -21,41 +30,41 @@ export default function NotificationModal({
               onClick={closeNotification}
             />
           </div>
-          {/* <div className='mt-6'>
-            {[1, 2, 3].map((item) => (
-              <div
-                className={`p-6 border-b-[1px] border-gray-300   ${
-                  item % 2 == 0 ? "bg-[#005fb033]" : ""
-                }`}>
-                <div className={`flex flex-row gap-3 items-start `}>
-                  {item % 2 == 0 ? (
-                    <p className='text-THEME_PRIMARY_COLOR text-xl '>•</p>
-                  ) : (
-                    ""
-                  )}
-                  <p className='text-sm text-[#555F71] font-semibold'>
-                    برجاء التوجه الي مقرر المكتب الفني القبطي لأستكمال إجراءات
-                    التعاقد والحصول علي نسخة العقد. يجب احضار بطاقة الرقم القومي
-                    ودفتر . الشيكات الخاص بك في حالة السداد الآجل أو استكمال
-                    قيمه الوحده بالكامل في حالة الدفع النقدي.
+          {data.length ? (
+            <div className='mt-6'>
+              {data.map((item) => (
+                <div
+                  className={`p-6 border-b-[1px] border-gray-300   ${
+                    !item.isRead ? "bg-[#005fb033]" : ""
+                  }`}>
+                  <div className={`flex flex-row gap-3 items-start `}>
+                    {!item.isRead ? (
+                      <p className='text-THEME_PRIMARY_COLOR text-xl '>•</p>
+                    ) : (
+                      ""
+                    )}
+                    <p className='text-sm text-[#555F71] font-semibold'>
+                      {item.text}
+                    </p>
+                  </div>
+                  <p className='w-full text-end text-xs text-[#475569]'>
+                    {item.timeAgo}
                   </p>
                 </div>
-                <p className='w-full text-end text-xs text-[#475569]'>
-                  منذ ٤ ساعات
-                </p>
-              </div>
-            ))}
-          </div> */}
-          <div className='flex flex-col gap-[60px] w-full h-full items-center justify-center'>
-            <img
-              src='/assets/noNotifications.svg'
-              width={"62px"}
-              height={"62px"}
-            />
-            <p className='text-[26px] text-[#555F71] font-semibold'>
-              {translate("locale.noNotifications")}
-            </p>
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className='flex flex-col gap-[60px] w-full h-full items-center justify-center'>
+              <img
+                src='/assets/noNotifications.svg'
+                width={"62px"}
+                height={"62px"}
+              />
+              <p className='text-[26px] text-[#555F71] font-semibold'>
+                {translate("locale.noNotifications")}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

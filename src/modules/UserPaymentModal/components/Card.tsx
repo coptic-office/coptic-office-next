@@ -3,7 +3,13 @@ import { getCookie } from "cookies-next";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo } from "react";
 
-export const PaymentOptionCard = ({ method }: { method: number }) => {
+export const PaymentOptionCard = ({
+  method,
+  onClick,
+}: {
+  method: number;
+  onClick?: VoidFunction;
+}) => {
   const translate = useTranslations();
 
   const userData = getCookie("user")
@@ -104,7 +110,9 @@ export const PaymentOptionCard = ({ method }: { method: number }) => {
       <div>
         {method == 3 ? (
           <div className='flex justify-center w-full mt-0 md:mt-[72px] '>
-            <button className=' mt-5 rtl:mt-[30px] rtl:md:mt-[30px]  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
+            <button
+              onClick={onClick}
+              className=' mt-5 rtl:mt-[30px] rtl:md:mt-[30px]  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
               {translate("locale.PayNow")}
               <img
                 src='/assets/leftWhite.svg'

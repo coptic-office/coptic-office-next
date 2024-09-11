@@ -151,6 +151,8 @@
     "Verification_Code_Text": "تم إرسال كود التحقق إلى هاتفك المحمول",
     "Verify": "التحقق",
     "noPayments": "لا يوجد مدفوعات حتى الآن",
-    "security": "أمن"
+    "security": "أمن",
+    "Contracting_Deposit": " 70,000  جنيه دفعة التعاقد",
+    "Input_Error": "يجب أن يكون الرقم مضاعفًا للمبلغ 1000"
   }
 }

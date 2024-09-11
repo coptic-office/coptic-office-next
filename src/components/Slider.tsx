@@ -11,6 +11,8 @@ import { PaymentModal } from "../modules/UserPaymentModal/PaymentModal";
 export const ImageSlider = () => {
   const translate = useTranslations();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPayOpen, setIsPayOpen] = useState(false);
+
   const slides = [
     "/1-Front1.jpg",
     "/2-Elevation.jpg",
@@ -50,20 +52,28 @@ export const ImageSlider = () => {
       </div>
       {isModalOpen ? (
         <Modal>
-          <PaymentOptionsModal
-            closeModal={() => {
-              setIsModalOpen(false);
-              (document.getElementById("body") as any).style.overflow =
-                "scroll";
-            }}
-          />
-          {/* <PaymentModal
-            closeModal={() => {
-              setIsModalOpen(false);
-              (document.getElementById("body") as any).style.overflow =
-                "scroll";
-            }}
-          /> */}
+          {isPayOpen ? (
+            <PaymentModal
+              closeModal={() => {
+                setIsModalOpen(false);
+                (document.getElementById("body") as any).style.overflow =
+                  "scroll";
+                setIsPayOpen(false);
+              }}
+            />
+          ) : (
+            <PaymentOptionsModal
+              closeModal={() => {
+                setIsModalOpen(false);
+                (document.getElementById("body") as any).style.overflow =
+                  "scroll";
+                setIsPayOpen(false);
+              }}
+              onClick={() => {
+                setIsPayOpen(true);
+              }}
+            />
+          )}
         </Modal>
       ) : null}
     </>
