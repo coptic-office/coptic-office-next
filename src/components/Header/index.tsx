@@ -34,8 +34,8 @@ export default function Header() {
     (document.getElementById("body") as any).style.overflow = "hidden";
   };
   const closeAuthModal = () => {
+    setCurrentModal("");
     setOpenAuth(false);
-    setCurrentModal();
     (document.getElementById("body") as any).style.overflow = "scroll";
   };
 
@@ -116,7 +116,10 @@ export default function Header() {
       ) : (
         ""
       )}
-      <Auth isModalOpen={openAuth} closeModal={closeAuthModal} />
+      <Auth
+        isModalOpen={openAuth || currentRunningModal == "Auth"}
+        closeModal={closeAuthModal}
+      />
     </>
   );
 }

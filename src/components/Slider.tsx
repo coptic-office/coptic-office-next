@@ -17,7 +17,6 @@ export const ImageSlider = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
   const { isLoggedIn, setCurrentModal, currentRunningModal } = useAppContext();
-  const pathname = usePathname();
   const slides = [
     "/1-Front1.jpg",
     "/2-Elevation.jpg",
@@ -65,7 +64,7 @@ export const ImageSlider = () => {
           className='w-full h-[100px] md:h-[180px] absolute bottom-0 md:-bottom-1 z-[100] object-cover'
         />
       </div>
-      {isModalOpen ? (
+      {isModalOpen || currentRunningModal == "payment" ? (
         <Modal>
           {isPayOpen ? (
             <PaymentModal
