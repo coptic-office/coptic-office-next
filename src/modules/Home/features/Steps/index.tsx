@@ -1,10 +1,11 @@
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { ReservationStep } from "./components/ReservationStep";
+import { useAppContext } from "@/src/context";
 
 export default function Steps({ lang }: { lang: string }) {
   const translate = useTranslations();
-
+  const { isLoggedIn, setCurrentModal } = useAppContext();
   return (
     <div className='w-full flex flex-col gap-[44px] md:gap-[69px] items-center mb-[28px]'>
       <div className='w-full flex flex-col md:flex-row gap-[367px] md:gap-[55px] justify-between items-start'>
@@ -51,7 +52,15 @@ export default function Steps({ lang }: { lang: string }) {
           </div>
         </div>
       </div>
-      <button className='flex flex-row gap px-6 py-3 rtl:md:ps-[39px]   cursor-pointer justify-around md:justify-between min-w-[181px] ltr:min-w-[194px] rounded-lg items-center border-[1px] border-THEME_PRIMARY_COLOR '>
+      <button
+        onClick={() => {
+          if (isLoggedIn) {
+            setCurrentModal?.("payment");
+          } else {
+            setCurrentModal?.("Auth");
+          }
+        }}
+        className='flex flex-row gap px-6 py-3 rtl:md:ps-[39px]   cursor-pointer justify-around md:justify-between min-w-[181px] ltr:min-w-[194px] rounded-lg items-center border-[1px] border-THEME_PRIMARY_COLOR '>
         <p className='text-THEME_PRIMARY_COLOR text-base font-bold'>
           {translate("locale.Unit_Booking")}
         </p>

@@ -54,7 +54,6 @@ export const OtpStep = ({
       )
         .then((response) => {
           setLoading({ ...loading, verifyLoading: false });
-          console.log("response", response?.data);
           setCheckUserData({
             ...checkUserData,
             verificationCode: (response.data as any)?.message?.verificationCode,
@@ -64,7 +63,6 @@ export const OtpStep = ({
           else handleChangeStep(AUTH_STEP_ENUM.CREATE_USER);
         })
         .catch((err) => {
-          console.log("ERROR", err);
           setError(err?.response?.data?.error ?? true);
           setLoading({ ...loading, resendLoading: false });
         });

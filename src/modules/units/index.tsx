@@ -26,7 +26,6 @@ export default function MyUnits() {
           setLoading(false);
         })
         .catch((err) => {
-          console.log("err", err);
           setLoading(false);
         });
     }

@@ -17,7 +17,6 @@ export default function Header() {
   const { currentRunningModal } = useAppContext();
   const [showNotifications, setShowNotifications] = useState(false);
   useEffect(() => {
-    console.log("currentRunningModal", currentRunningModal);
     if (currentRunningModal == "Auth") {
       setOpenAuth(true);
     }

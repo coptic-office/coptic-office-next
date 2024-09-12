@@ -37,7 +37,6 @@ export default function MyPayments() {
           setLoading(false);
         })
         .catch((err) => {
-          console.log("err", err);
           setLoading(false);
         });
     }

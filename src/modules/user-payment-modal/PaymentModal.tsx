@@ -94,7 +94,6 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
       })
       .catch((err) => {
         setLoading(false);
-        console.log("Errror", err);
       });
   };
   return (
@@ -244,7 +243,6 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                           "locale.Pound"
                         )} ${selectedUnit.text}`}
                         onSelect={() => {
-                          console.log("selected Unit", selectedUnit);
                           changeSelectedValueId(
                             0,
                             selectedUnit.value,

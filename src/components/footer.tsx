@@ -22,15 +22,15 @@ export const Footer = ({ lang }: { lang: string }) => {
             }}
           />
           <div className='flex flex-col w-full md:w-auto  md:flex-row gap-[43px] md:gap-[84px]'>
-            <p
-              onClick={() => {
-                router.push(`/${lang}`);
-              }}
-              className={`cursor-pointer   text-base font-semibold `}>
-              {translate("locale.Home")}
-            </p>
             {userData ? (
               <>
+                <p
+                  onClick={() => {
+                    router.push(`/${lang}`);
+                  }}
+                  className={`cursor-pointer   text-base font-semibold `}>
+                  {translate("locale.Home")}
+                </p>
                 <p
                   onClick={() => {
                     router.push(`/${lang}/payments`);
@@ -51,9 +51,9 @@ export const Footer = ({ lang }: { lang: string }) => {
             )}
           </div>
         </div>
-        <div className='w-full  px-9 md:px-0'>
+      {userData?  <div className='w-full  px-9 md:px-0'>
           <hr className='border-[0.5px] border-[#FDFCFF] opacity-30 w-full ' />
-        </div>
+        </div>:null}
         <div className='px-9 md:px-[150px] flex flex-col-reverse md:flex-row w-full justify-between items-center mt-7 md:mt-6'>
           <p className='text-[#FDFCFF] opacity-50 text-base' dir='ltr'>
             © 2024 Great Simple All rights reserved

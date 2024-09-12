@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { deleteCookie, getCookie } from "cookies-next";
 import { NavLink } from "./NavLink";
+import { useAppContext } from "@/src/context";
 
 export default function MobileMenu({
   openAuthModal,
@@ -13,6 +14,7 @@ export default function MobileMenu({
 }) {
   const [isSelected, setIsSelected] = useState(0);
   const [openNav, setOpenNav] = useState(false);
+  const { setIsLoggedIn }=useAppContext();
   const pathname = usePathname();
   const toggleNav = () => {
     setOpenNav(!openNav);
@@ -78,7 +80,12 @@ export default function MobileMenu({
             />
           </div>
           <hr className='border-[0.5px] w-full border-[#74777F] opacity-25 border-solid ' />
-          <div className='flex flex-row gap-2 items-center cursor-pointer px-3'>
+          <div
+            onClick={() => {
+              router.push(`/${locale}/profile`);
+              toggleNav()
+            }}
+            className='flex flex-row gap-2 items-center cursor-pointer px-3'>
             <img src='/assets/profile.svg' className='w-4 h-4' />
             <p className='text-base text-[#84878B] w-[170px] truncate hover:text-THEME_PRIMARY_COLOR'>
               {userData?.firstName} {userData?.lastName}
@@ -112,6 +119,7 @@ export default function MobileMenu({
             onClick={() => {
               deleteCookie("user");
               deleteCookie("authToken");
+              setIsLoggedIn(false);
               localStorage.removeItem("authToken");
 
               router.push("/");

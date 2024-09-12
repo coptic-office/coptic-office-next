@@ -26,7 +26,6 @@ export const ImageSlider = () => {
     "/6-Gates.jpg",
   ];
   useEffect(() => {
-    console.log("currentRunningModal", currentRunningModal);
     if (currentRunningModal == "payment") setIsModalOpen(true);
   }, [currentRunningModal]);
   return (
@@ -46,7 +45,6 @@ export const ImageSlider = () => {
                   if (isLoggedIn) {
                     setIsModalOpen(true);
                   } else {
-                    console.log("AuthAuth", setCurrentModal);
                     setCurrentModal?.("Auth");
                   }
                 }}

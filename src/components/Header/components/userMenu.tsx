@@ -1,9 +1,9 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Auth } from "@/src/modules/auth";
-import { getCookie, setCookie, deleteCookie } from "cookies-next";
+import { getCookie, deleteCookie } from "cookies-next";
+import { useAppContext } from "@/src/context";
 
 export default function UserMenu({
   openAuthModal,
@@ -12,6 +12,7 @@ export default function UserMenu({
 }) {
   const pathname = usePathname();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const { setIsLoggedIn } = useAppContext();
 
   const router = useRouter();
   const translate = useTranslations();
@@ -54,7 +55,12 @@ export default function UserMenu({
           {isUserMenuOpen ? (
             <div
               className={`w-[245px] flex flex-col gap-4 absolute p-4 bg-white  top-[55px] rounded-b-lg  rounded-t-none  start-0 z-[150] shadow-2xl `}>
-              <div className='flex flex-row gap-2 items-center cursor-pointer'>
+              <div
+                onClick={() => {
+                  setIsUserMenuOpen(false)
+                  router.push(`/${locale}/profile`);
+                }}
+                className='flex flex-row gap-2 items-center cursor-pointer'>
                 <img src='/assets/profile.svg' className='w-4 h-4' />
                 <p className='text-base text-[#84878B] w-[170px] truncate hover:text-THEME_PRIMARY_COLOR'>
                   {userData?.firstName} {userData?.lastName}
@@ -83,6 +89,7 @@ export default function UserMenu({
                 onClick={() => {
                   deleteCookie("user");
                   deleteCookie("authToken");
+                  setIsLoggedIn(false);
                   localStorage.removeItem("authToken");
                   router.push("/");
                 }}>
