@@ -50,7 +50,11 @@ export default function MyUnits() {
           )}{" "}
           <>
             {loading ? (
-              ""
+              <div className='flex items-center justify-center min-h-[200px]'>
+                <div className='h-[350px] w-full flex justify-center items-center'>
+                  <span className='svg-spinners--180-ring-with-bg'></span>
+                </div>
+              </div>
             ) : (
               <div className='flex flex-row w-full items-center justify-center'>
                 {Units.length == 0 ? (

@@ -20,9 +20,11 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     error: false,
   });
   const [loading, setLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState<PaymentOptions>();
   const router = useRouter();
   const locale = useLocale();
+  
   const changeActiveTab = (index: number) => {
     setSelectedUnit(undefined);
     setSelectedItem(null);
@@ -47,6 +49,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     });
   };
   const getAllOptions = () => {
+    setDataLoading(true)
     getPaymentsOptions(locale).then((response) => {
       let maxNumber = 0;
       response.data.message?.paymentOptions.map((item: PaymentOptions) => {
@@ -58,6 +61,9 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
         )
       );
       setMaxPayment(maxNumber);
+            setDataLoading(false);
+    }).catch(() => {
+      setDataLoading(false)
     });
   };
   useEffect(() => {
@@ -121,7 +127,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
             }>
             <p>{translate("locale.New_Booking")}</p>
           </li>
-          {options.length > 0 ? (
+          {(options.length <= 0 &&!dataLoading) ? null: (
             <li
               className={`  ${
                 activeTab == 1
@@ -131,7 +137,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               onClick={() => changeActiveTab(1)}>
               <p>{translate("locale.Existing_Booking")}</p>
             </li>
-          ) : null}
+          ) }
         </ul>
         <div className='p-4 md:p-10'>
           {activeTab == 0 ? (

@@ -60,7 +60,11 @@ export default function MyPayments() {
           </p>
           <>
             {loading ? (
-              ""
+              <div className='flex items-center justify-center min-h-[200px]'>
+                <div className='h-[350px] w-full flex justify-center items-center'>
+                  <span className='svg-spinners--180-ring-with-bg'></span>
+                </div>
+              </div>
             ) : (
               <>
                 {payments.bankChecks?.length == 0 &&
@@ -125,7 +129,7 @@ export default function MyPayments() {
       <div className='w-full flex justify-end px-4 md:px-0'>
         <button
           onClick={() => {
-            setCurrentModal('payment')
+            setCurrentModal("payment");
           }}
           className=' px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex gap-3 md:gap-8 items-center'>
           <img

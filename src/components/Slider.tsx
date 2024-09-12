@@ -68,6 +68,7 @@ export const ImageSlider = () => {
           {isPayOpen ? (
             <PaymentModal
               closeModal={() => {
+                setCurrentModal("");
                 setIsModalOpen(false);
                 (document.getElementById("body") as any).style.overflow =
                   "scroll";
@@ -77,6 +78,8 @@ export const ImageSlider = () => {
           ) : (
             <PaymentOptionsModal
               closeModal={() => {
+                setCurrentModal("");
+
                 setIsModalOpen(false);
                 (document.getElementById("body") as any).style.overflow =
                   "scroll";
@@ -91,9 +94,12 @@ export const ImageSlider = () => {
       ) : null}
       {currentRunningModal == "select" ? (
         <Modal>
-          <SelectUnitModal closeModal={() => {
-            (document.getElementById("body") as any).style.overflow = "scroll";
-          }} />
+          <SelectUnitModal
+            closeModal={() => {
+              (document.getElementById("body") as any).style.overflow =
+                "scroll";
+            }}
+          />
         </Modal>
       ) : null}
     </>
