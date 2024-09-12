@@ -3,10 +3,10 @@ import { createPayment, getPaymentsOptions } from "@/src/network/payments";
 import { PaymentOptions } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { RadioButton } from "./components/RadioButton";
 import { NumberControl } from "./components/NumberControl";
 import { ReactSelect } from "./Select";
-import { useRouter } from "next/navigation";
 
 export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
   const translate = useTranslations();
@@ -121,13 +121,17 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
             }>
             <p>{translate("locale.New_Booking")}</p>
           </li>
-          <li
-            className={`  ${
-              activeTab == 1 ? activeStyle : `${disabledStyle} rounded-es-none `
-            }`}
-            onClick={() => changeActiveTab(1)}>
-            <p>{translate("locale.Existing_Booking")}</p>
-          </li>
+          {options.length > 0 ? (
+            <li
+              className={`  ${
+                activeTab == 1
+                  ? activeStyle
+                  : `${disabledStyle} rounded-es-none `
+              }`}
+              onClick={() => changeActiveTab(1)}>
+              <p>{translate("locale.Existing_Booking")}</p>
+            </li>
+          ) : null}
         </ul>
         <div className='p-4 md:p-10'>
           {activeTab == 0 ? (

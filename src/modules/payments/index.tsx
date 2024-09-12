@@ -2,11 +2,12 @@
 import { getPayments } from "@/src/network/payments";
 import { bankChecks, Payment } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PaymentCard from "./components/PaymentCard";
 import BankCard from "./components/BankCard";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/src/context";
 export default function MyPayments() {
   const [payments, setPayments] = useState<{
     payments: Payment[];
@@ -45,6 +46,7 @@ export default function MyPayments() {
   const changeActiveTab = (index: number) => {
     setPayments({ ...payments, selectedStep: index });
   };
+  const { setCurrentModal } = useAppContext();
   const disabledStyle = `cursor-pointer ps-[6px] md:ps-[18px] pe-[11px] md:pe-6 py-[6px] md:py-3 text-base inline-block border-[1px] !max-w-auto md:!max-w-[369px] flex-1      border-gray-200 rounded-md hover:text-gray-600 hover:border-gray-200 `;
   const activeStyle = `cursor-pointer inline-block  ps-[6px] md:ps-[18px] pe-[11px] md:pe-6 py-[6px] md:py-3 text-base  border-b-2 bg-[#005fb057] font-semibold  !max-w-auto md:!max-w-[369px]  flex-1   text-THEME_PRIMARY_COLOR border-THEME_PRIMARY_COLOR rounded-t-md active `;
   return (
@@ -121,7 +123,11 @@ export default function MyPayments() {
         </div>
       </div>
       <div className='w-full flex justify-end px-4 md:px-0'>
-        <button className=' px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex gap-3 md:gap-8 items-center'>
+        <button
+          onClick={() => {
+            setCurrentModal('payment')
+          }}
+          className=' px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex gap-3 md:gap-8 items-center'>
           <img
             src=' /assets/left.svg'
             className='hidden md:flex ltr:rotate-180'

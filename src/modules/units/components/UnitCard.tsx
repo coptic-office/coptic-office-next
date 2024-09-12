@@ -1,14 +1,15 @@
 "use client";
-import { Modal } from "@/src/components/Modal";
+import { useAppContext } from "@/src/context";
 import { Unit } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function UnitCard({ item }: { item: Unit }) {
   const translate = useTranslations();
   const local = useLocale();
+  const { setCurrentModal, setUnitId } = useAppContext();
   return (
     <>
-      <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-4 md:px-6 md:pe-5  w-full md:w-[49%]  '>
+      <div className=' relative border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-4 md:px-6 md:pe-5  w-full md:w-[49%]  '>
         <div className='flex flex-row justify-between items-start'>
           <div className='flex flex-col gap-1'>
             <p className='text-[#048951]  text-sm md:text-lg font-semibold'>
@@ -21,14 +22,16 @@ export default function UnitCard({ item }: { item: Unit }) {
               </span>
             </p>
           </div>
-          {item.category?.includes("لم يتحدد") ||
-          item.category?.toLowerCase()?.includes("not selected") ? (
-            <img src='/assets/edit2.svg' />
-          ) : (
+          {item.unitNumber == "---" ? (
             <img
-              src='/assets/categoriesType.png'
-              className='!w-[82px] !h-[16px] md:!w-[181px] md:!h-[36px]'
+              className='cursor-pointer'
+              src='/assets/edit2.svg'
+              onClick={() => {
+                setCurrentModal("select", item.id);
+              }}
             />
+          ) : (
+            ""
           )}
         </div>
         <p className='mt-1 text-[#555F71] text-sm md:text-lg flex flex-row items-center rtl:gap-[21px] ltr:gap-2.5 '>
@@ -120,9 +123,6 @@ export default function UnitCard({ item }: { item: Unit }) {
           </div>
         </div>
       </div>
-      {/* <Modal>
-        <div className='bg-white min-h-[300px] min-w-[300px]'></div>
-      </Modal> */}
     </>
   );
 }

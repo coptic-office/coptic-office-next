@@ -49,7 +49,7 @@ export const Auth = ({
         isModalOpen ? "block" : "hidden"
       } overflow-y-auto overflow-x-hidden fixed top-0 flex  right-0 left-0 justify-center items-center w-full md:inset-0 h-full md:h-screen !z-[300]   bg-[#0000004d]`}>
       <div className=' p-0 md:p-4   w-full h-full md:max-w-2xl md:h-auto md:w-[620px]'>
-        <div className=' bg-white  rounded-none md:rounded-[18px] shadow   w-full h-full md:max-w-2xl md:max-h-full  p-4 pt-3 md:pt-[60px]  md:p-0   '>
+        <div className=' bg-white  rounded-none md:rounded-[18px] shadow   w-full h-full md:max-w-2xl md:max-h-full  p-4 pt-3 md:pt-0  md:p-0   '>
           <div className='border-b-[1px] border-solid border-[#0000001f] relative mb-8 block py-2 md:py-8'>
             <img
               src={"/assets/close.png"}

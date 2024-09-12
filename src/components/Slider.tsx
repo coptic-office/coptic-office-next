@@ -1,20 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import { useTranslations } from "next-intl";
 import { Modal } from "./Modal";
-import { PaymentOptionsModal } from "../modules/UserPaymentModal/PaymentOptionsModal";
-import { PaymentModal } from "../modules/UserPaymentModal/PaymentModal";
+import { PaymentOptionsModal } from "../modules/user-payment-modal/PaymentOptionsModal";
+import { PaymentModal } from "../modules/user-payment-modal/PaymentModal";
 import { useAppContext } from "../context";
 import { usePathname } from "next/navigation";
+import { SelectUnitModal } from "../modules/select-unit-modal";
 
 export const ImageSlider = () => {
   const translate = useTranslations();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
-  const { isLoggedIn, setCurrentModal } = useAppContext();
+  const { isLoggedIn, setCurrentModal, currentRunningModal } = useAppContext();
   const pathname = usePathname();
   const slides = [
     "/1-Front1.jpg",
@@ -24,6 +25,10 @@ export const ImageSlider = () => {
     "/5-Plan1.jpg",
     "/6-Gates.jpg",
   ];
+  useEffect(() => {
+    console.log("currentRunningModal", currentRunningModal);
+    if (currentRunningModal == "payment") setIsModalOpen(true);
+  }, [currentRunningModal]);
   return (
     <>
       <div className=' h-[350px] md:h-[700px] w-full absolute top-0 z-50'>
@@ -82,6 +87,13 @@ export const ImageSlider = () => {
               }}
             />
           )}
+        </Modal>
+      ) : null}
+      {currentRunningModal == "select" ? (
+        <Modal>
+          <SelectUnitModal closeModal={() => {
+            (document.getElementById("body") as any).style.overflow = "scroll";
+          }} />
         </Modal>
       ) : null}
     </>

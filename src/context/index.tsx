@@ -8,24 +8,39 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<{
     isLoggedIn: boolean;
     currentRunningModal: string;
+    unitId?: string;
+    refreshPage?: boolean;
   }>({
     isLoggedIn: getCookie("user") ? true : false,
     currentRunningModal: "",
+    unitId: undefined,
+    refreshPage: false,
   });
   const setIsLoggedIn = () => {
     setState({ ...state, isLoggedIn: true });
   };
-  const setCurrentModal = (value: string) => {
-    console.log("FALF", value);
-    setState({ ...state, currentRunningModal: value });
+  const refreshData = () => {
+    setState({ ...state, refreshPage: true,currentRunningModal:'' });
+  };
+  const setCurrentModal = (value: string, unitId?: string) => {
+    if (unitId) {
+      setState({ ...state, currentRunningModal: value, unitId: unitId });
+    } else setState({ ...state, currentRunningModal: value });
+  };
+  const setUnitId = (value: string) => {
+    setState({ ...state, unitId: value });
   };
   return (
     <APPContext.Provider
       value={{
         isLoggedIn: state.isLoggedIn,
         currentRunningModal: state.currentRunningModal,
+        unitId: state.unitId,
+        refreshPage:state.refreshPage,
         setCurrentModal,
         setIsLoggedIn,
+        setUnitId,
+        refreshData,
       }}>
       {children}
     </APPContext.Provider>

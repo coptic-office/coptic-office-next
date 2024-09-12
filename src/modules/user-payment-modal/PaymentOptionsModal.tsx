@@ -1,5 +1,5 @@
 "use client";
-import { PaymentOptionCard } from "@/src/modules/UserPaymentModal/components/Card";
+import { PaymentOptionCard } from "@/src/modules/user-payment-modal/components/Card";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 

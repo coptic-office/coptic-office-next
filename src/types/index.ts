@@ -63,6 +63,17 @@ export interface Unit {
   totalChecksAmount: number;
   contractDate: string | null;
 }
+
+export interface myUnit {
+  bookingAmount: number;
+  cashAmount: number;
+  category: string;
+  categoryName: string;
+  contractingAmount: number;
+  grossAmount: number;
+  installments: { count: number; amount: number; spanInMonths: number };
+  _id: string;
+}
 export interface PaymentOption {
   id: string;
   bookingDate: string;
