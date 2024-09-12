@@ -8,12 +8,20 @@ import MobileMenu from "./components/MobileMenu";
 import NotificationModal from "./components/Notifications";
 import { NavLink } from "./components/NavLink";
 import UserMenu from "./components/userMenu";
+import { useAppContext } from "@/src/context";
 
 export default function Header() {
   const [isSelected, setIsSelected] = useState(0);
   const [openAuth, setOpenAuth] = useState(false);
   const pathname = usePathname();
+  const { currentRunningModal } = useAppContext();
   const [showNotifications, setShowNotifications] = useState(false);
+  useEffect(() => {
+    console.log("currentRunningModal", currentRunningModal);
+    if (currentRunningModal == "Auth") {
+      setOpenAuth(true);
+    }
+  }, [currentRunningModal]);
   const openNotification = () => {
     setShowNotifications(true);
     (document.getElementById("body") as any).style.overflow = "hidden";
@@ -33,7 +41,7 @@ export default function Header() {
 
   const router = useRouter();
   const translate = useTranslations();
-  const locale=useLocale()
+  const locale = useLocale();
   useEffect(() => {
     if (pathname?.includes("payments")) setIsSelected(1);
     else if (pathname.includes("units")) setIsSelected(2);

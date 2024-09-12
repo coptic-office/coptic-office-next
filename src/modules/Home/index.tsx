@@ -1,4 +1,5 @@
 "use client";
+import { useAppContext } from "@/src/context";
 import Categories from "./features/Categories";
 import Steps from "./features/Steps";
 import { useTranslations } from "next-intl";

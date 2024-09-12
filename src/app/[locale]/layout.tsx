@@ -8,6 +8,7 @@ import { getMessages } from "next-intl/server";
 
 import { unstable_setRequestLocale } from "next-intl/server";
 import Header from "@/src/components/Header";
+import { AppWrapper } from "@/src/context";
 
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
@@ -32,10 +33,11 @@ export default async function RootLayout({
     <html lang={locale} dir={locale == "ar" ? "rtl" : "ltr"}>
       <body id='body' className={" flex flex-col"}>
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <ImageSlider  />
-
-          <>{children}</>
+          <AppWrapper>
+            <Header />
+            <ImageSlider />
+            {children}
+          </AppWrapper>
           <Footer lang={locale} />
         </NextIntlClientProvider>
       </body>

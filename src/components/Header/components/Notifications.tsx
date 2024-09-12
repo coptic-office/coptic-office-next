@@ -9,17 +9,30 @@ export default function NotificationModal({
   closeNotification: () => void;
 }) {
   const translate = useTranslations();
-  const locale=useLocale()
-const [data, setData] = useState<Notification[]>([]);
+  const locale = useLocale();
+  const [data, setData] = useState<Notification[]>([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    getNotifications(locale).then((response) => {
-      setData(response.data.message.notifications);
-    })
-  },[])
+    setLoading(true);
+    getNotifications(locale)
+      .then((response) => {
+        setLoading(false);
+        setData(response.data.message.notifications);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+    document.addEventListener("click", (event) => {
+      if ((event.target as any)?.id == "back") closeNotification();
+    });
+  }, []);
+
   return (
     <>
-      <div className='absolute top-0 end-0 flex  flex-row  justify-end  min-w-full min-h-screen bg-[#0000006e] z-[150]  '>
-        <div className='w-full md:w-[443px]  bg-white min-h-screen'>
+      <div
+        id='back'
+        className='absolute top-0 end-0 flex  flex-row  justify-end  min-w-full min-h-screen bg-[#0000006e] z-[150]  '>
+        <div className='w-[80%] md:w-[443px]  bg-white min-h-screen'>
           <div className='flex flex-row justify-between items-center  p-6 '>
             <p className='text-[#1E293B] font-semibold text-xl'>
               {translate("locale.Notifications")}
@@ -30,40 +43,48 @@ const [data, setData] = useState<Notification[]>([]);
               onClick={closeNotification}
             />
           </div>
-          {data.length ? (
-            <div className='mt-6'>
-              {data.map((item) => (
-                <div
-                  className={`p-6 border-b-[1px] border-gray-300   ${
-                    !item.isRead ? "bg-[#005fb033]" : ""
-                  }`}>
-                  <div className={`flex flex-row gap-3 items-start `}>
-                    {!item.isRead ? (
-                      <p className='text-THEME_PRIMARY_COLOR text-xl '>•</p>
-                    ) : (
-                      ""
-                    )}
-                    <p className='text-sm text-[#555F71] font-semibold'>
-                      {item.text}
-                    </p>
-                  </div>
-                  <p className='w-full text-end text-xs text-[#475569]'>
-                    {item.timeAgo}
-                  </p>
-                </div>
-              ))}
+          {loading ? (
+            <div className='h-full w-full flex justify-center items-center'>
+              <span className='svg-spinners--180-ring-with-bg'></span>
             </div>
           ) : (
-            <div className='flex flex-col gap-[60px] w-full h-full items-center justify-center'>
-              <img
-                src='/assets/noNotifications.svg'
-                width={"62px"}
-                height={"62px"}
-              />
-              <p className='text-[26px] text-[#555F71] font-semibold'>
-                {translate("locale.noNotifications")}
-              </p>
-            </div>
+            <>
+              {data.length ? (
+                <div className='mt-6'>
+                  {data.map((item) => (
+                    <div
+                      className={`p-6 border-b-[1px] border-gray-300   ${
+                        !item.isRead ? "bg-[#005fb033]" : ""
+                      }`}>
+                      <div className={`flex flex-row gap-3 items-start `}>
+                        {!item.isRead ? (
+                          <p className='text-THEME_PRIMARY_COLOR text-xl '>•</p>
+                        ) : (
+                          ""
+                        )}
+                        <p className='text-sm text-[#555F71] font-semibold'>
+                          {item.text}
+                        </p>
+                      </div>
+                      <p className='w-full text-end text-xs text-[#475569]'>
+                        {item.timeAgo}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className='flex flex-col gap-[60px] w-full h-full items-center mt-10 justify-start md:justify-center'>
+                  <img
+                    src='/assets/noNotifications.svg'
+                    width={"62px"}
+                    height={"62px"}
+                  />
+                  <p className='text-base md:text-[26px] text-[#555F71] font-semibold'>
+                    {translate("locale.noNotifications")}
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

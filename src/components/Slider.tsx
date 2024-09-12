@@ -7,12 +7,15 @@ import { useTranslations } from "next-intl";
 import { Modal } from "./Modal";
 import { PaymentOptionsModal } from "../modules/UserPaymentModal/PaymentOptionsModal";
 import { PaymentModal } from "../modules/UserPaymentModal/PaymentModal";
+import { useAppContext } from "../context";
+import { usePathname } from "next/navigation";
 
 export const ImageSlider = () => {
   const translate = useTranslations();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
-
+  const { isLoggedIn, setCurrentModal } = useAppContext();
+  const pathname = usePathname();
   const slides = [
     "/1-Front1.jpg",
     "/2-Elevation.jpg",
@@ -35,7 +38,12 @@ export const ImageSlider = () => {
             <SwiperSlide>
               <Slide
                 handleClick={() => {
-                  setIsModalOpen(true);
+                  if (isLoggedIn) {
+                    setIsModalOpen(true);
+                  } else {
+                    console.log("AuthAuth", setCurrentModal);
+                    setCurrentModal?.("Auth");
+                  }
                 }}
                 src={item}
                 label={translate("locale.Book_Now")}
