@@ -16,9 +16,10 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     unitId: undefined,
     refreshPage: false,
   });
-  const setIsLoggedIn = () => {
-    setState({ ...state, isLoggedIn: true });
+  const setIsLoggedIn = (value:boolean) => {
+    setState({ ...state, isLoggedIn:value?value: true });
   };
+
   const refreshData = () => {
     setState({ ...state, refreshPage: true,currentRunningModal:'' });
   };

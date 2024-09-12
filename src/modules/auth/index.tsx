@@ -8,6 +8,7 @@ import { ForgetPassword } from "./features/forgetPassword";
 import { ResetPassword } from "./features/ResetPassword";
 import { useTranslations } from "next-intl";
 import { CreateUser } from "./features/CreateUser";
+import { useAppContext } from "@/src/context";
 export const Auth = ({
   isModalOpen,
   closeModal,
@@ -17,6 +18,7 @@ export const Auth = ({
 }) => {
   const [currentStep, setCurrentStep] = useState(AUTH_STEP_ENUM.MOBILE_NUMBER);
   const [mobileNumber, setMobileNumber] = useState("");
+  const {}=useAppContext()
   const [checkUserData, setCheckUserData] = useState<checkUserModal>({
     otpSent: false,
     isExisted: false,

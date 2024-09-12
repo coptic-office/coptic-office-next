@@ -10,6 +10,7 @@ import { PaymentModal } from "../modules/user-payment-modal/PaymentModal";
 import { useAppContext } from "../context";
 import { usePathname } from "next/navigation";
 import { SelectUnitModal } from "../modules/select-unit-modal";
+import { getCookie } from "cookies-next";
 
 export const ImageSlider = () => {
   const translate = useTranslations();
@@ -26,7 +27,10 @@ export const ImageSlider = () => {
     "/6-Gates.jpg",
   ];
   useEffect(() => {
-    if (currentRunningModal == "payment") setIsModalOpen(true);
+    if (currentRunningModal == "payment") {
+      if (getCookie("user")) setIsModalOpen(true);
+      else setCurrentModal("Auth");
+    }
   }, [currentRunningModal]);
   return (
     <>
@@ -42,7 +46,7 @@ export const ImageSlider = () => {
             <SwiperSlide>
               <Slide
                 handleClick={() => {
-                  if (isLoggedIn) {
+                  if (isLoggedIn && getCookie("user")) {
                     setIsModalOpen(true);
                   } else {
                     setCurrentModal?.("Auth");

@@ -14,7 +14,7 @@ export default function Header() {
   const [isSelected, setIsSelected] = useState(0);
   const [openAuth, setOpenAuth] = useState(false);
   const pathname = usePathname();
-  const { currentRunningModal } = useAppContext();
+  const { currentRunningModal, setCurrentModal } = useAppContext();
   const [showNotifications, setShowNotifications] = useState(false);
   useEffect(() => {
     if (currentRunningModal == "Auth") {
@@ -35,6 +35,7 @@ export default function Header() {
   };
   const closeAuthModal = () => {
     setOpenAuth(false);
+    setCurrentModal();
     (document.getElementById("body") as any).style.overflow = "scroll";
   };
 
