@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { RadioButton } from "./components/RadioButton";
 import { NumberControl } from "./components/NumberControl";
 import { ReactSelect } from "./Select";
+import { LoadingSpinner } from "../auth/components/loading";
 
 export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
   const translate = useTranslations();
@@ -105,7 +106,6 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     createPayment({ ...object }, locale)
       .then((response) => {
         setLoading(false);
-
         open(
           `https://banquemisr.gateway.mastercard.com/checkout/api/retrieveWsapiVersion/${response.data.message.sessionId}`,
           "_blank"
@@ -163,16 +163,12 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
             <div className='flex flex-col gap-[30px]'>
               <RadioButton
                 label={`${Number(
-                  bookingItem?.value??70000
+                  bookingItem?.value ?? 70000
                 )?.toLocaleString()} ${translate("locale.Pound")} ${
                   bookingItem?.text
                 }`}
                 onSelect={() => {
-                  changeSelectedValueId(
-                    0,
-                    bookingItem?.value,
-                  
-                  );
+                  changeSelectedValueId(0, bookingItem?.value);
                 }}
                 selected={selectedItem?.selectedValueId == 0}
               />
@@ -420,8 +416,8 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               <button
                 disabled={!selectedItem?.value}
                 onClick={submitPayment}
-                className='w-full md:w-[181px] disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
-                {translate("locale.PayNow")}
+                className='w-full md:w-[181px] flex justify-center items-center disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
+                {loading ? <LoadingSpinner /> : translate("locale.PayNow")}
               </button>
             </div>
           )}
