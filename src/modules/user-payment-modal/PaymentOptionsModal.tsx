@@ -41,7 +41,7 @@ export const PaymentOptionsModal = ({
         </div>
         <div className='w-full flex justify-center'>
           {" "}
-          <p className='my-6 md:my-5 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
+          <p className='my-6 md:my-5 md:mb-7 text-[#74777F] text-sm md:text-lg w-full  md:w-full text-center'>
             {translate("locale.Payment_Method_Hint")}
           </p>
         </div>

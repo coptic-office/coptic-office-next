@@ -65,7 +65,7 @@ export const SelectUnitModal = ({
           className='w-4 h-4 cursor-pointer'
         />
       </div>
-      <div className='w-full bg-white rounded-b-[4px] px-3  md:px-12  '>
+      <div className='w-full bg-white rounded-b-[4px] px-6  md:px-12  '>
         {!isCatSelected ? (
           <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  pt-5 pb-2  md:py-7'>
             {translate("locale.Select_Unit_Type")}

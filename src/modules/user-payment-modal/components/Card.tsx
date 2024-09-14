@@ -120,7 +120,7 @@ export const PaymentOptionCard = ({
             {method == 3 ? null : <>{numbers.map((item) => item)}</>}
             <div
               className={`flex relative flex-row items-end gap-1  mt-[2px] ${
-                method == 2 ? "md:mt-[82px]" : method == 3 ? "justify-end" : ""
+                method == 2 ? "md:mt-[100px]" : method == 3 ? "justify-end" : ""
               }`}>
               <p className='text-sm md:text-base text-[#5A7184]'>{step2}</p>
               <img
