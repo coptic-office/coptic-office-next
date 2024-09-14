@@ -165,7 +165,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                 label={`${Number(
                   bookingItem?.value ?? 70000
                 )?.toLocaleString()} ${translate("locale.Pound")} ${
-                  bookingItem?.text
+                  bookingItem?.text??''
                 }`}
                 onSelect={() => {
                   changeSelectedValueId(0, bookingItem?.value);
