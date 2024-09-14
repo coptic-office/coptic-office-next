@@ -107,7 +107,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
       .then((response) => {
         setLoading(false);
         open(
-          `https://banquemisr.gateway.mastercard.com/checkout/api/retrieveWsapiVersion/${response.data.message.sessionId}`,
+          `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`,
           "_blank"
         );
         closeModal();
