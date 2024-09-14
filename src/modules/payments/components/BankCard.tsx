@@ -1,9 +1,11 @@
 import { bankChecks } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export default function BankCard({ payment }: { payment: bankChecks }) {
   const translate = useTranslations();
   const local = useLocale();
+  const router=useRouter()
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-[20px]  w-full md:w-[49%]  '>
@@ -57,7 +59,12 @@ export default function BankCard({ payment }: { payment: bankChecks }) {
           </div>
           <div className='flex flex-col gap-1 w-[48%] text-[#555F71]  text-sm md:text-lg'>
             <p>{translate("locale.Booking_Code")}</p>
-            <p className='font-semibold rtl:text-end' dir='ltr'>
+            <p
+              onClick={() => {
+                router.push(`/${local}/units`);
+              }}
+              className='cursor-pointer hover:text-THEME_PRIMARY_COLOR font-semibold rtl:text-end'
+              dir='ltr'>
               {payment.unitId}
             </p>
           </div>

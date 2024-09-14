@@ -62,6 +62,7 @@ export const ForgetPassword = ({
           <img src='/assets/egypt.png' width={"24px"} height={"24px"} />
         </div>
         <input
+          type="tel"
           value={mobileNumber}
           onChange={(e) => {
             setMobileNumber(e.target.value);
@@ -93,9 +94,7 @@ export const ForgetPassword = ({
         ""
       )}
       {!error ? (
-        <p className='text-xs  text-[#00000099] text-center '>
-          {translate("locale.Mobile_Number_Hint")}
-        </p>
+       ''
       ) : (
         ""
       )}
@@ -103,7 +102,7 @@ export const ForgetPassword = ({
         disabled={!mobileNumber && !error}
         className={`h-[55px] w-full  bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
           loading ? "!opacity-45" : ""
-        } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[140px] md:mt-[90px]`}
+        } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[40px] md:mt-[90px]`}
         onClick={onSubmit}>
         {loading ? <LoadingSpinner /> : translate("locale.Continue")}
       </button>

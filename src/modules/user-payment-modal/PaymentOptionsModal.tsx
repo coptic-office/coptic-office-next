@@ -1,7 +1,7 @@
 "use client";
 import { PaymentOptionCard } from "@/src/modules/user-payment-modal/components/Card";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const PaymentOptionsModal = ({
   closeModal,
@@ -11,8 +11,15 @@ export const PaymentOptionsModal = ({
   onClick: VoidFunction;
 }) => {
   const translate = useTranslations();
+  useEffect(() => {
+    document.addEventListener("keyup", (e) => {
+      if (e.keyCode == 27) {
+        closeModal();
+      }
+    });
+  }, []);
   return (
-    <div className=' min-w-full '>
+    <div className=' min-w-full pt-5 '>
       <div className='h-[56px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
         <p className='font-semibold text-white text-base md:text-xl '>
           {translate("locale.Unit_Booking")}
@@ -34,7 +41,7 @@ export const PaymentOptionsModal = ({
         </div>
         <div className='w-full flex justify-center'>
           {" "}
-          <p className='my-6 md:my-5 text-[#74777F] text-lg w-full  md:w-1/2 text-center'>
+          <p className='my-6 md:my-5 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
             {translate("locale.Payment_Method_Hint")}
           </p>
         </div>

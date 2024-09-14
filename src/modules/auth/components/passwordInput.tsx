@@ -28,7 +28,7 @@ export const PasswordInput = ({
       <input
         onChange={onChange}
         type={passwordHidden ? "password" : "text"}
-        className='py-3 ps-4 pe-10 block w-full bg-gray-50   rounded-lg focus:outline-none  text-sm'
+        className='py-3 ps-4 pe-10 block w-full bg-gray-50   rounded-lg focus:outline-none  text-base'
         placeholder={placeholder}
         value={value}
       />

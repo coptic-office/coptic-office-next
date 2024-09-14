@@ -1,7 +1,7 @@
 "use client";
 import { getCookie } from "cookies-next";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export const PaymentOptionCard = ({
   method,
@@ -12,10 +12,8 @@ export const PaymentOptionCard = ({
 }) => {
   const translate = useTranslations();
 
-  const userData = getCookie("user")
-    ? JSON.parse(getCookie("user") as string)
-    : null;
   const locale = useLocale();
+  const [copied, setCopied] = useState(0);
   const { title, step1, numbers, step2, icon } = useMemo(() => {
     let title = translate(
       `locale.${
@@ -43,9 +41,21 @@ export const PaymentOptionCard = ({
             <p className=' flex flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold justify-end'>
               {translate(`locale.Payment_Method1_Text1_Account${item}`)}
               <img
-                src='/assets/copyPrimary.svg'
+                src={`/assets/${
+                  copied == item ? "copied.png" : "copyPrimary.svg"
+                }`}
+                className='cursor-pointer !w-4 !h-4'
                 width={"16px"}
                 height={"16px"}
+                onClick={() => {
+                  setCopied(item);
+                  setTimeout(() => {
+                    setCopied(0);
+                  }, 2000);
+                  navigator.clipboard.writeText(
+                    translate(`locale.Payment_Method1_Text1_Account${item}`)
+                  );
+                }}
               />
             </p>
           </div>
@@ -55,7 +65,21 @@ export const PaymentOptionCard = ({
       numbers.push(
         <p className=' flex flex-row gap-2 text-lg text-end mt-0 md:mt-3 text-THEME_PRIMARY_COLOR font-semibold justify-end'>
           {translate("locale.Payment_Method2_Text1_Account")}
-          <img src='/assets/copyPrimary.svg' width={"18px"} height={"18px"} />
+          <img
+            src={`/assets/${copied == 21 ? "copied.png" : "copyPrimary.svg"}`}
+            className='cursor-pointer !w-[18px] !h-[18px]'
+            width={"18px"}
+            height={"18px"}
+            onClick={() => {
+              setCopied(21);
+              setTimeout(() => {
+                setCopied(0);
+              }, 2000);
+              navigator.clipboard.writeText(
+                translate("locale.Payment_Method2_Text1_Account")
+              );
+            }}
+          />
         </p>
       );
     }
@@ -75,12 +99,12 @@ export const PaymentOptionCard = ({
       icon,
       title,
     };
-  }, [method]);
+  }, [method, copied]);
 
   return (
     <div className='flex-1 rounded-md px-6 py-7 border-[1px] border-THEME_PRIMARY_COLOR relative'>
       <hr className='border-2 border-[#3F598A] w-full absolute top-0 rounded-t-md left-0' />
-      <p className='text-THEME_PRIMARY_COLOR text-base md:text-xl font-semibold mb-3 h-auto md:h-[60px]'>
+      <p className='text-THEME_PRIMARY_COLOR text-base md:text-xl font-semibold mb-3 h-auto'>
         {title}
       </p>
       <div className='flex flex-row gap-2 items-start'>
@@ -95,13 +119,15 @@ export const PaymentOptionCard = ({
           <>
             {method == 3 ? null : <>{numbers.map((item) => item)}</>}
             <div
-              className={`flex flex-row items-end gap-1  mt-[9px] ${
+              className={`flex relative flex-row items-end gap-1  mt-[2px] ${
                 method == 2 ? "md:mt-[82px]" : method == 3 ? "justify-end" : ""
               }`}>
               <p className='text-sm md:text-base text-[#5A7184]'>{step2}</p>
               <img
                 src={`/assets/${icon}`}
-                className={method == 2 ? `!w-20 !h-20` : `!w-[43px] !h-[49px]`}
+                className={`${
+                  method == 2 ? `!w-20 !h-20` : `!w-[43px] !h-[49px]`
+                } `}
               />
             </div>
           </>

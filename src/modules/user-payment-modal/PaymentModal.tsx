@@ -11,8 +11,15 @@ import { ReactSelect } from "./Select";
 export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
   const translate = useTranslations();
   const [activeTab, setActiveTab] = useState(0);
+  const [bookingItem, setBookingItem] = useState<PaymentOptions | null>(null);
   const [options, setOptions] = useState<PaymentOptions[]>([]);
-  const [maxPayment, setMaxPayment] = useState(0);
+  const [maxPayment, setMaxPayment] = useState<{
+    maxValue: number;
+    maxIndex: number | null;
+  }>({
+    maxValue: 0,
+    maxIndex: null,
+  });
   const [selectedItem, setSelectedItem] = useState<any>({
     id: null,
     value: null,
@@ -24,13 +31,13 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
   const [selectedUnit, setSelectedUnit] = useState<PaymentOptions>();
   const router = useRouter();
   const locale = useLocale();
-  
+
   const changeActiveTab = (index: number) => {
     setSelectedUnit(undefined);
     setSelectedItem(null);
     setActiveTab(index);
     if (index == 1) {
-      setSelectedUnit(options?.[0]);
+      setSelectedUnit(options?.[maxPayment?.maxIndex ?? 0]);
     }
   };
   const disabledStyle = `cursor-pointer  text-center  py-3 text-base inline-block border-[1px]  flex-1 border-gray-200 border-b-2 rounded-md hover:bg-gray-300 hover:border-gray-200 text-[#555F71]`;
@@ -49,24 +56,37 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     });
   };
   const getAllOptions = () => {
-    setDataLoading(true)
-    getPaymentsOptions(locale).then((response) => {
-      let maxNumber = 0;
-      response.data.message?.paymentOptions.map((item: PaymentOptions) => {
-        if (maxNumber < item.value) maxNumber = item.value;
+    setDataLoading(true);
+    getPaymentsOptions(locale)
+      .then((response) => {
+        let maxNumber = 0;
+        let maxIndex = 0;
+        response.data.message?.paymentOptions.map(
+          (item: PaymentOptions, index: number) => {
+            if (maxNumber < item.value) {
+              maxNumber = item.value;
+              maxIndex = index;
+            }
+            if (item.unitId == "" || item?.unitId == null) setBookingItem(item);
+          }
+        );
+        setOptions(response.data.message?.paymentOptions);
+        setMaxPayment({
+          maxValue: maxNumber,
+          maxIndex: maxIndex,
+        });
+        setDataLoading(false);
+      })
+      .catch(() => {
+        setDataLoading(false);
       });
-      setOptions(
-        response.data.message?.paymentOptions.sort(
-          (a: PaymentOptions, b: PaymentOptions) => b.value - a.value
-        )
-      );
-      setMaxPayment(maxNumber);
-            setDataLoading(false);
-    }).catch(() => {
-      setDataLoading(false)
-    });
   };
   useEffect(() => {
+    document.addEventListener("keyup", (e) => {
+      if (e.keyCode == 27) {
+        closeModal();
+      }
+    });
     getAllOptions();
   }, []);
 
@@ -126,7 +146,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
             }>
             <p>{translate("locale.New_Booking")}</p>
           </li>
-          {(options.length <= 0 &&!dataLoading) ? null: (
+          {options.length <= 0 && !dataLoading ? null : (
             <li
               className={`  ${
                 activeTab == 1
@@ -136,14 +156,24 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               onClick={() => changeActiveTab(1)}>
               <p>{translate("locale.Existing_Booking")}</p>
             </li>
-          ) }
+          )}
         </ul>
-        <div className='p-4 md:p-10'>
+        <div className='p-4 py-6 md:p-10'>
           {activeTab == 0 ? (
             <div className='flex flex-col gap-[30px]'>
               <RadioButton
-                label={translate("locale.Contracting_Deposit")}
-                onSelect={() => changeSelectedValueId(0, 70000)}
+                label={`${Number(
+                  bookingItem?.value??70000
+                )?.toLocaleString()} ${translate("locale.Pound")} ${
+                  bookingItem?.text
+                }`}
+                onSelect={() => {
+                  changeSelectedValueId(
+                    0,
+                    bookingItem?.value,
+                  
+                  );
+                }}
                 selected={selectedItem?.selectedValueId == 0}
               />
               <div className='flex flex-col gap-2'>
@@ -174,6 +204,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                         isSelected={selectedItem?.selectedValueId != 1}
                       />
                       <input
+                        type='tel'
                         className='w-[80px] text-center h-8  bg-gray-200  focus:outline-THEME_PRIMARY_COLOR   text-THEME_PRIMARY_COLOR'
                         disabled={selectedItem?.selectedValueId != 1}
                         value={
@@ -198,7 +229,8 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                       <NumberControl
                         changeAmount={() => {
                           if (selectedItem?.selectedValueId == 1) {
-                            if (selectedItem?.value == maxPayment) return;
+                            if (selectedItem?.value == maxPayment.maxValue)
+                              return;
                             else
                               setSelectedItem({
                                 ...selectedItem,
@@ -207,7 +239,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                           }
                         }}
                         disabled={
-                          selectedItem?.value >= maxPayment ||
+                          selectedItem?.value >= maxPayment.maxValue ||
                           selectedItem?.value % 1000 != 0
                         }
                         src='plus2'
@@ -237,11 +269,13 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               {selectedUnit ? (
                 <>
                   {selectedUnit.value ? (
-                    <div className='flex flex-col gap-2.5'>
+                    <div className='flex flex-col gap-[30px]'>
                       <RadioButton
-                        label={`${selectedUnit.value} ${translate(
-                          "locale.Pound"
-                        )} ${selectedUnit.text}`}
+                        label={`${Number(
+                          selectedUnit.value
+                        )?.toLocaleString()} ${translate("locale.Pound")} ${
+                          selectedUnit.text
+                        }`}
                         onSelect={() => {
                           changeSelectedValueId(
                             0,
@@ -327,7 +361,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                                   }
                                 }}
                                 disabled={
-                                  selectedItem?.value >= maxPayment ||
+                                  selectedItem?.value >= maxPayment.maxValue ||
                                   selectedItem?.value % 1000 != 0 ||
                                   !selectedItem?.id
                                 }
@@ -386,7 +420,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               <button
                 disabled={!selectedItem?.value}
                 onClick={submitPayment}
-                className='w-[181px] disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
+                className='w-full md:w-[181px] disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
                 {translate("locale.PayNow")}
               </button>
             </div>

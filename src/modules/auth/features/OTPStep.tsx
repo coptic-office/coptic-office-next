@@ -108,7 +108,7 @@ export const OtpStep = ({
         marginBottom={"mb-3"}
       />
       <div
-        className='flex justify-center md:justify-start w-fit flex-row gap-1  items-center '
+        className='flex justify-center md:justify-start   mt-2 md:mt-0 w-full md:w-fit flex-row gap-1  items-center '
         dir='ltr'>
         <p className='text-sm text-black font-bold'>
           {checkUserData?.mobileNumber}
@@ -127,7 +127,7 @@ export const OtpStep = ({
           />
         )}
       </div>
-      <div className='mt-10 md:mt-6 mb-10 md:mb-[38px]'>
+      <div className='mt-5 md:mt-6 mb-5 md:mb-[38px]'>
         <div className='flex justify-center ' dir='ltr'>
           <OTPInput
             value={otp}
@@ -199,7 +199,7 @@ export const OtpStep = ({
           onClick={verify}
           className={`h-[55px] w-full md:w-[343px]  bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
             loading.verifyLoading ? "!opacity-45" : ""
-          } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[140px] md:mt-[90px]`}>
+          } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[25px] md:mt-[90px]`}>
           {loading.verifyLoading ? (
             <LoadingSpinner />
           ) : (

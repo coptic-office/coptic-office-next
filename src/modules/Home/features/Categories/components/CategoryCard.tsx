@@ -37,10 +37,10 @@ export const CategoryCard = ({
           {translate("locale.Installments")}:
           <span className='font-semibold tracking-tight'>
             {`${category.installments.count} ${translate(
-              "locale.Installment"
+              "locale.Installments"
             )} ${translate("locale.every")} ${
               category.installments.spanInMonths
-            } ${translate("locale.month")}`}
+            } ${translate("locale.Months")}`}
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>

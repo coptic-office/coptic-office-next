@@ -28,7 +28,9 @@ export const SelectUnitCard = ({
       </div>
 
       <img
-        src={`/assets/cat${unit.category.replace("category", "")}.svg`}
+        src={`/assets/cat${unit.category.replace("category", "")}${
+          isSelected ? "_inverted" : ""
+        }.svg`}
         className='!w-[181px] !h-[36px] mt-5'
       />
       <div className='flex flex-col gap-2'>
@@ -42,7 +44,7 @@ export const SelectUnitCard = ({
           className={`text-lg ${
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
-          {translate("locale.Booking_Amount")}:
+          {translate("locale.Booking_Amount")} :{" "}
           <span className='font-semibold'>
             {Number(unit.bookingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
@@ -52,7 +54,7 @@ export const SelectUnitCard = ({
           className={`text-lg ${
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
-          {translate("locale.Contracting_Amount")}:
+          {translate("locale.Contracting_Amount")} :{" "}
           <span className='font-semibold'>
             {Number(unit.contractingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
@@ -63,20 +65,20 @@ export const SelectUnitCard = ({
           className={`text-lg ${
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
-          {translate("locale.Installments")}:
+          {translate("locale.Installments")} :{" "}
           <span className='font-semibold tracking-tight'>
             {`${unit.installments.count} ${translate(
-              "locale.Installment"
+              "locale.Installments"
             )} ${translate("locale.every")} ${
               unit.installments.spanInMonths
-            } ${translate("locale.month")}`}
+            } ${translate("locale.Months")}`}
           </span>
         </p>
         <p
           className={`text-lg ${
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
-          {translate("locale.Installment_Amount")}:
+          {translate("locale.Installment_Amount")} :{" "}
           <span className='font-semibold'>
             {Number(unit.installments.amount).toLocaleString()}{" "}
             {translate("locale.Pound")}
@@ -86,7 +88,7 @@ export const SelectUnitCard = ({
           className={`text-lg ${
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
-          {translate("locale.Cash_Discount")}:
+          {translate("locale.Cash_Discount")} :{" "}
           <span className='font-semibold'>
             {Number(unit.grossAmount - unit.cashAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}

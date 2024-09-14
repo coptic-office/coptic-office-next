@@ -131,7 +131,7 @@ export const CreateUser = ({
           onClick={submit}
           className={`h-[55px] w-full   bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
             loading ? "!opacity-45" : ""
-          } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[140px] md:mt-[90px] mb-2`}>
+          } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[25px] md:mt-[90px] mb-2`}>
           {loading ? <LoadingSpinner /> : translate("locale.Create_Account")}
         </button>
       </div>

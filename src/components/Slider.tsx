@@ -65,7 +65,7 @@ export const ImageSlider = () => {
         />
       </div>
       {isModalOpen || currentRunningModal == "payment" ? (
-        <Modal>
+        <Modal isTopCentered={isPayOpen?false:true}>
           {isPayOpen ? (
             <PaymentModal
               closeModal={() => {
@@ -80,7 +80,6 @@ export const ImageSlider = () => {
             <PaymentOptionsModal
               closeModal={() => {
                 setCurrentModal("");
-
                 setIsModalOpen(false);
                 (document.getElementById("body") as any).style.overflow =
                   "scroll";
@@ -94,7 +93,7 @@ export const ImageSlider = () => {
         </Modal>
       ) : null}
       {currentRunningModal == "select" ? (
-        <Modal>
+        <Modal isTopCentered={false}>
           <SelectUnitModal
             closeModal={() => {
               (document.getElementById("body") as any).style.overflow =

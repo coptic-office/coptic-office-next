@@ -1,9 +1,13 @@
 import { Payment } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function PaymentCard({ payment }: { payment: Payment }) {
   const translate = useTranslations();
   const local = useLocale();
+  const router = useRouter();
+  const [copied,setCopied]=useState(false)
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>
@@ -39,7 +43,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
           <div className='flex flex-col gap-8'>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Date")}</p>
-              <p className='font-medium'>
+              <p className='font-semibold'>
                 {new Date(payment.adviceDate)
                   ?.toLocaleDateString("en", {
                     day: "2-digit",
@@ -52,15 +56,19 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Trans_Reference_Number")}</p>
               <p
-                className='font-medium flex flex-row gap-1 items-center'
+                className='font-semibold flex flex-row gap-1 items-center'
                 dir='ltr'>
-                {`${payment.id?.substring(0, 13)}...`}
+                {`${payment.id?.substring(0, 10)}...`}
                 <img
                   className='cursor-pointer'
-                  src='/assets/copy.png'
+                  src={`/assets/${copied ? "copied.png" : "copyPrimary.svg"}`}
                   width={"16px"}
                   height={"16px"}
                   onClick={() => {
+                    setCopied(true);
+                    setTimeout(() => {
+                      setCopied(false);
+                    }, 2000);
                     navigator.clipboard.writeText(payment.id);
                   }}
                 />
@@ -70,7 +78,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
           <div className='flex flex-col gap-8'>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Time")}</p>
-              <p className='font-medium'>
+              <p className='font-semibold'>
                 {new Date(payment.adviceDate)
                   ?.toLocaleTimeString(local == "ar" ? "ar-AE" : "en", {
                     hour: "2-digit",
@@ -82,8 +90,15 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             </div>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Booking_Code")}</p>
-              <p className='font-medium' dir='ltr'>
-                {payment.unitId  !=''?payment.unitId:translate("locale.No_Booking_Code")}
+              <p
+                className='font-semibold hover:text-THEME_PRIMARY_COLOR cursor-pointer'
+                onClick={() => {
+                  router.push(`/${local}/units`);
+                }}
+                dir='ltr'>
+                {payment.unitId != ""
+                  ? payment.unitId
+                  : translate("locale.No_Booking_Code")}
               </p>
             </div>
           </div>

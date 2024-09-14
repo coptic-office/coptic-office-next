@@ -22,7 +22,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               </span>
             </p>
           </div>
-          {item.unitNumber == "---" ? (
+          {item.contractingDate && !item.contractDate ? (
             <img
               className='cursor-pointer'
               src='/assets/edit2.svg'
@@ -43,7 +43,7 @@ export default function UnitCard({ item }: { item: Unit }) {
         <hr className='border-[0.5px]  my-2.5 md:my-5 md:block border-[#E5EAF4] w-full ' />
 
         <div className='flex flex-row gap-[55px] rtl:gap-6 '>
-          <div className='flex flex-col gap-4'>
+          <div className='flex-1 flex flex-col gap-4'>
             <div className='flex flex-col gap-1'>
               <p className=' text-xs md:text-base  text-[#555F71]'>
                 {translate("locale.Book_Date")}
@@ -86,20 +86,22 @@ export default function UnitCard({ item }: { item: Unit }) {
             </div>
           </div>
 
-          <div className='flex flex-col gap-4'>
+          <div className='flex-1 flex flex-col gap-4'>
             <div className='flex flex-col gap-1'>
               <p className=' text-xs md:text-base  text-[#555F71]'>
                 {translate("locale.Contracting_Date")}
               </p>
 
               <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
-                {new Date(item.contractingDate)
-                  ?.toLocaleDateString("en", {
-                    day: "2-digit",
-                    month: "numeric",
-                    year: "numeric",
-                  })
-                  ?.replaceAll("/", "-")}
+                {item.contractingDate
+                  ? new Date(item.contractingDate)
+                      ?.toLocaleDateString("en", {
+                        day: "2-digit",
+                        month: "numeric",
+                        year: "numeric",
+                      })
+                      ?.replaceAll("/", "-")
+                  : translate("locale.No_Date")}
               </p>
             </div>
             <div className='flex flex-col gap-1'>
@@ -107,7 +109,13 @@ export default function UnitCard({ item }: { item: Unit }) {
                 {translate("locale.Total_Unit_Value")}
               </p>
               <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
-                {item.totalAmount.toLocaleString()} {translate("locale.Pound")}
+                {`${
+                  item.totalAmount
+                    ? `${item.totalAmount.toLocaleString()} ${translate(
+                        "locale.Pound"
+                      )}`
+                    : translate("locale.No_Price")
+                }`}
               </p>
             </div>
 
@@ -116,8 +124,13 @@ export default function UnitCard({ item }: { item: Unit }) {
                 {translate("locale.Total_Value_of_Checks")}
               </p>
               <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
-                {item.totalChecksAmount.toLocaleString()}{" "}
-                {translate("locale.Pound")}
+                {`${
+                  item.totalChecksAmount
+                    ? `${item.totalChecksAmount.toLocaleString()} ${translate(
+                        "locale.Pound"
+                      )}`
+                    : translate("locale.No_Checks")
+                }`}
               </p>
             </div>
           </div>

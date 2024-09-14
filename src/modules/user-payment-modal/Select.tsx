@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Select from "react-select";
 export const ReactSelect = ({ selectedUnit, unitIds, onSelect }: any) => {
   return (
@@ -7,15 +6,18 @@ export const ReactSelect = ({ selectedUnit, unitIds, onSelect }: any) => {
       onChange={(value) => {
         onSelect(unitIds?.[value.index]);
       }}
+      isSearchable={false}
       placeholder={selectedUnit?.unitId}
-      options={unitIds?.map((item: any, index: number) => {
-        return {
-          label: item?.unitId,
-          value: item?.unitId,
-          index: index,
-        };
+      options={unitIds?.filter((item:any)=>(item?.unitId !="" && item?.unitId!=null) )?.map((item: any, index: number) => {
+        return item?.unitId
+          ? {
+              label: item?.unitId,
+              value: item?.unitId,
+              index: index,
+            }
+          : null;
       })}
-      className="text-black placeholder:text-black"
+      className='text-black placeholder:text-black'
       closeMenuOnSelect={true}
       maxMenuHeight={200}
     />

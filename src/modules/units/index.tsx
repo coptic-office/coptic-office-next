@@ -10,12 +10,12 @@ import { useAppContext } from "@/src/context";
 export default function MyUnits() {
   const [Units, setUnits] = useState<Unit[]>([]);
   const [loading, setLoading] = useState(true);
-  const { refreshPage } = useAppContext();
+  const { refreshPage, setCurrentModal } = useAppContext();
   const translate = useTranslations();
   const locale = useLocale();
   const router = useRouter();
   const isLoggedIn = getCookie("user");
- 
+
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
     else {
@@ -78,8 +78,12 @@ export default function MyUnits() {
           </>
         </div>
       </div>
-      <div className='w-full flex justify-end px-4 md:px-0'>
-        <button className='px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex  gap-3 md:gap-8 items-center'>
+      <div className='w-full flex justify-center md:justify-end px-4 md:px-0'>
+        <button
+          onClick={() => {
+            setCurrentModal("payment");
+          }}
+          className='px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-white  md:text-THEME_PRIMARY_COLOR bg-THEME_PRIMARY_COLOR md:bg-white text-base font-semibold flex  gap-3 md:gap-8 items-center'>
           <img
             src=' /assets/left.svg'
             className='hidden md:flex ltr:rotate-180'

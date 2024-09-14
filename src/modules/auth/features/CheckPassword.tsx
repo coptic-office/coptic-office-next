@@ -69,7 +69,7 @@ export const CheckPassword = ({
         marginBottom={"mb-3"}
       />
       <div
-        className='flex justify-center md:justify-start w-fit flex-row gap-1  items-center '
+        className='flex justify-center md:justify-start w-full md:w-fit flex-row gap-1 mt-2  md:mt-0 items-center '
         dir='ltr'>
         <p className='text-sm text-black font-bold'>
           {checkUserData?.mobileNumber}
@@ -84,7 +84,7 @@ export const CheckPassword = ({
           height={"24px"}
         />
       </div>
-      <div className='mt-10 mb-10'>
+      <div className='mt-5 md:mt-10 mb-5 md:mb-10'>
         <div className='flex justify-center w-full'>
           <PasswordInput
             error={error?.password}
@@ -110,7 +110,7 @@ export const CheckPassword = ({
         onClick={submit}
         className={`h-[55px] w-full   bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
           loading ? "!opacity-45" : ""
-        } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[140px] md:mt-[90px] mb-2`}>
+        } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-5 md:mt-[90px] mb-2`}>
         {loading ? <LoadingSpinner /> : translate("locale.Login")}
       </button>
       <button

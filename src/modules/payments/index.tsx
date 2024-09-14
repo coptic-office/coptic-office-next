@@ -13,9 +13,13 @@ export default function MyPayments() {
     payments: Payment[];
     bankChecks: bankChecks[];
     selectedStep: number;
+    totalChecks: number | null;
+    totalPayments: number | null;
   }>({
     payments: [],
     bankChecks: [],
+    totalChecks: null,
+    totalPayments: null,
     selectedStep: 0,
   });
   const [loading, setLoading] = useState(true);
@@ -33,6 +37,8 @@ export default function MyPayments() {
             ...payments,
             payments: response.data.message?.payments,
             bankChecks: response.data.message?.bankChecks,
+            totalChecks: response.data.message?.totalChecks,
+            totalPayments: response.data.message?.totalPayments,
           });
           setLoading(false);
         })
@@ -88,20 +94,32 @@ export default function MyPayments() {
                               payments.selectedStep == 0
                                 ? activeStyle
                                 : disabledStyle
-                            }>
-                            <p onClick={() => changeActiveTab(0)}>
-                              {translate("locale.Total_Value_of_Payments")}
-                            </p>
+                            }
+                            onClick={() => changeActiveTab(0)}>
+                            <div className='flex flex-col gap-1'>
+                              <p>
+                                {translate("locale.Total_Value_of_Payments")}
+                              </p>
+                              <p>
+                                {payments.totalPayments?.toLocaleString()}{" "}
+                                {translate("locale.Pound")}
+                              </p>
+                            </div>
                           </li>
                           <li
                             className={` me-2 ${
                               payments.selectedStep == 1
                                 ? activeStyle
                                 : disabledStyle
-                            }`}>
-                            <p onClick={() => changeActiveTab(1)}>
-                              {translate("locale.Total_Value_of_Checks")}
-                            </p>
+                            }`}
+                            onClick={() => changeActiveTab(1)}>
+                            <div className='flex flex-col gap-1'>
+                              <p>{translate("locale.Total_Value_of_Checks")}</p>
+                              <p>
+                                {payments.totalChecks?.toLocaleString()}{" "}
+                                {translate("locale.Pound")}
+                              </p>
+                            </div>
                           </li>
                         </ul>
                       </div>
@@ -125,12 +143,12 @@ export default function MyPayments() {
           </>
         </div>
       </div>
-      <div className='w-full flex justify-end px-4 md:px-0'>
+      <div className='w-full flex justify-center md:justify-end px-4 md:px-0'>
         <button
           onClick={() => {
             setCurrentModal("payment");
           }}
-          className=' px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-THEME_PRIMARY_COLOR text-base font-semibold flex gap-3 md:gap-8 items-center'>
+          className=' px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg bg-THEME_PRIMARY_COLOR md:bg-white text-white  md:text-THEME_PRIMARY_COLOR text-base font-semibold flex gap-3 md:gap-8 items-center'>
           <img
             src=' /assets/left.svg'
             className='hidden md:flex ltr:rotate-180'

@@ -14,7 +14,7 @@ export default function MobileMenu({
 }) {
   const [isSelected, setIsSelected] = useState(0);
   const [openNav, setOpenNav] = useState(false);
-  const { setIsLoggedIn }=useAppContext();
+  const { setIsLoggedIn } = useAppContext();
   const pathname = usePathname();
   const toggleNav = () => {
     setOpenNav(!openNav);
@@ -33,8 +33,9 @@ export default function MobileMenu({
   const router = useRouter();
   const locale = useLocale();
 
+ 
   return (
-    <div className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
+    <div id='mobileMEnu' className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
       <img src='/assets/logo.svg' width={"79px"} height={"49px"} />
 
       {userData ? (
@@ -83,7 +84,7 @@ export default function MobileMenu({
           <div
             onClick={() => {
               router.push(`/${locale}/profile`);
-              toggleNav()
+              toggleNav();
             }}
             className='flex flex-row gap-2 items-center cursor-pointer px-3'>
             <img src='/assets/profile.svg' className='w-4 h-4' />
@@ -93,7 +94,10 @@ export default function MobileMenu({
           </div>
           <div
             className='flex flex-row gap-2 items-center cursor-pointer px-3'
-            onClick={openNotification}>
+            onClick={() => {
+              openNotification();
+              toggleNav();
+            }}>
             <img src='/assets/notification.svg' className='w-4 h-4' />
             <p className='text-base text-[#84878B] w-[170px] truncate hover:text-THEME_PRIMARY_COLOR'>
               {translate("locale.Notifications")}

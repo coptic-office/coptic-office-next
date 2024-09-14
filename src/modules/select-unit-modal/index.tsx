@@ -22,10 +22,19 @@ export const SelectUnitModal = ({
   const [error, setError] = useState("");
   const locale = useLocale();
   useEffect(() => {
+    document.addEventListener("keyup", (e) => {
+      if (e.keyCode == 27) {
+        closeModal();
+        setCurrentModal(null);
+      }
+    });
     setLoading(true);
     getUnitTypes(unitId, locale).then((response) => {
       setLoading(false);
       setUnits(response.data.message.units);
+      setSelectedType(
+        response.data.message?.currentCategory?.replace("category", "") - 1
+      );
     });
   }, []);
   const submit = () => {
@@ -58,7 +67,7 @@ export const SelectUnitModal = ({
       </div>
       <div className='w-full bg-white rounded-b-[4px] px-3  md:px-12  '>
         {!isCatSelected ? (
-          <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  py-7'>
+          <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  pt-5 pb-2  md:py-7'>
             {translate("locale.Select_Unit_Type")}
           </p>
         ) : null}
@@ -79,26 +88,32 @@ export const SelectUnitModal = ({
               ) : (
                 <>
                   {" "}
-                  {units.map((item, index: number) => (
-                    <SelectUnitCard
-                      onSelect={() => {
-                        setSelectedType(index);
-                      }}
-                      isSelected={selectedType == index}
-                      unit={item}
-                    />
-                  ))}
+                  {units
+                    .sort(
+                      (a, b) =>
+                        (a.category.replace("category", "") as any) -
+                        (b.category.replace("category", "") as any)
+                    )
+                    ?.map((item, index: number) => (
+                      <SelectUnitCard
+                        onSelect={() => {
+                          setSelectedType(index);
+                        }}
+                        isSelected={selectedType == index}
+                        unit={item}
+                      />
+                    ))}
                 </>
               )}
             </>
           )}
         </div>
-        <div className='w-full gap-11 flex flex-col gap items-center'>
+        <div className='w-full gap-7 md:gap-11 flex flex-col gap items-center'>
           {isCatSelected ? (
             <button
               onClick={() => {
-                  refreshData(true);
-                  closeModal();
+                refreshData(true);
+                closeModal();
               }}
               className='w-full md:w-[181px] mb-6 mt-3 flex justify-center items-center rounded-lg h-12 disabled:opacity-40 bg-THEME_PRIMARY_COLOR text-white text-center'>
               {translate("locale.Close")}
@@ -106,11 +121,11 @@ export const SelectUnitModal = ({
           ) : (
             <>
               {error != "" ? (
-                <p className='my-6 md:my-5 text-THEME_ERROR_COLOR text-lg w-full  md:w-1/2 text-center'>
+                <p className='mt-5 md:my-5 text-THEME_ERROR_COLOR text-lg w-full  md:w-1/2 text-center'>
                   {error}
                 </p>
               ) : (
-                <p className='my-6 md:my-5 text-[#74777F] text-lg w-full  md:w-1/2 text-center'>
+                <p className='mt-5 md:my-5 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
                   {translate("locale.Change_Unit_Type_Text")}
                 </p>
               )}
