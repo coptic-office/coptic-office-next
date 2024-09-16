@@ -70,7 +70,7 @@ export default function Header() {
             onClick={() => {
               router.push(`/${locale}`);
             }}
-            width={"95px"}
+            width={"140px"}
             height={"59px"}
           />
           <div className={` flex items-center gap-4`}>

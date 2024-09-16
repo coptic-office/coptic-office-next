@@ -17,10 +17,10 @@ export const NavLink = ({
 
   return (
     <p
+      id={`mobileMEnu${url}`}
       onClick={() => {
-        router.push(`/${locale}${url ? `/${url}` : ""}`, {
+        router.push(`/${locale}${url ? `/${url}#my${url}` : ""}`, {
           scroll: true,
-          
         });
         toggleNav?.();
       }}

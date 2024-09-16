@@ -16,7 +16,7 @@ export const Footer = ({ lang }: { lang: string }) => {
         <div className='flex flex-col md:flex-row justify-between items-center w-full px-9 md:px-[150px] mb-[38px] md:mb-4'>
           <img
             src='/assets/logo.svg'
-            className='cursor-pointer w-[104px] md:w-[71px] h-[64px] md:h-[44px]'
+            className='cursor-pointer w-[104px] md:w-[120px] h-[64px] md:h-[65px]'
             onClick={() => {
               router.push(`/${lang}`);
             }}
@@ -51,12 +51,14 @@ export const Footer = ({ lang }: { lang: string }) => {
             )}
           </div>
         </div>
-      {userData?  <div className='w-full  px-9 md:px-0'>
-          <hr className='border-[0.5px] border-[#FDFCFF] opacity-30 w-full ' />
-        </div>:null}
+        {userData ? (
+          <div className='w-full  px-9 md:px-0'>
+            <hr className='border-[0.5px] border-[#FDFCFF] opacity-30 w-full ' />
+          </div>
+        ) : null}
         <div className='px-9 md:px-[150px] flex flex-col-reverse md:flex-row w-full justify-between items-center mt-7 md:mt-6'>
           <p className='text-[#FDFCFF] opacity-50 text-base' dir='ltr'>
-            © 2024 Great Simple All rights reserved
+            {translate("locale.Copyrights")}
           </p>
           <div className='w-full flex md:hidden my-4  '>
             <hr className='border-[0.5px] border-[#FDFCFF] opacity-30 w-full ' />
@@ -67,27 +69,39 @@ export const Footer = ({ lang }: { lang: string }) => {
                 {translate("locale.Customer_Service")}
               </p>
               <a
-                className='text-xl font-bold flex flex-row rtl:flex-row items-center gap-2'
+                className='text-lg font-semibold flex flex-row rtl:flex-row items-center gap-2'
                 dir='ltr'
                 href='tel:+201222 222 883'>
                 <img
-                  src='/assets/call.svg'
+                  src='/assets/call.png'
                   className='flex w-[20px] md:w-4 h-[20px] md:h-4'
                 />
                 01222 222 883
               </a>
             </div>
+            <div className='flex  flex-row w-full rtl:flex-row-reverse md:flex-row md:w-auto  justify-center md:justify-items-end  items-center gap-2 cursor-pointer'>
+              <a
+                className='text-base font-semibold flex flex-row rtl:flex-row items-center gap-2'
+                dir='ltr'
+                href='mailto:info@copticoffice.com'>
+                <img
+                  src='/assets/email.png'
+                  className='flex w-[20px] md:w-6 h-[20px] md:h-6'
+                />
+                info@copticoffice.com
+              </a>
+            </div>
             <div
               className='flex  flex-row w-full rtl:flex-row-reverse md:flex-row md:w-auto  justify-center md:justify-items-end  items-center gap-2 cursor-pointer'
               onClick={() => {
-                open(
+                window.open(
                   "https://www.google.com/maps/place/%D8%A7%D9%84%D9%83%D8%A7%D8%AA%D8%AF%D8%B1%D8%A7%D8%A6%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%B1%D9%82%D8%B3%D9%8A%D8%A9+%D8%A8%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D8%B3%D9%8A%D8%A9%E2%80%AD/@30.0722871,31.2747066,803m/data=!3m2!1e3!4b1!4m6!3m5!1s0x14583f91730e6615:0xacbdb083f7f9b6b9!8m2!3d30.0722871!4d31.2747066!16s%2Fg%2F11sk5sy36x?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
                   "_blank"
                 );
               }}>
               <img
-                src='/assets/location.svg'
-                className='flex w-[20px] md:w-4 h-[20px] md:h-6'
+                src='/assets/location.png'
+                className='flex w-[20px] md:w-6 h-[20px] md:h-6'
               />
               <p className='text-base text-center md:text-start w-[80%] md:w-auto'>
                 {translate("locale.Headquarters")}

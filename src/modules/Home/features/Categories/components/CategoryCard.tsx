@@ -19,14 +19,14 @@ export const CategoryCard = ({
           {category.categoryName}
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
-          {translate("locale.Booking_Amount")}:
+          {translate("locale.Booking_Amount")}{" "}:{" "}
           <span className='font-semibold'>
             {Number(category.bookingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
-          {translate("locale.Contracting_Amount")}:
+          {translate("locale.Contracting_Amount")}{" "}:{" "}
           <span className='font-semibold'>
             {Number(category.contractingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
@@ -34,9 +34,9 @@ export const CategoryCard = ({
         </p>
 
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
-          {translate("locale.Installments")}:
-          <span className='font-semibold tracking-tight'>
-            {`${category.installments.count} ${translate(
+          {translate("locale.Installments")}{" "}:
+          <span className='font-semibold tracking-tight text-THEME_PRIMARY_COLOR'>
+            {` ${category.installments.count} ${translate(
               "locale.Installments"
             )} ${translate("locale.every")} ${
               category.installments.spanInMonths
@@ -44,14 +44,14 @@ export const CategoryCard = ({
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
-          {translate("locale.Installment_Amount")}:
+          {translate("locale.Installment_Amount")}{" "}:{" "}
           <span className='font-semibold'>
             {Number(category.installments.amount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
-          {translate("locale.Cash_Discount")}:
+          {translate("locale.Cash_Discount")}{" "}:{" "}
           <span className='font-semibold'>
             {Number(
               category.grossAmount - category.cashAmount

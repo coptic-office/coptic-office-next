@@ -33,9 +33,10 @@ export default function MobileMenu({
   const router = useRouter();
   const locale = useLocale();
 
- 
   return (
-    <div id='mobileMEnu' className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
+    <div
+      id='mobileMEnu'
+      className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
       <img src='/assets/logo.svg' width={"79px"} height={"49px"} />
 
       {userData ? (
@@ -47,8 +48,14 @@ export default function MobileMenu({
         />
       ) : (
         <div className='flex flex-row items-center gap-1'>
-          <img src='/assets/user.svg' width={"16px"} height={"16px"} />
+          <img
+            id='mobileMEnu1'
+            src='/assets/user.svg'
+            width={"16px"}
+            height={"16px"}
+          />
           <p
+            id='mobileMEnu2'
             className='font-bold text-xs text-white cursor-pointer'
             onClick={openAuthModal}>
             {translate("locale.Login_Register")}
@@ -57,11 +64,16 @@ export default function MobileMenu({
       )}
 
       <div
+        id='mobileMEnu3'
         className={`w-[216px] py-3 bg-white absolute top-[75px] rounded-lg end-0 z-[150] shadow-2xl ${
           openNav ? "flex" : "hidden"
         }`}>
-        <div className='flex  flex-col gap-3 items-start w-full'>
-          <div className='flex flex-col gap-1 items-start px-3 w-full'>
+        <div
+          id='mobileMEnu4'
+          className='flex   flex-col gap-3 items-start w-full'>
+          <div
+            id='mobileMEnu5'
+            className='flex flex-col gap-1 items-start px-3 w-full'>
             <NavLink
               isSelected={isSelected == 0}
               label={translate("locale.Home")}
@@ -82,6 +94,7 @@ export default function MobileMenu({
           </div>
           <hr className='border-[0.5px] w-full border-[#74777F] opacity-25 border-solid ' />
           <div
+            id='mobileMEnu6'
             onClick={() => {
               router.push(`/${locale}/profile`);
               toggleNav();
@@ -93,6 +106,7 @@ export default function MobileMenu({
             </p>
           </div>
           <div
+            id='mobileMEnu7'
             className='flex flex-row gap-2 items-center cursor-pointer px-3'
             onClick={() => {
               openNotification();
@@ -104,6 +118,7 @@ export default function MobileMenu({
             </p>
           </div>
           <div
+            id='mobileMEnu8'
             className='flex flex-row gap-2 items-center cursor-pointer px-3'
             onClick={() => {
               router.replace(
@@ -119,6 +134,7 @@ export default function MobileMenu({
             </p>
           </div>
           <div
+            id='mobileMEnu9'
             className='flex flex-row gap-2 items-center cursor-pointer px-3'
             onClick={() => {
               deleteCookie("user");

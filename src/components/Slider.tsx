@@ -39,6 +39,8 @@ export const ImageSlider = () => {
             dynamicBullets: true,
             clickable: true,
           }}
+          // autoplay={true}
+        
           className='mySwiper'
           modules={[Pagination, Autoplay]}>
           {slides.map((item) => (
@@ -136,7 +138,7 @@ export const Slide = ({
         <p className='text-sm font-bold md:text-[38px] text-white'>{desc}</p>
       </div>
       <button
-        className='absolute bottom-[161px] md:bottom-[240px] w-[106px] md:w-[196px] h-[30px] md:h-[56px] z-[100] bg-white text-THEME_PRIMARY_COLOR text-base md:text-[28px] font-bold rounded-2xl cursor-pointer'
+        className='absolute bottom-[161px] md:bottom-[240px] w-[106px] md:w-[196px] h-[30px] md:h-[56px] z-[100] bg-white text-THEME_PRIMARY_COLOR text-base ltr:md:text-xl rtl:md:text-xl font-bold rounded-2xl cursor-pointer'
         onClick={handleClick}>
         {label}
       </button>

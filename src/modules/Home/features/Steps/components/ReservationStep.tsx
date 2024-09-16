@@ -12,7 +12,9 @@ export const ReservationStep = ({
           {stepNumber}
         </p>
       </div>
-      <p className='text-2xl text-white font-bold max-w-full md:max-w-[400px]'>{label}</p>
+      <p className='text-xl text-white font-bold max-w-full md:max-w-[400px]'>
+        {label}
+      </p>
     </div>
   );
 };
