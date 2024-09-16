@@ -108,7 +108,7 @@ export const SelectUnitModal = ({
             </>
           )}
         </div>
-        <div className='w-full gap-7 md:gap-11 flex flex-col gap items-center'>
+        <div className='w-full gap-7  flex flex-col gap items-center'>
           {isCatSelected ? (
             <button
               onClick={() => {

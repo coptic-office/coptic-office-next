@@ -34,11 +34,12 @@ export const PaymentOptionCard = ({
     if (method == 1)
       [1, 2, 3].map((item) => {
         numbers.push(
-          <div className='flex flex-col gap-1'>
-            <p className=' text-base  text-THEME_PRIMARY_COLOR '>
-              {translate(`locale.Payment_Method1_Text1_Currency${item}`)} :
+          <div className='my-2 items-center flex flex-row gap-0.5'>
+            <p className=' text-sm  text-THEME_PRIMARY_COLOR '>
+              {translate(`locale.Payment_Method1_Text1_Currency${item}`)}
+              {item == 3 ? "  " : ""}:
             </p>
-            <p className=' flex flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold justify-end'>
+            <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold justify-end'>
               {translate(`locale.Payment_Method1_Text1_Account${item}`)}
               <img
                 src={`/assets/${
@@ -111,7 +112,7 @@ export const PaymentOptionCard = ({
         <img src='/assets/success.svg' width={"24px"} height={"24px"} />
         <div className={`flex flex-col gap-[3px] `}>
           <p
-            className={`text-sm  md:text-base text-[#5A7184]  ${
+            className={`text-sm  text-[#5A7184]  ${
               method == 3 ? "" : "h-auto "
             }`}>
             {method == 3 ? translate(`locale.Payment_Method3`) : step1}
@@ -120,9 +121,9 @@ export const PaymentOptionCard = ({
             {method == 3 ? null : <>{numbers.map((item) => item)}</>}
             <div
               className={`flex relative flex-row items-end gap-1  mt-[2px] ${
-                method == 2 ? "md:mt-[100px]" : method == 3 ? "justify-end" : ""
+                method == 2 ? "md:mt-[53px] rtl:md:mt-[33px]" : method == 3 ? "justify-end" : ""
               }`}>
-              <p className='text-sm md:text-base text-[#5A7184]'>{step2}</p>
+              <p className='text-sm  text-[#5A7184]'>{step2}</p>
               <img
                 src={`/assets/${icon}`}
                 className={`${
@@ -133,9 +134,12 @@ export const PaymentOptionCard = ({
           </>
         </div>
       </div>
-      <div>
+      <div
+        className={`${
+          method != 3 ? (method == 1 ? "mt-2.5" : "mt-[25px]") : ""
+        }`}>
         {method == 3 ? (
-          <div className='flex justify-center w-full mt-0 md:mt-[72px] '>
+          <div className='flex justify-center w-full mt-0 md:mt-[33px] '>
             <button
               onClick={onClick}
               className=' mt-5 rtl:mt-[30px] rtl:md:mt-[30px]  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
@@ -150,7 +154,7 @@ export const PaymentOptionCard = ({
           </div>
         ) : null}
         {method != 3 ? (
-          <hr className='border-[0.5px] mt-2.5  border-[#E5EAF4]' />
+          <hr className={`border-[0.5px]   border-[#E5EAF4]`} />
         ) : (
           ""
         )}

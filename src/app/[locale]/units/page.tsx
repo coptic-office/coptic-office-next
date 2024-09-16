@@ -1,13 +1,9 @@
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
-import MyPayments from "@/src/modules/payments";
 import MyUnits from "@/src/modules/units";
 
-export default function Units({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default function Units({ params }: { params: any }) {
+  const { locale } = params;
   unstable_setRequestLocale(locale);
   const t = useTranslations();
 

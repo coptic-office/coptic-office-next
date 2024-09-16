@@ -10,7 +10,7 @@ import { useAppContext } from "@/src/context";
 export default function MyUnits() {
   const [Units, setUnits] = useState<Unit[]>([]);
   const [loading, setLoading] = useState(true);
-  const { refreshPage, setCurrentModal } = useAppContext();
+  const { refreshPage, setCurrentModal, refreshData } = useAppContext();
   const translate = useTranslations();
   const locale = useLocale();
   const router = useRouter();
@@ -23,6 +23,7 @@ export default function MyUnits() {
       getUnits(locale)
         .then((response) => {
           setUnits(response.data?.message?.units);
+          refreshData(false);
           setLoading(false);
         })
         .catch((err) => {

@@ -34,7 +34,7 @@ export const PaymentOptionsModal = ({
         <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  py-7'>
           {translate("locale.Payment_Methods")}
         </p>
-        <div className=' h-[350px] overflow-scroll md:overflow-hidden md:h-auto  flex flex-col md:flex-row gap-7'>
+        <div className=' h-[350px] overflow-scroll md:overflow-hidden md:h-auto  flex flex-col md:flex-row gap-5'>
           <PaymentOptionCard method={1} />
           <PaymentOptionCard method={2} />
           <PaymentOptionCard onClick={onClick} method={3} />

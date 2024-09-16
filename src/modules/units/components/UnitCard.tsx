@@ -9,7 +9,9 @@ export default function UnitCard({ item }: { item: Unit }) {
   const { setCurrentModal, setUnitId } = useAppContext();
   return (
     <>
-      <div className=' relative border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-4 md:px-6 md:pe-5  w-full md:w-[49%]  '>
+      <div
+        id={item.id}
+        className=' relative border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-4 md:px-6 md:pe-5  w-full md:w-[49%]  '>
         <div className='flex flex-row justify-between items-start'>
           <div className='flex flex-col gap-1'>
             <p className='text-[#048951]  text-sm md:text-lg font-semibold'>

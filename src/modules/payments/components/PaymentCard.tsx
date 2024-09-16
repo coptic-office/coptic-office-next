@@ -89,9 +89,9 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               </p>
             </div>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
-              <p>{translate("locale.Booking_Code")}</p>
+              <p >{translate("locale.Booking_Code")}</p>
               <p
-                className='font-semibold hover:text-THEME_PRIMARY_COLOR cursor-pointer'
+                className=' underline font-semibold text-THEME_PRIMARY_COLOR cursor-pointer'
                 onClick={() => {
                   router.push(`/${local}/units`);
                 }}

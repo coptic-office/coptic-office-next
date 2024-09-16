@@ -20,8 +20,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     setState({ ...state, isLoggedIn:value?value: true });
   };
 
-  const refreshData = () => {
-    setState({ ...state, refreshPage: true,currentRunningModal:'' });
+  const refreshData = (value?:boolean) => {
+    setState({ ...state, refreshPage:value?? true,currentRunningModal:'' });
   };
   const setCurrentModal = (value: string, unitId?: string) => {
     if (unitId) {

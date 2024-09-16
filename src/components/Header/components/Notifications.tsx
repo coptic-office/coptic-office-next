@@ -10,14 +10,30 @@ export default function NotificationModal({
 }) {
   const translate = useTranslations();
   const locale = useLocale();
-  const [data, setData] = useState<Notification[]>([]);
+  const [data, setData] = useState<{
+    old: Notification[];
+    new: Notification[];
+  }>({
+    new: [],
+    old: [],
+  });
   const [loading, setLoading] = useState(false);
+  console.log("datadata", data);
   useEffect(() => {
     setLoading(true);
     getNotifications(locale)
       .then((response) => {
+        let newNotifications: Notification[] = [];
+        let oldNotifications: Notification[] = [];
         setLoading(false);
-        setData(response.data.message.notifications);
+        response.data.message.notifications?.map((item: Notification) => {
+          if (item.isRead) oldNotifications.push(item);
+          else newNotifications.push(item);
+        });
+        setData({
+          old: oldNotifications,
+          new: newNotifications,
+        });
       })
       .catch(() => {
         setLoading(false);
@@ -49,30 +65,7 @@ export default function NotificationModal({
             </div>
           ) : (
             <>
-              {data.length ? (
-                <div className='mt-6'>
-                  {data.map((item) => (
-                    <div
-                      className={`p-6 border-b-[1px] border-gray-300   ${
-                        !item.isRead ? "bg-[#005fb033]" : ""
-                      }`}>
-                      <div className={`flex flex-row gap-3 items-start `}>
-                        {!item.isRead ? (
-                          <p className='text-THEME_PRIMARY_COLOR text-xl '>•</p>
-                        ) : (
-                          ""
-                        )}
-                        <p className='text-sm text-[#555F71] font-semibold'>
-                          {item.text}
-                        </p>
-                      </div>
-                      <p className='w-full text-end text-xs text-[#475569]'>
-                        {item.timeAgo}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
+              {data?.new?.length == 0 && data?.old?.length == 0 ? (
                 <div className='flex flex-col gap-[60px] w-full h-full items-center mt-10 justify-start md:justify-center'>
                   <img
                     src='/assets/noNotifications.svg'
@@ -82,6 +75,80 @@ export default function NotificationModal({
                   <p className='text-base md:text-[26px] text-[#555F71] font-semibold'>
                     {translate("locale.noNotifications")}
                   </p>
+                </div>
+              ) : (
+                <div className='overflow-scroll h-[650px] mb-6'>
+                  {data?.old?.length > 0 ? (
+                    <p className='px-6 text-[#1E293B] font-semibold text-base'>
+                      {translate("locale.New_Notifications")}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  {data?.old?.length ? (
+                    <div>
+                      {data.old.map((item) => (
+                        <div
+                          className={`p-6  border-b-[1px] border-gray-300   ${
+                            !item.isRead ? "bg-[#005fb033]" : ""
+                          }`}>
+                          <div className={`flex flex-row gap-3 items-start `}>
+                            {!item.isRead ? (
+                              <p className='text-THEME_PRIMARY_COLOR text-xl '>
+                                •
+                              </p>
+                            ) : (
+                              ""
+                            )}
+                            <p className='text-sm text-[#555F71] font-semibold'>
+                              {item.text}
+                            </p>
+                          </div>
+                          <p className='w-full text-end text-xs text-[#475569]'>
+                            {item.timeAgo}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {data?.old?.length > 0 ? (
+                    <p className='px-6 pt-6 text-[#1E293B] font-semibold text-base'>
+                      {translate("locale.Old_Notifications")}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  {data?.old?.length ? (
+                    <div>
+                      {data.old.map((item) => (
+                        <div
+                          className={`p-6  border-b-[1px] border-gray-300   ${
+                            !item.isRead ? "bg-[#005fb033]" : ""
+                          }`}>
+                          <div className={`flex flex-row gap-3 items-start `}>
+                            {!item.isRead ? (
+                              <p className='text-THEME_PRIMARY_COLOR text-xl '>
+                                •
+                              </p>
+                            ) : (
+                              ""
+                            )}
+                            <p className='text-sm text-[#555F71] font-semibold'>
+                              {item.text}
+                            </p>
+                          </div>
+                          <p className='w-full text-end text-xs text-[#475569]'>
+                            {item.timeAgo}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               )}
             </>
