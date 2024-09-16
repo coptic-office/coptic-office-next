@@ -3,7 +3,7 @@ import { createPayment, getPaymentsOptions } from "@/src/network/payments";
 import { PaymentOptions } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter,redirect } from "next/navigation";
 import { RadioButton } from "./components/RadioButton";
 import { NumberControl } from "./components/NumberControl";
 import { ReactSelect } from "./Select";
@@ -106,12 +106,10 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     createPayment({ ...object }, locale)
       .then((response) => {
         setLoading(false);
-        setTimeout(() => {
-          window.open(
-            `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`,
-            "_blank"
-          );
-        }, 500);
+       redirect(
+         "https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0"
+       );
+       
         closeModal();
       })
       .catch((err) => {

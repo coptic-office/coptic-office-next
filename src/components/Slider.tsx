@@ -39,7 +39,7 @@ export const ImageSlider = () => {
             dynamicBullets: true,
             clickable: true,
           }}
-          // autoplay={true}
+          autoplay={true}
         
           className='mySwiper'
           modules={[Pagination, Autoplay]}>
