@@ -125,3 +125,16 @@ export const resetPassword = (
       },
     }
   );
+
+export const updatePhoto = (data: any, lang: string) =>
+  axiosInstance.post(
+    `users/update-photo
+`,
+    data,
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );

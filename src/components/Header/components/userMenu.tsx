@@ -57,7 +57,7 @@ export default function UserMenu({
               className={`w-[245px] flex flex-col gap-4 absolute p-4 bg-white  top-[55px] rounded-b-lg  rounded-t-none  start-0 z-[150] shadow-2xl `}>
               <div
                 onClick={() => {
-                  setIsUserMenuOpen(false)
+                  setIsUserMenuOpen(false);
                   router.push(`/${locale}/profile`);
                 }}
                 className='flex flex-row gap-2 items-center cursor-pointer'>
@@ -105,7 +105,7 @@ export default function UserMenu({
         <div className='flex flex-row items-center gap-1'>
           <img src='/assets/user.svg' width={"20px"} height={"20px"} />
           <p
-            className='font-bold text-sm text-white cursor-pointer'
+            className='font-semibold text-sm text-white cursor-pointer'
             onClick={openAuthModal}>
             {translate("locale.Login_Register")}
           </p>

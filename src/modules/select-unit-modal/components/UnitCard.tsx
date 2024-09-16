@@ -35,7 +35,7 @@ export const SelectUnitCard = ({
       />
       <div className='flex flex-col gap-2'>
         <p
-          className={`text-xl font-bold tracking-tight ${
+          className={`text-xl font-semibold tracking-tight ${
             isSelected ? "text-white" : "text-THEME_PRIMARY_COLOR"
           } rtl:h-8 ltr:h-16`}>
           {unit.categoryName}

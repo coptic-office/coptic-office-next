@@ -38,7 +38,7 @@ export default function MyUnits() {
           id='myunits'
           className='w-full gap-5  py-6 pb-10 md:py-5 bg-white flex flex-col  rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] mb-[45px] md:mb-[14px]'>
           <p
-            className={`text-[#183B56] text-lg md:text-2xl font-bold px-4 ${
+            className={`text-[#183B56] text-lg md:text-2xl font-semibold px-4 ${
               Units.length == 0 ? "md:px-[47px]" : "md:px-6"
             }`}>
             {translate("locale.My_Units")}

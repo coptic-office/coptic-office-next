@@ -13,7 +13,7 @@ export const Header = ({
 
   return (
     <>
-      <p className='text-xl md:text-[22px] mb-2 text-black font-bold'>
+      <p className='text-xl md:text-[22px] mb-2 text-black font-semibold'>
         {translate(title)}
       </p>
       {description ? (

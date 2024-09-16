@@ -132,13 +132,15 @@ export const Slide = ({
         } object-cover`}
       />
       <div className='flex flex-col gap-[2px] md:gap-8 items-center z-[100] absolute bottom-[207px] md:bottom-[335px]'>
-        <p className='text-lg font-bold md:text-[48px] text-white'>
+        <p className='text-lg font-semibold md:text-[48px] text-white'>
           {headText}
         </p>
-        <p className='text-sm font-bold md:text-[38px] text-white'>{desc}</p>
+        <p className='text-sm font-semibold md:text-[38px] text-white'>
+          {desc}
+        </p>
       </div>
       <button
-        className='absolute bottom-[161px] md:bottom-[240px] w-[106px] md:w-[196px] h-[30px] md:h-[56px] z-[100] bg-white text-THEME_PRIMARY_COLOR text-base ltr:md:text-xl rtl:md:text-xl font-bold rounded-2xl cursor-pointer'
+        className='absolute bottom-[161px] md:bottom-[240px] w-[106px] md:w-[196px] h-[30px] md:h-[56px] z-[100] bg-white text-THEME_PRIMARY_COLOR text-base ltr:md:text-xl rtl:md:text-xl font-semibold rounded-2xl cursor-pointer'
         onClick={handleClick}>
         {label}
       </button>

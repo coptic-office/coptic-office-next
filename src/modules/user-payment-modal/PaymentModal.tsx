@@ -116,10 +116,10 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
       });
   };
   const onClickGo = () => {
-      let element: any = document.getElementById("hiddenRef");
-      element.href = `https://www.google.com/maps/place/%D8%A7%D9%84%D9%83%D8%A7%D8%AA%D8%AF%D8%B1%D8%A7%D8%A6%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%B1%D9%82%D8%B3%D9%8A%D8%A9+%D8%A8%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D8%B3%D9%8A%D8%A9%E2%80%AD/@30.0722871,31.2747066,803m/data=!3m2!1e3!4b1!4m6!3m5!1s0x14583f91730e6615:0xacbdb083f7f9b6b9!8m2!3d30.0722871!4d31.2747066!16s%2Fg%2F11sk5sy36x?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D`;
-      element.click();
-  }
+    let element: any = document.getElementById("hiddenRef");
+    element.href = `https://www.google.com/maps/place/%D8%A7%D9%84%D9%83%D8%A7%D8%AA%D8%AF%D8%B1%D8%A7%D8%A6%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%B1%D9%82%D8%B3%D9%8A%D8%A9+%D8%A8%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D8%B3%D9%8A%D8%A9%E2%80%AD/@30.0722871,31.2747066,803m/data=!3m2!1e3!4b1!4m6!3m5!1s0x14583f91730e6615:0xacbdb083f7f9b6b9!8m2!3d30.0722871!4d31.2747066!16s%2Fg%2F11sk5sy36x?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D`;
+    element.click();
+  };
   return (
     <div className='  min-w-[90%]  md:min-w-[575px]'>
       <div className='h-[56px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
@@ -139,8 +139,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
         </div>
       ) : (
         <div className='bg-white rounded-b-[4px]'>
-          <a id='hiddenRef' href='#' target='_blank'>
-          </a>
+          <a id='hiddenRef' href='#' target='_blank'></a>
 
           <div className='flex flex-col items-center mb-6  px-3  md:px-12'>
             <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  pt-3 pb-2'>
@@ -406,7 +405,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                           <button
                             onClick={() => {
                               if (selectedUnit.action == "go") {
-                                onClickGo()
+                                onClickGo();
                                 closeModal();
                               } else if (selectedUnit.action == "select") {
                                 closeModal();

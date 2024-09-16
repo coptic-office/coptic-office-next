@@ -33,14 +33,14 @@ export const Footer = ({ lang }: { lang: string }) => {
                 </p>
                 <p
                   onClick={() => {
-                    router.push(`/${lang}/payments`);
+                    router.push(`/${lang}/payments#mypayments`);
                   }}
                   className={`cursor-pointer   text-base font-semibold `}>
                   {translate("locale.My_Payments")}
                 </p>
                 <p
                   onClick={() => {
-                    router.push(`/${lang}/units`);
+                    router.push(`/${lang}/units#myunits`);
                   }}
                   className={`cursor-pointer   text-base font-semibold `}>
                   {translate("locale.My_Units")}

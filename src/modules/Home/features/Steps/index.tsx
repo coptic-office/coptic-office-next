@@ -61,7 +61,7 @@ export default function Steps({ lang }: { lang: string }) {
           }
         }}
         className='bg-THEME_PRIMARY_COLOR md:bg-white flex flex-row gap px-6 py-3 rtl:md:ps-[39px]   cursor-pointer justify-around md:justify-between min-w-[181px] ltr:min-w-[194px] rounded-lg items-center border-[1px] border-THEME_PRIMARY_COLOR '>
-        <p className='text-white md:text-THEME_PRIMARY_COLOR text-base font-bold'>
+        <p className='text-white md:text-THEME_PRIMARY_COLOR text-base font-semibold'>
           {translate("locale.Unit_Booking")}
         </p>
         <img

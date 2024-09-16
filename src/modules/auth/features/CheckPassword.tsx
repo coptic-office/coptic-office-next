@@ -71,7 +71,7 @@ export const CheckPassword = ({
       <div
         className='flex justify-center md:justify-start w-full md:w-fit flex-row gap-1 mt-2  md:mt-0 items-center '
         dir='ltr'>
-        <p className='text-sm text-black font-bold'>
+        <p className='text-sm text-black font-semibold'>
           {checkUserData?.mobileNumber}
         </p>
         <img

@@ -65,7 +65,7 @@ export const Auth = ({
               className='absolute start-6 cursor-pointer'
               onClick={closeAuthModal}
             />
-            <p className='text-base text-black font-bold text-center '>
+            <p className='text-base text-black font-semibold text-center '>
               {translate("locale.Login_Register")}
             </p>
           </div>

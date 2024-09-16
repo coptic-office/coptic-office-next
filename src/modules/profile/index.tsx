@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Input } from "./components/Input";
 import { useDropzone } from "react-dropzone";
 import { User } from "@/src/types";
+import { updatePhoto } from "@/src/network/auth";
 
 export default function PersonalProfile() {
   const translate = useTranslations();
@@ -31,9 +32,15 @@ export default function PersonalProfile() {
   }, []);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": [],
+      "image/jpeg": [".jpeg"],
+      "image/jpg": [ ".jpg"],
+      "image/png": [".png"],
     },
     onDrop: (acceptedFiles) => {
+      console.log("FILEE", acceptedFiles);
+      var form_data = new FormData();
+      form_data.append("image", acceptedFiles?.[0]);
+      updatePhoto(form_data, "en");
       setFile(
         acceptedFiles.map((file) =>
           Object.assign(file, {
