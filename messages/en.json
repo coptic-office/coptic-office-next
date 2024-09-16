@@ -1,12 +1,9 @@
 {
   "locale": {
     "noUnits": "No Units yet",
-
     "Installment_Plan": "installments every months",
-
     "every": "every",
     "month": "months",
-
     "Payment_Method1": "to our account at Banque Misr, number 7835550914, mentioning your reference number, which is the mobile phone number registered with us, in the reason for the deposit or the reason for the transfer.",
     "Payment_Method2": "using our mobile number 01222222883, mentioning your reference number, which is the mobile number registered with us, in the reason for the transfer.",
     "Bank_Cash": "Bank deposit or bank transfer",
@@ -18,9 +15,12 @@
     "Back_Side": "Back side",
     "No_Email": "No Email Address yet",
     "PayNow": "Pay Now",
-
     "Book_Date": "Booking Date",
     "noNotifications": "No notifications yet",
+    "Close": "Close",
+    "Unit_Selected": "Your Unit Category Selected Successfully",
+    "Contracting_Deposit": "70,000 EGP contract payment",
+    "Input_Error": "Number should be multiplier of amount 1000",
     "Address": "Ain Sokhna Road, next to the Secured Documents Complex",
     "Advance_Booking": "Advance booking 70 thousand pounds",
     "Amount": "Amount",
@@ -50,8 +50,9 @@
     "Continue": "Continue",
     "Contract_Date": "Contract Date",
     "Contracting_Amount": "Contracting Amount",
-    "Contracting_Date": "Contracting Date",
+    "Contracting_Date": "Date of Contracting Amount",
     "Coptic_Cemeteries": "Coptic Orthodox Patriarchate Cemeteries",
+    "Copyrights": "All rights are reserved to the Orthodox Patriarchate",
     "Create_Account": "Create Account",
     "Create_New_Account": "Create New Account",
     "Customer_Service": "Customer service from Saturday to Thursday from 9 am to 5 pm",
@@ -61,7 +62,7 @@
     "Editing_Date": "Editing Date",
     "Electronic_Payment": "Electronic Payment",
     "Email": "Email",
-    "Every": "every",
+    "Every": "- one every",
     "Existing_Booking": "Existing Booking",
     "Failed_Payment": "Payment failed. Please try again",
     "Fences": "Fences",
@@ -107,9 +108,9 @@
     "Payment_Method1_Text1_Account1": "7751990000000883",
     "Payment_Method1_Text1_Account2": "7751200000000883",
     "Payment_Method1_Text1_Account3": "7751300000000883",
-    "Payment_Method1_Text1_Currency1": "EGP Acc",
-    "Payment_Method1_Text1_Currency2": "USD Acc",
-    "Payment_Method1_Text1_Currency3": "EURO Acc",
+    "Payment_Method1_Text1_Currency1": "EGP",
+    "Payment_Method1_Text1_Currency2": "USD",
+    "Payment_Method1_Text1_Currency3": "EURO",
     "Payment_Method1_Text2": "Mention your reference number, which is the mobile phone number registered with us, in the reason for the deposit or the reason for the transfer.",
     "Payment_Method1_Title": "Bank Deposit & Transfer",
     "Payment_Method2_Text1": "You can transfer via the InstaPay application using our mobile number:",
@@ -134,8 +135,6 @@
     "Reset_Password": "Reset Password",
     "Reset_Password_Text": "Please enter a new password",
     "Save": "Save",
-    "Close": "Close",
-    "Unit_Selected": "Your Unit Category Selected Successfully",
     "Select_Unit_Type": "Select Unit Type",
     "Services_Building": "Human Honor Services Building",
     "Switch_Language": "Switch Language",
@@ -156,8 +155,6 @@
     "Verification_Code_Text": "We have sent the verification code to your mobile",
     "Verify": "Verify",
     "noPayments": "No payments yet",
-    "security": "security",
-    "Contracting_Deposit": "70,000 EGP contract payment",
-    "Input_Error": "Number should be multiplier of amount 1000"
+    "security": "security"
   }
 }

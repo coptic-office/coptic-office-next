@@ -106,10 +106,12 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     createPayment({ ...object }, locale)
       .then((response) => {
         setLoading(false);
-        window.open(
-          `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`,
-          "_blank"
-        );
+        setTimeout(() => {
+          window.open(
+            `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`,
+            "_blank"
+          );
+        }, 500);
         closeModal();
       })
       .catch((err) => {

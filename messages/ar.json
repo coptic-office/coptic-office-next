@@ -18,6 +18,12 @@
     "No_Email": "لايوجد بريد الالكتروني حالياً",
     "Book_Date": "تاريخ الحجز",
     "noNotifications": "لا توجد اشعارات حتي الان",
+
+    "Close": "اغلاق",
+    "Unit_Selected": "تم اختيار فئة وحدتك بنجاح",
+
+    "Contracting_Deposit": " 70,000  جنيه دفعة التعاقد",
+    "Input_Error": "يجب أن يكون الرقم مضاعفًا للمبلغ 1000",
     "Address": "طريق العين السخنة بجوار مجمع الوثائق المؤمنة",
     "Advance_Booking": "مقدم حجز 70 ألف جنيه",
     "Amount": "القيمة",
@@ -49,9 +55,7 @@
     "Contracting_Amount": "دفعة التعاقد",
     "Contracting_Date": "تاريخ دفعة التعاقد",
     "Coptic_Cemeteries": "مقابر البطريركية القبطية الأرثوذكسية",
-    "Close": "اغلاق",
-    "Unit_Selected": "تم اختيار فئة وحدتك بنجاح",
-
+    "Copyrights": "جميع الحقوق محفوظة لبطريركية الأقباط الأرثوذكس",
     "Create_Account": "إنشاء حساب",
     "Create_New_Account": "إنشاء حساب جديد",
     "Customer_Service": "خدمة العملاء من السبت إلى الخميس من 9 صباحاً وحتى 5 مساء",
@@ -61,7 +65,7 @@
     "Editing_Date": "تاريخ التحرير",
     "Electronic_Payment": "الدفع الإلكتروني",
     "Email": "البريد الإلكتروني",
-    "Every": "كل",
+    "Every": "- قسط كل",
     "Existing_Booking": "حجز موجود بالفعل",
     "Failed_Payment": "لقد فشلت عملية الدفع. برجاء المحاولة مرة أخرى",
     "Fences": "أسوار",
@@ -75,7 +79,7 @@
     "Incomplete_Payment": "لم نتمكن من استكمال عملية الدفع الخاصة بك. برجاء الاتصال بخدمة العملاء",
     "Installment": "قسط",
     "Installment_Amount": "قيمة القسط",
-    "Installments": "الأقساط",
+    "Installments": "أقساط",
     "Last_Name": "اسم الأب والجد",
     "Login": "تسجيل الدخول",
     "Login_Register": "تسجيل الدخول أو تسجيل جديد",
@@ -142,7 +146,7 @@
     "Total_Cash_Payments": "إجمالي المدفوعات النقدية",
     "Total_Check_Payments": "إجمالي مدفوعات الشيكات",
     "Total_Unit_Value": "سعر الوحدة",
-    "Total_Value_of_Checks": "إجمالي الشيكات",
+    "Total_Value_of_Checks": "إجمالي قيمة الشيكات",
     "Total_Value_of_Payments": "إجمالي المدفوعات",
     "Trans_Reference_Number": "الرقم المرجعي",
     "Unit_Booking": "حجز وحدة",
@@ -154,8 +158,6 @@
     "Verification_Code_Text": "تم إرسال كود التحقق إلى هاتفك المحمول",
     "Verify": "التحقق",
     "noPayments": "لا يوجد مدفوعات حتى الآن",
-    "security": "أمن",
-    "Contracting_Deposit": " 70,000  جنيه دفعة التعاقد",
-    "Input_Error": "يجب أن يكون الرقم مضاعفًا للمبلغ 1000"
+    "security": "أمن"
   }
 }
