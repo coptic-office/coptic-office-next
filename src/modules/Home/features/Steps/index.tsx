@@ -12,7 +12,7 @@ export default function Steps({ lang }: { lang: string }) {
         <div className='flex flex-1 mt-[31px] md:mt-[38px] justify-end relative px-4 md:px-0'>
           <img
             src='/assets/steps/main.png'
-            className='rounded-lg z-50 object-cover h-[328px] ms-[30px] md:ms-0  md:h-[560px] w-[268px] md:w-[457px]'
+            className='rounded-lg z-50 object-cover h-[328px]  ms-[30px] md:ms-0 rtl:md:h-[420px]  ltr:md:h-[560px] w-[268px] md:w-[457px]'
           />
           <img
             src='/assets/steps/Base.png'
@@ -20,12 +20,12 @@ export default function Steps({ lang }: { lang: string }) {
           />
           <img
             src='/assets/steps/main2.png'
-            className='rounded-lg absolute start-4 md:start-0 top-[290px] md:top-[445px] z-[55] border-[2px] border-solid border-white bg-white object-none    w-[163px] md:w-[276px] h-[199px] md:h-[339px]  '
+            className='rounded-lg absolute start-4 md:start-0 top-[290px]  rtl:md:top-[285px] ltr:md:top-[445px] z-[55] border-[2px] border-solid border-white bg-white object-none    w-[163px] md:w-[276px] h-[199px] rtl:md:h-[300px] ltr:md:h-[339px]  '
           />
 
           <img
             src='/assets/steps/base2.png'
-            className=' absolute -bottom-[263px] md:-bottom-[373px]  -end-[52px] md:end-[10px] ltr:end-[77px] ltr:md:end-[111px] w-[239px] md:w-[337px] h-[217px] md-h[300px] '
+            className=' absolute -bottom-[263px] rtl:md:-bottom-[290px] ltr:md:-bottom-[373px]  -end-[52px] md:end-[10px] ltr:end-[77px] ltr:md:end-[111px] w-[239px] md:w-[337px] h-[217px] md-h[300px] '
           />
         </div>
         <div className='flex-1 pt-[90px] pb-[56px] px-4 md:px-[56px] max-w-[573px] bg-THEME_PRIMARY_COLOR rounded-none md:rounded-se-lg md:rounded-ee-lg mb-0 md:mb-10'>

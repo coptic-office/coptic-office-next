@@ -106,10 +106,9 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     createPayment({ ...object }, locale)
       .then((response) => {
         setLoading(false);
-        window.open(
-          `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`,
-          "about:blank"
-        );
+        let element: any = document.getElementById("hiddenRef");
+        element.href = `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`;
+        element.click();
         closeModal();
       })
       .catch((err) => {
@@ -135,6 +134,9 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
         </div>
       ) : (
         <div className='bg-white rounded-b-[4px]'>
+          <a id='hiddenRef' href='#' target='_blank'>
+          </a>
+
           <div className='flex flex-col items-center mb-6  px-3  md:px-12'>
             <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  pt-3 pb-2'>
               {translate("locale.Electronic_Payment")}
