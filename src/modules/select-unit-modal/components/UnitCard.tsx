@@ -69,7 +69,7 @@ export const SelectUnitCard = ({
           <span className='font-semibold tracking-tight'>
             {`${unit.installments.count} ${translate(
               "locale.Installments"
-            )} ${translate("locale.every")} ${
+            )} ${translate("locale.Every")} ${
               unit.installments.spanInMonths
             } ${translate("locale.Months")}`}
           </span>
