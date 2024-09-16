@@ -52,10 +52,10 @@ export default function MyPayments() {
     setPayments({ ...payments, selectedStep: index });
   };
   const { setCurrentModal } = useAppContext();
-  const disabledStyle = `cursor-pointer ps-[6px] md:ps-[18px] pe-[11px] md:pe-6 py-[6px] md:py-3 text-base inline-block border-[1px] !max-w-auto md:!max-w-[369px] flex-1      border-gray-200 rounded-md hover:text-gray-600 hover:border-gray-200 `;
-  const activeStyle = `cursor-pointer inline-block  ps-[6px] md:ps-[18px] pe-[11px] md:pe-6 py-[6px] md:py-3 text-base  border-b-2 bg-[#005fb057] font-semibold  !max-w-auto md:!max-w-[369px]  flex-1   text-THEME_PRIMARY_COLOR border-THEME_PRIMARY_COLOR rounded-t-md active `;
+  const disabledStyle = `cursor-pointer ps-[6px] md:ps-[18px] pe-[11px] md:pe-6 py-[6px] md:py-3 text-base inline-block border-[1px] !max-w-auto md:!max-w-[369px] flex-1      border-gray-200 rounded-md hover:text-gray-600 hover:border-gray-200  font-bold`;
+  const activeStyle = `cursor-pointer inline-block  ps-[6px] md:ps-[18px] pe-[11px] md:pe-6 py-[6px] md:py-3 text-base  border-b-2 bg-[#005fb057] font-bold  !max-w-auto md:!max-w-[369px]  flex-1   text-THEME_PRIMARY_COLOR border-THEME_PRIMARY_COLOR rounded-t-md active font-bold `;
   return (
-    <div className='z-10   flex-col gap-[60px] items-center justify-center font-mono text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
+    <div className='z-10   flex-col gap-[60px] items-center justify-center text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0 '>
         <div
           id='mypayments'

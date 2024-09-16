@@ -10,14 +10,14 @@ export default function BankCard({ payment }: { payment: bankChecks }) {
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-[20px]  w-full md:w-[49%]  '>
         <div className='flex pb-4 flex-row  gap-6   justify-between items-center border-b-[1px] border-[#D8D8D8] border-solid'>
-          <p className='text-THEME_PRIMARY_COLOR text-sm md:text-lg font-semibold flex flex-col md:flex-row gap-1  w-[46%] md:w-[50%]'>
+          <p className='text-THEME_PRIMARY_COLOR text-sm md:text-lg font-bold flex flex-col md:flex-row gap-1  w-[46%] md:w-[50%]'>
             {translate("locale.Amount")}{" "}
             <span>
               {Number(payment.amount).toLocaleString()}{" "}
               {translate("locale.Pound")}
             </span>
           </p>
-          <div className='flex flex-row gap-3 items-start tracking-tighter  w-[55%] md:w-[50%] '>
+          <div className='flex flex-row gap-3 items-center tracking-tighter  w-[55%] md:w-[50%] '>
             <img
               src={"/assets/bank.svg"}
               className='w-[29px]  h-[24px] md:w-[41px] md:h-[41px]'
@@ -49,10 +49,10 @@ export default function BankCard({ payment }: { payment: bankChecks }) {
             <p>{translate("locale.Due_Date")}</p>
             <p className='font-semibold flex flex-row gap-1 items-center'>
               {new Date(payment.dueDate)
-                ?.toLocaleDateString(local == "ar" ? "ar-AE" : "en", {
+                ?.toLocaleDateString("en-AE", {
+                  day: "numeric",
                   month: "2-digit",
                   year: "numeric",
-                  day: "numeric",
                 })
                 ?.replaceAll("/", "-")}
             </p>

@@ -32,7 +32,7 @@ export default function MyUnits() {
     }
   }, [refreshPage]);
   return (
-    <div className='z-10   flex-col gap-[60px]  items-center justify-center font-mono text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
+    <div className='z-10   flex-col gap-[60px]  items-center justify-center  text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0 '>
         <div
           id='myunits'

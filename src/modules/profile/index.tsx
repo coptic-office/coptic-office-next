@@ -44,7 +44,7 @@ export default function PersonalProfile() {
     },
   });
   return (
-    <div className='z-10  flex-col gap-4 items-center justify-center font-mono text-sm lg:flex w-full px-4 md:px-[150px]  bg-transparent'>
+    <div className='z-10  flex-col gap-4 items-center justify-center  text-sm lg:flex w-full px-4 md:px-[150px]  bg-transparent'>
       <div className='w-full  bg-white flex flex-col gap-4 rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] p-4 md:p-6'>
         <div className='flex flex-row justify-between items-center'>
           <p className='text-base md:text-2xl text-[#183B56] font-semibold'>

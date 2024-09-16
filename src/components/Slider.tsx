@@ -65,7 +65,7 @@ export const ImageSlider = () => {
         />
       </div>
       {isModalOpen || currentRunningModal == "payment" ? (
-        <Modal isTopCentered={isPayOpen?false:true}>
+        <Modal isTopCentered={isPayOpen ? false : true}>
           {isPayOpen ? (
             <PaymentModal
               closeModal={() => {

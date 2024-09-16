@@ -53,7 +53,7 @@ export default function UnitCard({ item }: { item: Unit }) {
 
               <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
                 {new Date(item.bookingDate)
-                  ?.toLocaleDateString("en", {
+                  ?.toLocaleDateString("en-AE", {
                     day: "2-digit",
                     month: "numeric",
                     year: "numeric",
@@ -68,7 +68,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
                 {item.contractDate
                   ? new Date(item.contractDate)
-                      ?.toLocaleDateString("en", {
+                      ?.toLocaleDateString("en-AE", {
                         day: "2-digit",
                         month: "numeric",
                         year: "numeric",
@@ -97,7 +97,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
                 {item.contractingDate
                   ? new Date(item.contractingDate)
-                      ?.toLocaleDateString("en", {
+                      ?.toLocaleDateString("en-AE", {
                         day: "2-digit",
                         month: "numeric",
                         year: "numeric",

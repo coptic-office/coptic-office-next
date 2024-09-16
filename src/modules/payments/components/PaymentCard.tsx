@@ -7,7 +7,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
   const translate = useTranslations();
   const local = useLocale();
   const router = useRouter();
-  const [copied,setCopied]=useState(false)
+  const [copied, setCopied] = useState(false);
   return (
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>
@@ -45,7 +45,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               <p>{translate("locale.Date")}</p>
               <p className='font-semibold'>
                 {new Date(payment.adviceDate)
-                  ?.toLocaleDateString("en", {
+                  ?.toLocaleDateString("en-AE", {
                     day: "2-digit",
                     month: "numeric",
                     year: "numeric",
@@ -58,7 +58,10 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               <p
                 className='font-semibold flex flex-row gap-1 items-center'
                 dir='ltr'>
-                {`${payment.id?.substring(0, 10)}...`}
+                {`${payment.id?.substring(
+                  0,
+                  window.innerWidth > 768 ? 16 : 11
+                )}...`}
                 <img
                   className='cursor-pointer'
                   src={`/assets/${copied ? "copied.png" : "copyPrimary.svg"}`}
@@ -89,7 +92,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               </p>
             </div>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
-              <p >{translate("locale.Booking_Code")}</p>
+              <p>{translate("locale.Booking_Code")}</p>
               <p
                 className=' underline font-semibold text-THEME_PRIMARY_COLOR cursor-pointer'
                 onClick={() => {

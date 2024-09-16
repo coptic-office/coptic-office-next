@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "../../styles/globals.css";
 import { ImageSlider } from "../../components/Slider";
 import { Footer } from "../../components/footer";
@@ -13,7 +13,7 @@ import { AppWrapper } from "@/src/context";
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
 }
-const inter = Inter({ subsets: ["latin"] });
+const inter = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Coptic Office",
@@ -31,7 +31,7 @@ export default async function RootLayout({
   unstable_setRequestLocale(locale);
   return (
     <html lang={locale} dir={locale == "ar" ? "rtl" : "ltr"}>
-      <body id='body' className={" flex flex-col"}>
+      <body id='body' className={`${inter.className} flex flex-col`}>
         <NextIntlClientProvider messages={messages}>
           <AppWrapper>
             <Header />
