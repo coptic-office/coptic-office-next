@@ -108,7 +108,7 @@ export const SelectUnitModal = ({
             </>
           )}
         </div>
-        <div className='w-full gap-7  flex flex-col gap items-center'>
+        <div className='w-full gap-3 md:gap-7  flex flex-col gap items-center'>
           {isCatSelected ? (
             <button
               onClick={() => {
@@ -125,7 +125,7 @@ export const SelectUnitModal = ({
                   {error}
                 </p>
               ) : (
-                <p className='mt-5 md:my-5 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
+                <p className='mt-1 md:my-5 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
                   {translate("locale.Change_Unit_Type_Text")}
                 </p>
               )}
