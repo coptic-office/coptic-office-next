@@ -106,9 +106,16 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     createPayment({ ...object }, locale)
       .then((response) => {
         setLoading(false);
-        router.replace(
-          `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`
-        );
+        if (window.innerWidth < 786) {
+          router.replace(
+            `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`
+          );
+        } else {
+          window.open(
+            "https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0",
+            "_blank"
+          );
+        }
         closeModal();
       })
       .catch((err) => {
