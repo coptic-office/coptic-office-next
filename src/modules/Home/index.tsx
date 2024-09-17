@@ -8,6 +8,8 @@ export default function HomePage({ lang }: { lang: string }) {
   const socket = io("https://dev.copticoffice.com:3000");
   socket.on("connect", () => {
     console.log("Connected with Coptic Office backend");
+
+    
   });
   const translate = useTranslations();
   return (
