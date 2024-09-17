@@ -8,24 +8,11 @@ export default function Steps({ lang }: { lang: string }) {
   const { isLoggedIn, setCurrentModal } = useAppContext();
   return (
     <div className='w-full flex flex-col gap-[44px] md:gap-[69px] items-center mb-[28px]'>
-      <div className='w-full flex flex-col md:flex-row gap-[367px] md:gap-[55px] justify-between items-start'>
-        <div className='flex flex-1 mt-[31px] md:mt-[38px] justify-end relative px-4 md:px-0'>
+      <div className='w-full flex flex-col md:flex-row gap-8 md:gap-[55px]  justify-between items-start'>
+        <div className='flex flex-1 mt-[31px] md:mt-[38px] w-full md:w-auto justify-center md:justify-between relative px-4 md:px-0'>
           <img
-            src='/assets/steps/main.png'
-            className='rounded-lg z-50 object-cover h-[328px]  ms-[30px] md:ms-0 rtl:md:h-[420px]  ltr:md:h-[560px] w-[268px] md:w-[457px]'
-          />
-          <img
-            src='/assets/steps/Base.png'
-            className='rounded-lg absolute  start-4 md:start-0 ltr:rotate-180 ltr:-top-[42px] rtl:top-[29px] md:rtl:top-[49px] md:ltr:top-[49px] z-40 object-cover w-[239px] md:w-[337px] h-[217px] md-h[300px]'
-          />
-          <img
-            src='/assets/steps/main2.png'
-            className='rounded-lg absolute start-4 md:start-0 top-[290px]  rtl:md:top-[285px] ltr:md:top-[445px] z-[55] border-[2px] border-solid border-white bg-white object-none    w-[163px] md:w-[276px] h-[199px] rtl:md:h-[300px] ltr:md:h-[339px]  '
-          />
-
-          <img
-            src='/assets/steps/base2.png'
-            className=' absolute -bottom-[263px] rtl:md:-bottom-[290px] ltr:md:-bottom-[373px]  -end-[52px] md:end-[10px] ltr:end-[77px] ltr:md:end-[111px] w-[239px] md:w-[337px] h-[217px] md-h[300px] '
+            src='/assets/stepsGroup.png'
+            className='w-[320px] h-[497px]  rtl:md:w-[400px] ltr:md:w-[512px] rtl:md:h-[650px] ltr:md:h-[840px]'
           />
         </div>
         <div className='flex-1 pt-[90px] pb-[56px] px-4 md:px-[56px] max-w-[573px] bg-THEME_PRIMARY_COLOR rounded-none md:rounded-se-lg md:rounded-ee-lg mb-0 md:mb-10'>

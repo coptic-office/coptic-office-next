@@ -26,7 +26,7 @@ export const Footer = ({ lang }: { lang: string }) => {
               <>
                 <p
                   onClick={() => {
-                    router.push(`/${lang}`);
+                    router.push(`/${lang}#home`);
                   }}
                   className={`cursor-pointer   text-base font-semibold `}>
                   {translate("locale.Home")}

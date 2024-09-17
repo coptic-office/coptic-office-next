@@ -18,6 +18,10 @@ const inter = Open_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Coptic Office",
   description: "Coptic Office tombs ",
+
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default async function RootLayout({

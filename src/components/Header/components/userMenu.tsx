@@ -42,7 +42,9 @@ export default function UserMenu({
                 height={"38px"}
               />
               <p className='text-base text-white underline truncate w-[150px]'>
-                {`${userData?.firstName as any} ${userData?.lastName as any}`}
+                {`${translate("locale.Welcome")}  ${
+                  userData?.firstName as any
+                }`}
               </p>
             </div>
             <img
@@ -58,7 +60,7 @@ export default function UserMenu({
               <div
                 onClick={() => {
                   setIsUserMenuOpen(false);
-                  router.push(`/${locale}/profile`);
+                  router.push(`/${locale}/profile#myprofile`);
                 }}
                 className='flex flex-row gap-2 items-center cursor-pointer'>
                 <img src='/assets/profile.svg' className='w-4 h-4' />

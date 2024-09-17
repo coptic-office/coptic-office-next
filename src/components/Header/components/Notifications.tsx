@@ -78,16 +78,16 @@ export default function NotificationModal({
                 </div>
               ) : (
                 <div className='overflow-scroll h-[650px] mb-6'>
-                  {data?.old?.length > 0 ? (
+                  {data?.new?.length > 0 ? (
                     <p className='px-6 text-[#1E293B] font-semibold text-base'>
                       {translate("locale.New_Notifications")}
                     </p>
                   ) : (
                     ""
                   )}
-                  {data?.old?.length ? (
+                  {data?.new?.length ? (
                     <div>
-                      {data.old.map((item) => (
+                      {data.new.map((item) => (
                         <div
                           className={`p-6  border-b-[1px] border-gray-300   ${
                             !item.isRead ? "bg-[#005fb033]" : ""

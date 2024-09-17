@@ -96,7 +96,7 @@ export default function MobileMenu({
           <div
             id='mobileMEnu6'
             onClick={() => {
-              router.push(`/${locale}/profile`);
+              router.push(`/${locale}/profile#myprofile`);
               toggleNav();
             }}
             className='flex flex-row gap-2 items-center cursor-pointer px-3'>
