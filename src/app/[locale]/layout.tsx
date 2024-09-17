@@ -32,7 +32,6 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
   const messages = (await getMessages()) as any;
-  unstable_setRequestLocale(locale);
   return (
     <html lang={locale} dir={locale == "ar" ? "rtl" : "ltr"}>
       <body id='body' className={`${inter.className} flex flex-col`}>

@@ -11,6 +11,7 @@ import { useAppContext } from "../context";
 import { usePathname } from "next/navigation";
 import { SelectUnitModal } from "../modules/select-unit-modal";
 import { getCookie } from "cookies-next";
+import { InfoModal } from "../modules/user-payment-modal/infoModal";
 
 export const ImageSlider = () => {
   const translate = useTranslations();
@@ -40,7 +41,6 @@ export const ImageSlider = () => {
             clickable: true,
           }}
           autoplay={true}
-        
           className='mySwiper'
           modules={[Pagination, Autoplay]}>
           {slides.map((item) => (
@@ -101,6 +101,20 @@ export const ImageSlider = () => {
               (document.getElementById("body") as any).style.overflow =
                 "scroll";
             }}
+          />
+        </Modal>
+      ) : null}
+      {currentRunningModal?.includes("info") ? (
+        <Modal isTopCentered={false}>
+          <InfoModal
+            closeModal={() => {
+              setCurrentModal("");
+              setIsModalOpen(false);
+              (document.getElementById("body") as any).style.overflow =
+                "scroll";
+              setIsPayOpen(false);
+            }}
+            label={currentRunningModal?.replace("info_", "")}
           />
         </Modal>
       ) : null}

@@ -2,6 +2,7 @@
 import { useAppContext } from "@/src/context";
 import { Unit } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
+import Tooltip from "./tooltip";
 
 export default function UnitCard({ item }: { item: Unit }) {
   const translate = useTranslations();
@@ -24,7 +25,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               </span>
             </p>
           </div>
-          {item.contractingDate && !item.contractDate ? (
+          {item.info == "" ? (
             <img
               className='cursor-pointer'
               src='/assets/edit2.svg'
@@ -33,7 +34,15 @@ export default function UnitCard({ item }: { item: Unit }) {
               }}
             />
           ) : (
-            ""
+            <img
+              src='/assets/infoIcon2.png'
+              className='cursor-pointer '
+              width={"28px"}
+              height={"28px"}
+              onClick={() => {
+                setCurrentModal(`info_${item.info}`);
+              }}
+            />
           )}
         </div>
         <p className='mt-1 text-[#555F71] text-sm md:text-lg flex flex-row items-center rtl:gap-[21px] ltr:gap-2.5 '>

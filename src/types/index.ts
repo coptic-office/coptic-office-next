@@ -62,6 +62,7 @@ export interface Unit {
   totalAmount: number;
   totalChecksAmount: number;
   contractDate: string | null;
+  info:string
 }
 
 export interface myUnit {

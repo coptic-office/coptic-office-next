@@ -2,7 +2,6 @@ import { useTranslations } from "next-intl";
 import HomePage from "../../modules/Home";
 import { unstable_setRequestLocale } from "next-intl/server";
 import "../../styles/globals.css";
-import { io } from "socket.io-client";
 
 export default function Home({
   params: { locale },
@@ -11,10 +10,7 @@ export default function Home({
 }) {
   unstable_setRequestLocale(locale);
   const t = useTranslations();
-  const socket = io();
-  socket.on("connect", () => {
-    console.log("Connected with Coptic Office backend");
-  });
+ 
 
   return (
     <main
