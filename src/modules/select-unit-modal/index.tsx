@@ -53,7 +53,7 @@ export const SelectUnitModal = ({
   return (
     <div className=' min-w-full '>
       <div className='h-[56px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
-        <p className='font-semibold text-white text-base md:text-xl '>
+        <p className='font-semibold rtl:font-medium text-white text-base md:text-xl '>
           {translate("locale.Select_Unit_Type")}
         </p>
         <img
@@ -67,15 +67,15 @@ export const SelectUnitModal = ({
       </div>
       <div className='w-full bg-white rounded-b-[4px] px-6  md:px-12  '>
         {!isCatSelected ? (
-          <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  pt-5 pb-2  md:py-7'>
-            {translate("locale.Select_Unit_Type")}
+          <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-3xl font-semibold rtl:font-medium  pt-5 pb-2  md:py-7'>
+            {translate("locale.Unit_Type")}
           </p>
         ) : null}
         <div className=' min-h-[350px] h-[370px] overflow-scroll md:overflow-hidden md:h-auto  flex flex-col md:flex-row gap-7'>
           {isCatSelected ? (
             <div className='flex min-h-[350px] w-full flex-col justify-center items-center'>
               <img src='/assets/success.png' width={"200px"} height={"200px"} />
-              <p className='my-6 md:my-5 text-[hsl(224,5%,48%)] text-lg w-full  md:w-1/2 text-center'>
+              <p className='my-6 md:my-3 text-[hsl(224,5%,48%)] text-lg w-full  md:w-1/2 text-center'>
                 {translate("locale.Unit_Selected")}
               </p>
             </div>
@@ -108,7 +108,7 @@ export const SelectUnitModal = ({
             </>
           )}
         </div>
-        <div className='w-full gap-3 md:gap-7  flex flex-col gap items-center'>
+        <div className='w-full gap-3   flex flex-col gap items-center'>
           {isCatSelected ? (
             <button
               onClick={() => {
@@ -125,7 +125,7 @@ export const SelectUnitModal = ({
                   {error}
                 </p>
               ) : (
-                <p className='mt-1 md:my-5 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
+                <p className='mt-1 md:my-3 text-[#74777F] text-sm md:text-lg w-full  md:w-1/2 text-center'>
                   {translate("locale.Change_Unit_Type_Text")}
                 </p>
               )}

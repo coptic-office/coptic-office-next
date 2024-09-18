@@ -15,7 +15,7 @@ export default function UnitCard({ item }: { item: Unit }) {
         className=' relative border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-4 md:px-6 md:pe-5  w-full md:w-[49%]  '>
         <div className='flex flex-row justify-between items-start'>
           <div className='flex flex-col gap-1'>
-            <p className='text-[#048951]  text-sm md:text-lg font-semibold'>
+            <p className='text-[#048951]  text-sm md:text-lg font-semibold '>
               {item.category}
             </p>
             <p className='text-[#555F71]  text-sm md:text-lg flex flex-row items-center ltr:gap-6 rtl:gap-2.5 '>
@@ -37,8 +37,8 @@ export default function UnitCard({ item }: { item: Unit }) {
             <img
               src='/assets/infoIcon2.png'
               className='cursor-pointer '
-              width={"28px"}
-              height={"28px"}
+              width={"32px"}
+              height={"32px"}
               onClick={() => {
                 setCurrentModal(`info_${item.info}`);
               }}
@@ -60,7 +60,7 @@ export default function UnitCard({ item }: { item: Unit }) {
                 {translate("locale.Book_Date")}
               </p>
 
-              <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
+              <p className=' text-xs md:text-base font-semibold  text-[#555F71]'>
                 {new Date(item.bookingDate)
                   ?.toLocaleDateString("en-AE", {
                     day: "2-digit",
@@ -74,7 +74,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               <p className=' text-xs md:text-base  text-[#555F71]'>
                 {translate("locale.Contract_Date")}
               </p>
-              <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
+              <p className=' text-xs md:text-base font-semibold  text-[#555F71]'>
                 {item.contractDate
                   ? new Date(item.contractDate)
                       ?.toLocaleDateString("en-AE", {
@@ -90,7 +90,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               <p className=' text-xs md:text-base  text-[#555F71]'>
                 {translate("locale.Total_Value_of_Payments")}
               </p>
-              <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
+              <p className=' text-xs md:text-base font-semibold  text-[#555F71]'>
                 {Number(item.totalCashAmount).toLocaleString()}{" "}
                 {translate("locale.Pound")}
               </p>
@@ -103,7 +103,7 @@ export default function UnitCard({ item }: { item: Unit }) {
                 {translate("locale.Contracting_Date")}
               </p>
 
-              <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
+              <p className=' text-xs md:text-base font-semibold  text-[#555F71]'>
                 {item.contractingDate
                   ? new Date(item.contractingDate)
                       ?.toLocaleDateString("en-AE", {
@@ -119,7 +119,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               <p className=' text-xs md:text-base  text-[#555F71]'>
                 {translate("locale.Total_Unit_Value")}
               </p>
-              <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
+              <p className=' text-xs md:text-base font-semibold  text-[#555F71]'>
                 {`${
                   item.totalAmount
                     ? `${item.totalAmount.toLocaleString()} ${translate(
@@ -134,7 +134,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               <p className=' text-xs md:text-base  text-[#555F71]'>
                 {translate("locale.Total_Value_of_Checks")}
               </p>
-              <p className=' text-xs md:text-base font-semibold text-[#555F71]'>
+              <p className=' text-xs md:text-base font-semibold  text-[#555F71]'>
                 {`${
                   item.totalChecksAmount
                     ? `${item.totalChecksAmount.toLocaleString()} ${translate(

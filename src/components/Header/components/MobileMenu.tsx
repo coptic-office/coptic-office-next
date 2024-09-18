@@ -56,7 +56,7 @@ export default function MobileMenu({
           />
           <p
             id='mobileMEnu2'
-            className='font-semibold text-xs text-white cursor-pointer'
+            className='font-semibold rtl:font-medium text-xs text-white cursor-pointer'
             onClick={openAuthModal}>
             {translate("locale.Login_Register")}
           </p>

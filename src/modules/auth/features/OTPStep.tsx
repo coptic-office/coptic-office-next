@@ -110,7 +110,7 @@ export const OtpStep = ({
       <div
         className='flex justify-center md:justify-start   mt-2 md:mt-0 w-full md:w-fit flex-row gap-1  items-center '
         dir='ltr'>
-        <p className='text-sm text-black font-semibold'>
+        <p className='text-sm text-black font-semibold rtl:font-medium'>
           {checkUserData?.mobileNumber}
         </p>
         {currentStep == AUTH_STEP_ENUM.FORGET_PASSWORD_OTP ? (
@@ -166,7 +166,7 @@ export const OtpStep = ({
         {resendTime && resendTime > 0 ? (
           <p className='text-sm  text-[#00000099]  text-center '>
             {translate("locale.Please_Wait")}{" "}
-            <span className='text-sm text-THEME_PRIMARY_COLOR font-semibold'>
+            <span className='text-sm text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium'>
               {`${
                 resendTime > 60
                   ? `${Math.floor(resendTime / 60)}:${
@@ -182,7 +182,7 @@ export const OtpStep = ({
           <>
             {resendTime != null ? (
               <p
-                className='text-sm text-center  text-THEME_PRIMARY_COLOR font-semibold mt-3 cursor-pointer'
+                className='text-sm text-center  text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium mt-3 cursor-pointer'
                 onClick={resendOtp}>
                 {" "}
                 {translate("locale.Resend_Code")}

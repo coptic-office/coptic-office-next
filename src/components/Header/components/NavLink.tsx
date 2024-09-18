@@ -28,8 +28,8 @@ export const NavLink = ({
         isSelected ? "bg-[#F7F8FC] md:bg-transparent" : ""
       } cursor-pointer ${
         isSelected
-          ? `text-THEME_PRIMARY_COLOR text-base md:text-xl font-semibold`
-          : `text-[#84878B]  md:text-white  text-sm md:text-base font-semibold`
+          ? `text-THEME_PRIMARY_COLOR text-base md:text-xl font-semibold rtl:font-medium`
+          : `text-[#84878B]  md:text-white  text-sm md:text-base font-semibold rtl:font-medium`
       }`}>
       {label}
     </p>

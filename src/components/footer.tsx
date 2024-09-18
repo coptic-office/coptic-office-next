@@ -28,21 +28,21 @@ export const Footer = ({ lang }: { lang: string }) => {
                   onClick={() => {
                     router.push(`/${lang}#home`);
                   }}
-                  className={`cursor-pointer   text-base font-semibold `}>
+                  className={`cursor-pointer   text-base font-semibold rtl:font-medium `}>
                   {translate("locale.Home")}
                 </p>
                 <p
                   onClick={() => {
                     router.push(`/${lang}/payments#mypayments`);
                   }}
-                  className={`cursor-pointer   text-base font-semibold `}>
+                  className={`cursor-pointer   text-base font-semibold rtl:font-medium `}>
                   {translate("locale.My_Payments")}
                 </p>
                 <p
                   onClick={() => {
                     router.push(`/${lang}/units#myunits`);
                   }}
-                  className={`cursor-pointer   text-base font-semibold `}>
+                  className={`cursor-pointer   text-base font-semibold rtl:font-medium `}>
                   {translate("locale.My_Units")}
                 </p>
               </>
@@ -69,7 +69,7 @@ export const Footer = ({ lang }: { lang: string }) => {
                 {translate("locale.Customer_Service")}
               </p>
               <a
-                className='text-lg font-semibold flex flex-row rtl:flex-row items-center gap-2'
+                className='text-lg font-semibold rtl:font-medium flex flex-row rtl:flex-row items-center gap-2'
                 dir='ltr'
                 href='tel:+201222 222 883'>
                 <img
@@ -81,7 +81,7 @@ export const Footer = ({ lang }: { lang: string }) => {
             </div>
             <div className='flex  flex-row w-full rtl:flex-row-reverse md:flex-row md:w-auto  justify-center md:justify-items-end  items-center gap-2 cursor-pointer'>
               <a
-                className='text-base font-semibold flex flex-row rtl:flex-row items-center gap-2'
+                className='text-base font-semibold rtl:font-medium flex flex-row rtl:flex-row items-center gap-2'
                 dir='ltr'
                 href='mailto:info@copticoffice.com'>
                 <img

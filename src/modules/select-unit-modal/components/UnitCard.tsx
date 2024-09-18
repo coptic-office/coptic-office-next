@@ -16,7 +16,7 @@ export const SelectUnitCard = ({
   return (
     <div
       onClick={onSelect}
-      className={`relative cursor-pointer border-[1px] border-solid border-[#E5EAF4] w-full md:flex-1 rtl:px-6 ltr:px-6 pt-6 pb-6 rounded-2xl flex flex-col gap-[35px] ${
+      className={`relative cursor-pointer border-[1px] border-solid border-[#E5EAF4] w-full md:flex-1 rtl:px-6 ltr:px-6 pt-6 pb-6 rounded-2xl flex flex-col gap-6 ${
         isSelected ? "bg-THEME_PRIMARY_COLOR" : "bg-white"
       }`}>
       <div
@@ -35,7 +35,7 @@ export const SelectUnitCard = ({
       />
       <div className='flex flex-col gap-2'>
         <p
-          className={`text-xl font-semibold tracking-tight ${
+          className={`text-xl font-semibold rtl:font-medium tracking-tight ${
             isSelected ? "text-white" : "text-THEME_PRIMARY_COLOR"
           } rtl:h-8 ltr:h-16`}>
           {unit.categoryName}
@@ -45,7 +45,7 @@ export const SelectUnitCard = ({
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
           {translate("locale.Booking_Amount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(unit.bookingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
@@ -55,7 +55,7 @@ export const SelectUnitCard = ({
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
           {translate("locale.Contracting_Amount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(unit.contractingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
@@ -66,7 +66,7 @@ export const SelectUnitCard = ({
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
           {translate("locale.Installments")} :{" "}
-          <span className='font-semibold tracking-tight'>
+          <span className='font-semibold rtl:font-medium tracking-tight'>
             {`${unit.installments.count} ${translate(
               "locale.Installments"
             )} ${translate("locale.Every")} ${
@@ -79,7 +79,7 @@ export const SelectUnitCard = ({
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
           {translate("locale.Installment_Amount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(unit.installments.amount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
@@ -89,7 +89,7 @@ export const SelectUnitCard = ({
             isSelected ? "text-white" : "text-THEME_SECONDARY_COLOR"
           }`}>
           {translate("locale.Cash_Discount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(unit.grossAmount - unit.cashAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>

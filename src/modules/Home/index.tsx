@@ -47,7 +47,7 @@ export default function HomePage({ lang }: { lang: string }) {
           </div>
         </div>
       </div>
-      <p className='text-[#183B56] text-[36px] text-center w-full mb-[45px] md:mb-0 font-semibold'>
+      <p className='text-[#183B56] text-[36px] text-center w-full mb-[45px] md:mb-0 font-semibold rtl:font-medium'>
         {translate("locale.Units_Categories")}
       </p>
       <Categories lang={lang} />

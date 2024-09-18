@@ -16,7 +16,7 @@ export const InfoModal = ({
       id='InfoModal'
       className=' w-[270px] md:w-[370px] bg-white    rounded-t-[4px]'>
       <div className='h-[45px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
-        <p className='font-semibold text-white text-base md:text-xl '></p>
+        <p className='font-semibold rtl:font-medium text-white text-base md:text-xl '></p>
 
         <img
           src='/assets/close.png'

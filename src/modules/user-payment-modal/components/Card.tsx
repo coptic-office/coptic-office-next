@@ -39,7 +39,7 @@ export const PaymentOptionCard = ({
               {translate(`locale.Payment_Method1_Text1_Currency${item}`)}
               {item == 3 ? "  " : ""}:
             </p>
-            <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold justify-end'>
+            <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
               {translate(`locale.Payment_Method1_Text1_Account${item}`)}
               <img
                 src={`/assets/${
@@ -64,7 +64,7 @@ export const PaymentOptionCard = ({
       });
     if (method == 2) {
       numbers.push(
-        <p className=' flex flex-row gap-2 text-lg text-end mt-0 md:mt-3 text-THEME_PRIMARY_COLOR font-semibold justify-end'>
+        <p className=' flex flex-row gap-2 text-lg text-end mt-0 md:mt-3 text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
           {translate("locale.Payment_Method2_Text1_Account")}
           <img
             src={`/assets/${copied == 21 ? "copied.png" : "copyPrimary.svg"}`}
@@ -105,7 +105,7 @@ export const PaymentOptionCard = ({
   return (
     <div className='flex-1 rounded-md px-6 py-7 border-[1px] border-THEME_PRIMARY_COLOR relative'>
       <hr className='border-2 border-[#3F598A] w-full absolute top-0 rounded-t-md left-0' />
-      <p className='text-THEME_PRIMARY_COLOR text-base md:text-xl font-semibold mb-3 h-auto'>
+      <p className='text-THEME_PRIMARY_COLOR text-base md:text-xl font-semibold rtl:font-medium mb-3 h-auto'>
         {title}
       </p>
       <div className='flex flex-row gap-2 items-start'>
@@ -121,7 +121,11 @@ export const PaymentOptionCard = ({
             {method == 3 ? null : <>{numbers.map((item) => item)}</>}
             <div
               className={`flex relative flex-row items-end gap-1  mt-[2px] ${
-                method == 2 ? "md:mt-[53px] rtl:md:mt-[33px]" : method == 3 ? "justify-end" : ""
+                method == 2
+                  ? "md:mt-[53px] rtl:md:mt-[33px]"
+                  : method == 3
+                  ? "justify-end"
+                  : ""
               }`}>
               <p className='text-sm  text-[#5A7184]'>{step2}</p>
               <img

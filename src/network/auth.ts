@@ -138,3 +138,14 @@ export const updatePhoto = (data: any, lang: string) =>
       },
     }
   );
+
+export const deletePhoto = (lang: string) =>
+  axiosInstance.post(
+    `users/delete-photo`,
+    {},
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+      },
+    }
+  );

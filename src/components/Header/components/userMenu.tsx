@@ -107,7 +107,7 @@ export default function UserMenu({
         <div className='flex flex-row items-center gap-1'>
           <img src='/assets/user.svg' width={"20px"} height={"20px"} />
           <p
-            className='font-semibold text-sm text-white cursor-pointer'
+            className='font-semibold rtl:font-medium text-sm text-white cursor-pointer'
             onClick={openAuthModal}>
             {translate("locale.Login_Register")}
           </p>

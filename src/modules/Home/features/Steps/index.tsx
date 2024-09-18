@@ -16,7 +16,7 @@ export default function Steps({ lang }: { lang: string }) {
           />
         </div>
         <div className='flex-1 pt-[90px] pb-[56px] px-4 md:px-[56px] max-w-[573px] bg-THEME_PRIMARY_COLOR rounded-none md:rounded-se-lg md:rounded-ee-lg mb-0 md:mb-10'>
-          <p className='text-white text-[36px] md:text-[46px] text-center md:text-start font-semibold leading-[48px] font-sans mb-[49px] md:mb-20'>
+          <p className='text-white text-[36px] md:text-[46px] text-center md:text-start font-medium leading-[48px] font-sans mb-[49px] md:mb-20'>
             {translate("locale.Booking_Contracting_Steps")}
           </p>
           <div className='flex flex-col gap-6 md:gap-[35px]'>
@@ -48,7 +48,7 @@ export default function Steps({ lang }: { lang: string }) {
           }
         }}
         className='bg-THEME_PRIMARY_COLOR md:bg-white flex flex-row gap px-6 py-3 rtl:md:ps-[39px]   cursor-pointer justify-around md:justify-between min-w-[181px] ltr:min-w-[194px] rounded-lg items-center border-[1px] border-THEME_PRIMARY_COLOR '>
-        <p className='text-white md:text-THEME_PRIMARY_COLOR text-base font-semibold'>
+        <p className='text-white md:text-THEME_PRIMARY_COLOR text-base font-semibold rtl:font-medium'>
           {translate("locale.Unit_Booking")}
         </p>
         <img

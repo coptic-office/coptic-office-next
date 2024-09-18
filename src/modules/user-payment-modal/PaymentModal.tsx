@@ -42,7 +42,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     }
   };
   const disabledStyle = `cursor-pointer  text-center  py-3 text-base inline-block border-[1px]  flex-1 border-gray-200 border-b-2 rounded-md hover:bg-gray-300 hover:border-gray-200 text-[#555F71]`;
-  const activeStyle = `cursor-pointer text-center inline-block py-3 text-base border-b-2 bg-[#005fb057] font-semibold  flex-1 text-THEME_PRIMARY_COLOR border-THEME_PRIMARY_COLOR rounded-t-md active   `;
+  const activeStyle = `cursor-pointer text-center inline-block py-3 text-base border-b-2 bg-[#005fb057] font-semibold rtl:font-medium  flex-1 text-THEME_PRIMARY_COLOR border-THEME_PRIMARY_COLOR rounded-t-md active   `;
 
   const changeSelectedValueId = (
     id: number | null,
@@ -105,13 +105,9 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
 
     createPayment({ ...object }, locale)
       .then((response) => {
-        router.push(
+        router.replace(
           `https://banquemisr.gateway.mastercard.com/checkout/pay/${response.data.message.sessionId}?checkoutVersion=1.0.0`
         );
-        setTimeout(() => {
-          setLoading(false);
-          closeModal();
-        }, 500);
       })
       .catch((err) => {
         setLoading(false);
@@ -125,7 +121,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
   return (
     <div className='  min-w-[90%]  md:min-w-[575px]'>
       <div className='h-[56px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
-        <p className='font-semibold text-white text-base md:text-xl '>
+        <p className='font-semibold rtl:font-medium text-white text-base md:text-xl '>
           {translate("locale.Unit_Booking")}
         </p>
 
@@ -144,7 +140,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
           <a id='hiddenRef' href='#' target='_blank'></a>
 
           <div className='flex flex-col items-center mb-6  px-3  md:px-12'>
-            <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold  pt-3 pb-2'>
+            <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-[36px] font-semibold rtl:font-medium  pt-3 pb-2'>
               {translate("locale.Electronic_Payment")}
             </p>
             <p className='text-[#74777F] text-lg'>
@@ -257,7 +253,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                           isSelected={selectedItem?.selectedValueId != 1}
                         />
                       </div>
-                      <p className='text-base md:text-xl text-[#74777F] font-semibold'>
+                      <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium'>
                         {translate("locale.Pound")}
                       </p>
                     </div>
@@ -387,7 +383,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                                   }
                                 />
                               </div>
-                              <p className='text-base md:text-xl text-[#74777F] font-semibold'>
+                              <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium'>
                                 {translate("locale.Pound")}
                               </p>
                             </div>
@@ -400,24 +396,26 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                       </div>
                     ) : (
                       <div className='max-w-[495px] flex flex-col items-center gap-2.5'>
-                        <p className='text-base md:text-xl text-[#74777F] font-semibold text-center'>
+                        <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium text-center'>
                           {selectedUnit.memo}
                         </p>
                         {selectedUnit.action == "" ? null : (
-                          <button
-                            onClick={() => {
-                              if (selectedUnit.action == "go") {
-                                onClickGo();
-                                closeModal();
-                              } else if (selectedUnit.action == "select") {
-                                closeModal();
+                          <div className='flex w-full justify-end '>
+                            <button
+                              onClick={() => {
+                                if (selectedUnit.action == "go") {
+                                  onClickGo();
+                                  closeModal();
+                                } else if (selectedUnit.action == "select") {
+                                  closeModal();
 
-                                router.push(`/${locale}/units`);
-                              }
-                            }}
-                            className='w-full rounded-lg h-10 bg-THEME_PRIMARY_COLOR text-white text-center'>
-                            {selectedUnit.actionText}
-                          </button>
+                                  router.push(`/${locale}/units#myunits`);
+                                }
+                              }}
+                              className='w-full md:w-[181px] flex justify-center items-center disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
+                              {selectedUnit.actionText}
+                            </button>
+                          </div>
                         )}
                       </div>
                     )}

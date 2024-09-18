@@ -50,7 +50,7 @@ export default function NotificationModal({
         className='absolute top-0 end-0 flex  flex-row  justify-end  min-w-full min-h-screen bg-[#0000006e] z-[150]  '>
         <div className='w-[80%] md:w-[443px]  bg-white min-h-screen'>
           <div className='flex flex-row justify-between items-center  p-6 '>
-            <p className='text-[#1E293B] font-semibold text-xl'>
+            <p className='text-[#1E293B] font-semibold rtl:font-medium text-xl'>
               {translate("locale.Notifications")}
             </p>
             <img
@@ -72,14 +72,14 @@ export default function NotificationModal({
                     width={"62px"}
                     height={"62px"}
                   />
-                  <p className='text-base md:text-[26px] text-[#555F71] font-semibold'>
+                  <p className='text-base md:text-[26px] text-[#555F71] font-semibold rtl:font-medium'>
                     {translate("locale.noNotifications")}
                   </p>
                 </div>
               ) : (
                 <div className='overflow-scroll h-[650px] mb-6'>
                   {data?.new?.length > 0 ? (
-                    <p className='px-6 text-[#1E293B] font-semibold text-base'>
+                    <p className='px-6 text-[#1E293B] font-semibold rtl:font-medium text-base'>
                       {translate("locale.New_Notifications")}
                     </p>
                   ) : (
@@ -100,7 +100,7 @@ export default function NotificationModal({
                             ) : (
                               ""
                             )}
-                            <p className='text-sm text-[#555F71] font-semibold'>
+                            <p className='text-sm text-[#555F71] font-semibold rtl:font-medium'>
                               {item.text}
                             </p>
                           </div>
@@ -115,7 +115,7 @@ export default function NotificationModal({
                   )}
 
                   {data?.old?.length > 0 ? (
-                    <p className='px-6 pt-6 text-[#1E293B] font-semibold text-base'>
+                    <p className='px-6 pt-6 text-[#1E293B] font-semibold rtl:font-medium text-base'>
                       {translate("locale.Old_Notifications")}
                     </p>
                   ) : (
@@ -136,7 +136,7 @@ export default function NotificationModal({
                             ) : (
                               ""
                             )}
-                            <p className='text-sm text-[#555F71] font-semibold'>
+                            <p className='text-sm text-[#555F71] font-semibold rtl:font-medium'>
                               {item.text}
                             </p>
                           </div>

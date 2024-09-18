@@ -7,6 +7,7 @@ import { Input } from "./components/Input";
 import { useDropzone } from "react-dropzone";
 import { User } from "@/src/types";
 import { updatePhoto } from "@/src/network/auth";
+import { ProfileImage } from "./components/profileImage";
 
 export default function PersonalProfile() {
   const translate = useTranslations();
@@ -15,6 +16,7 @@ export default function PersonalProfile() {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const router = useRouter();
   const [file, setFile] = useState<any>();
+  const [national_ID, setNational_ID] = useState<any>();
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
     else setUserData(JSON.parse(isLoggedIn));
@@ -37,17 +39,16 @@ export default function PersonalProfile() {
       "image/png": [".png"],
     },
     onDrop: (acceptedFiles) => {
-      console.log("FILEE", acceptedFiles);
       var form_data = new FormData();
       form_data.append("image", acceptedFiles?.[0]);
-      updatePhoto(form_data, "en");
-      setFile(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+      // updatePhoto(form_data, "en");
+      // setProfileImage(
+      //   acceptedFiles.map((file) =>
+      //     Object.assign(file, {
+      //       preview: URL.createObjectURL(file),
+      //     })
+      //   )
+      // );
     },
   });
   return (
@@ -56,7 +57,7 @@ export default function PersonalProfile() {
         id='myprofile'
         className='w-full  bg-white flex flex-col gap-4 rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] p-4 md:p-6'>
         <div className='flex flex-row justify-between items-center'>
-          <p className='text-base md:text-2xl text-[#183B56] font-semibold'>
+          <p className='text-base md:text-2xl text-[#183B56] font-semibold rtl:font-medium'>
             {translate("locale.Personal_Profile")}
           </p>
           <button
@@ -67,37 +68,11 @@ export default function PersonalProfile() {
             {translate(`locale.${isEditOpen ? "Save" : "Edit"}`)}
           </button>
         </div>
-        <div className='mt-4 flex gap-[19px] items-start '>
-          <div
-            className='relative rounded-lg h-[102px] w-[102px] bg-center bg-no-repeat  border-[1px] border-[#E3E7EA] placeholder:hidden'
-            {...getRootProps()}>
-            <input {...getInputProps()} className='' />
-            <img
-              src={userData?.profilePhoto}
-              className='object-cover w-[100px] h-[100px] rounded-2xl'
-            />
-            <div className='bg-[#ffffff66] h-[36px] min-w-full absolute left-0 top-[64px]  flex justify-center items-center '>
-              <img src='/assets/addImage.svg' className='w-5 h-5 ' />
-            </div>
-          </div>
-          <div>
-            <p className='text-sm font-semibold mt-5'>
-              {userData?.firstName} {userData?.lastName}
-            </p>
-            {isEditOpen ? (
-              <div className='flex gap-[18px] mt-[26px] '>
-                <button className=' px-1 md:px-3  py-[3px] md:py-[6px]  rounded-sm md:rounded-lg text-xs md:text-base text-THEME_PRIMARY_COLOR font-semibold  border-[1px] border-THEME_PRIMARY_COLOR text-center'>
-                  {translate("locale.Delete_Image")}
-                </button>
-                <button className=' px-1 md:px-3   py-[3px] md:py-[6px] bg-THEME_PRIMARY_COLOR  rounded-sm md:rounded-lg text-xs md:text-base text-white font-semibold  border-[1px] border-THEME_PRIMARY_COLOR text-center'>
-                  {translate("locale.Upload_Image")}
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
+        <ProfileImage
+          setUserData={setUserData}
+          isEditOpen={isEditOpen}
+          userData={userData}
+        />
         <div className='flex flex-col md:flex-row  gap-5 w-full'>
           <Input
             disabled={!isEditOpen}
@@ -161,7 +136,7 @@ export default function PersonalProfile() {
               ) : (
                 <div className='bg-[#ffffff66] h-[100px] min-w-full mt-[187px] flex flex-col justify-center items-center gap-4'>
                   <img src='/assets/addImage.svg' />
-                  <p className='text-base font-semibold text-THEME_PRIMARY_COLOR'>
+                  <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
                     {translate("locale.Front_Side")}
                   </p>
                 </div>
@@ -179,7 +154,7 @@ export default function PersonalProfile() {
               ) : (
                 <div className='bg-[#ffffff66] h-[100px] min-w-full mt-[187px] flex flex-col justify-center items-center gap-4'>
                   <img src='/assets/addImage.svg' />
-                  <p className='text-base font-semibold text-THEME_PRIMARY_COLOR'>
+                  <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
                     {translate("locale.Back_Side")}
                   </p>
                 </div>

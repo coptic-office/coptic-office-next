@@ -12,7 +12,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
     <>
       <div className='border-[1px] border-[#E5EAF4] rounded-2xl py-3 md:py-[34px] px-3 md:px-6 md:pe-5  w-full md:w-[49%]  '>
         <div className='flex pb-4 flex-row  justify-between md:justify-start gap-0  md:gap-[86px] items-center border-b-[1px] border-[#D8D8D8] border-solid'>
-          <p className='text-THEME_PRIMARY_COLOR text-[15px] md:text-xl font-semibold flex flex-col md:flex-row gap-1'>
+          <p className='text-THEME_PRIMARY_COLOR text-[15px] md:text-xl font-semibold  flex flex-col md:flex-row gap-1'>
             {translate("locale.Amount")}{" "}
             <span>
               {Number(payment.amount).toLocaleString()}{" "}
@@ -35,7 +35,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               }`}
             />
             <div className='flex flex-col gap-1 text-[#048951]  text-sm md:text-lg'>
-              <p className='font-semibold'>{payment.paymentMethodText}</p>
+              <p className='font-semibold '>{payment.paymentMethodText}</p>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
           <div className='flex flex-col gap-8'>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Date")}</p>
-              <p className='font-semibold'>
+              <p className='font-semibold '>
                 {new Date(payment.adviceDate)
                   ?.toLocaleDateString("en-AE", {
                     day: "2-digit",
@@ -56,7 +56,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Trans_Reference_Number")}</p>
               <p
-                className='font-semibold flex flex-row gap-1 items-center'
+                className='font-semibold  flex flex-row gap-1 items-center'
                 dir='ltr'>
                 {`${payment.id?.substring(
                   0,
@@ -81,7 +81,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
           <div className='flex flex-col gap-8'>
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Time")}</p>
-              <p className='font-semibold'>
+              <p className='font-semibold '>
                 {new Date(payment.adviceDate)
                   ?.toLocaleTimeString(local == "ar" ? "ar-AE" : "en", {
                     hour: "2-digit",
@@ -94,9 +94,11 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             <div className='flex flex-col gap-1  text-[#555F71]  text-sm md:text-lg'>
               <p>{translate("locale.Booking_Code")}</p>
               <p
-                className=' underline font-semibold text-THEME_PRIMARY_COLOR cursor-pointer'
+                className={`${
+                  payment.unitId != "" ? "underline" : ""
+                } font-semibold  text-THEME_PRIMARY_COLOR cursor-pointer`}
                 onClick={() => {
-                  router.push(`/${local}/units`);
+                  router.push(`/${local}/units#myunits`);
                 }}
                 dir='ltr'>
                 {payment.unitId != ""

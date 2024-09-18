@@ -38,7 +38,7 @@ export default function MyUnits() {
           id='myunits'
           className='w-full gap-5  py-6 pb-10 md:py-5 bg-white flex flex-col  rounded-2xl -mt-[92px] border-x-[1px] border-solid border-[#E5EAF4] border-b-[1px] mb-[45px] md:mb-[14px]'>
           <p
-            className={`text-[#183B56] text-lg md:text-2xl font-semibold px-4 ${
+            className={`text-[#183B56] text-lg md:text-2xl font-semibold rtl:font-medium px-4 ${
               Units.length == 0 ? "md:px-[47px]" : "md:px-6"
             }`}>
             {translate("locale.My_Units")}
@@ -63,7 +63,7 @@ export default function MyUnits() {
                       src='/assets/unitsEmpty.svg'
                       className=' w-[88px] h-[88px] md:w-[128px] md:h-[128px]'
                     />
-                    <p className='text-base md:text-[26px] font-semibold text-[#555F71]'>
+                    <p className='text-base md:text-[26px] font-semibold rtl:font-medium text-[#555F71]'>
                       {translate("locale.noUnits")}
                     </p>
                   </div>
@@ -84,7 +84,7 @@ export default function MyUnits() {
           onClick={() => {
             setCurrentModal("payment");
           }}
-          className='px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-white  md:text-THEME_PRIMARY_COLOR bg-THEME_PRIMARY_COLOR md:bg-white text-base font-semibold flex  gap-3 md:gap-8 items-center'>
+          className='px-6 md:ps-10 md:pe-6 flex-row-reverse py-4 border-[1px] border-THEME_PRIMARY_COLOR rounded-lg text-white  md:text-THEME_PRIMARY_COLOR bg-THEME_PRIMARY_COLOR md:bg-white text-base font-semibold rtl:font-medium flex  gap-3 md:gap-8 items-center'>
           <img
             src=' /assets/left.svg'
             className='hidden md:flex ltr:rotate-180'

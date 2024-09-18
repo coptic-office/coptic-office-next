@@ -25,7 +25,9 @@ export const RadioButton = ({
           ""
         )}
       </div>
-      <p className='text-base md:text-xl text-[#74777F] font-semibold'>{label}</p>
+      <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium'>
+        {label}
+      </p>
     </div>
   );
 };

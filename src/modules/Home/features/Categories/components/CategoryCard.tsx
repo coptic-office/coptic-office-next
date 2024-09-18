@@ -15,19 +15,19 @@ export const CategoryCard = ({
         className='!w-[181px] !h-[36px]'
       />
       <div className='flex flex-col gap-2'>
-        <p className='text-xl font-semibold tracking-tight text-THEME_PRIMARY_COLOR rtl:h-8 ltr:h-16'>
+        <p className='text-xl font-semibold rtl:font-medium tracking-tight text-THEME_PRIMARY_COLOR rtl:h-8 ltr:h-16'>
           {category.categoryName}
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Booking_Amount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(category.bookingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Contracting_Amount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(category.contractingAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
@@ -35,7 +35,7 @@ export const CategoryCard = ({
 
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Installments")} :
-          <span className='font-semibold tracking-tight text-THEME_PRIMARY_COLOR'>
+          <span className='font-semibold rtl:font-medium tracking-tight text-THEME_PRIMARY_COLOR'>
             {` ${category.installments.count} ${translate(
               "locale.Installments"
             )} ${translate("locale.Every")} ${
@@ -45,14 +45,14 @@ export const CategoryCard = ({
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Installment_Amount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(category.installments.amount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
         </p>
         <p className='text-lg text-THEME_SECONDARY_COLOR'>
           {translate("locale.Cash_Discount")} :{" "}
-          <span className='font-semibold'>
+          <span className='font-semibold rtl:font-medium'>
             {Number(
               category.grossAmount - category.cashAmount
             ).toLocaleString()}{" "}
