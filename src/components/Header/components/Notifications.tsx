@@ -18,7 +18,6 @@ export default function NotificationModal({
     old: [],
   });
   const [loading, setLoading] = useState(false);
-  console.log("datadata", data);
   useEffect(() => {
     setLoading(true);
     getNotifications(locale)
@@ -77,7 +76,7 @@ export default function NotificationModal({
                   </p>
                 </div>
               ) : (
-                <div className='overflow-scroll h-[650px] mb-6'>
+                <div className='overflow-scroll max-h-[550px] h-auto mb-6'>
                   {data?.new?.length > 0 ? (
                     <p className='px-6 text-[#1E293B] font-semibold rtl:font-medium text-base'>
                       {translate("locale.New_Notifications")}
