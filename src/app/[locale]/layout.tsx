@@ -6,12 +6,11 @@ import { Footer } from "../../components/footer";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
-import { unstable_setRequestLocale } from "next-intl/server";
 import Header from "@/src/components/Header";
 import { AppWrapper } from "@/src/context";
 
 export function generateStaticParams() {
-  return [{ locale: "ar" }, { locale: "en" }];
+  return [{ locale: "ar" }];
 }
 const inter = Open_Sans({ subsets: ["latin"] });
 
