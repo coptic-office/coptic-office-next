@@ -51,6 +51,7 @@ export default function Header() {
   const userData = getCookie("user")
     ? JSON.parse(getCookie("user") as string)
     : null; // => 'value'
+
   return (
     <>
       <MobileMenu
@@ -95,7 +96,7 @@ export default function Header() {
               />
               {userData ? (
                 <div className='p-2 border-[1px] relative border-white rounded-lg border-solid'>
-                  <p className='bg-white rounded-[50%] w-7 h-7 text-center p-1 font-semibold text-sm absolute -end-3 -top-3 text-THEME_PRIMARY_COLOR'>
+                  <p className='bg-white rounded-[50%] min-w-7 min-h-7  text-center p-1 font-semibold text-sm absolute -end-3 -top-3 text-THEME_PRIMARY_COLOR'>
                     {notifyCount ?? userData?.notifications?.newCount}
                   </p>
                   <img

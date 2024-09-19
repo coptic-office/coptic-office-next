@@ -52,12 +52,10 @@ export default function MyPayments() {
         });
        socket.on("connect", () => {
          const user = JSON.parse(getCookie("user") as string);
-         console.log(" user?.mobile?.primary", user?.mobile?.primary?.number);
          console.log("Connected with Coptic Office backend");
-         socket.emit("handshake", user?.mobile?.primary?.number);
-         socket.on("notifications", ({ newCount }) => {
-          updateNotificationCount(Number(newCount));
-         });
+               socket.on(user?.mobile?.primary?.number, ({ newCount }: any) => {
+                 updateNotificationCount(Number(newCount));
+               });
        });
     }
   }, []);

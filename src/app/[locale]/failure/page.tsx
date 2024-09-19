@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 import "../../../styles/globals.css";
+import Failed from "@/src/modules/failed";
 
 export default function Home({
   params: { locale },
@@ -11,11 +12,9 @@ export default function Home({
   const t = useTranslations();
 
   return (
-    <main className='text-black  flex min-h-screen flex-col items-center justify-center  z-[80] md:z-[100] bg-white  '>
-      <div>
-        {" "}
-        <p className='text-black text-2xl'> FAILURE SCREEN</p>
-      </div>
+    <main
+      className={` flex flex-col items-center justify-between mt-[245px] md:mt-[500px] z-[80] md:z-[100] bg-white`}>
+      <Failed lang={locale} />
     </main>
   );
 }

@@ -17,14 +17,13 @@ export const NavLink = ({
 
   return (
     <p
-      id={`mobileMEnu${url}`}
       onClick={() => {
         router.push(`/${locale}${url ? `/${url}#my${url}` : ""}`, {
           scroll: true,
         });
         toggleNav?.();
       }}
-      className={`  h-[33px] px-3 py-[6px] md:px-0 md:py-0 rounded-[4px] md:rounded-none  md:h-auto w-full md:w-auto ${
+      className={`[text-shadow:1px_1px_1px_var(--tw-shadow-color)] shadow-gray-700  h-[33px] px-3 py-[6px] md:px-0 md:py-0 rounded-[4px] md:rounded-none  md:h-auto w-full md:w-auto ${
         isSelected ? "bg-[#F7F8FC] md:bg-transparent" : ""
       } cursor-pointer ${
         isSelected

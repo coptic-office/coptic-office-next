@@ -16,8 +16,7 @@ export default function HomePage({ lang }: { lang: string }) {
       socket.on("connect", () => {
         const user = JSON.parse(getCookie("user") as string);
         console.log("Connected with Coptic Office backend");
-        socket.emit("handshake", user?.mobile?.primary?.number);
-        socket.on("notifications", ({ newCount }) => {
+        socket.on(user?.mobile?.primary?.number, ({ newCount  }:any) => {
           updateNotificationCount(Number(newCount));
         });
       });
