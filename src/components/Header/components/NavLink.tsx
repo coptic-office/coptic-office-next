@@ -24,7 +24,7 @@ export const NavLink = ({
         });
         toggleNav?.();
       }}
-      className={`h-[33px] px-3 py-[6px] md:px-0 md:py-0 rounded-[4px] md:rounded-none  md:h-auto w-full md:w-auto ${
+      className={`  h-[33px] px-3 py-[6px] md:px-0 md:py-0 rounded-[4px] md:rounded-none  md:h-auto w-full md:w-auto ${
         isSelected ? "bg-[#F7F8FC] md:bg-transparent" : ""
       } cursor-pointer ${
         isSelected

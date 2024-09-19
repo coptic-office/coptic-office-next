@@ -157,17 +157,15 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               }>
               <p>{translate("locale.New_Booking")}</p>
             </li>
-            {options.length <= 0 && !dataLoading ? null : (
-              <li
-                className={`  ${
-                  activeTab == 1
-                    ? activeStyle
-                    : `${disabledStyle} rounded-es-none `
-                }`}
-                onClick={() => changeActiveTab(1)}>
-                <p>{translate("locale.Existing_Booking")}</p>
-              </li>
-            )}
+            <li
+              className={`  ${
+                activeTab == 1
+                  ? activeStyle
+                  : `${disabledStyle} rounded-es-none `
+              }`}
+              onClick={() => changeActiveTab(1)}>
+              <p>{translate("locale.Existing_Booking")}</p>
+            </li>
           </ul>
           <div className='p-4 py-6 md:p-10'>
             {activeTab == 0 ? (
@@ -264,171 +262,193 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                 </div>
               </div>
             ) : (
-              <div className='flex flex-col gap-[30px]'>
-                <ReactSelect
-                  onSelect={(item: PaymentOptions) => {
-                    changeSelectedValueId(0, item.value, item.unitId);
-                    setSelectedUnit(item);
-                  }}
-                  selectedUnit={selectedUnit}
-                  unitIds={options}
-                />
-                {selectedUnit ? (
-                  <>
-                    {selectedUnit.value ? (
-                      <div className='flex flex-col gap-[30px]'>
-                        <RadioButton
-                          label={`${Number(
-                            selectedUnit.value
-                          )?.toLocaleString()} ${translate("locale.Pound")} ${
-                            selectedUnit.text
-                          }`}
-                          onSelect={() => {
-                            changeSelectedValueId(
-                              0,
-                              selectedUnit.value,
-                              selectedUnit.unitId
-                            );
-                          }}
-                          selected={
-                            selectedItem?.selectedValueId == 0 &&
-                            selectedItem?.id
-                          }
-                        />
-                        <div className='flex flex-col gap-2'>
-                          <div className='flex gap-2.5 items-center'>
+              <>
+                {options.length <= 1 && !dataLoading ? (
+                  <div className='gap-8 w-full'>
+                    <p className='text-lg text-center font-medium text-[#1E293B]'>
+                      {translate("locale.No_Existing_Booking")}
+                    </p>
+                  </div>
+                ) : (
+                  <div className='flex flex-col gap-[30px]'>
+                    <ReactSelect
+                      onSelect={(item: PaymentOptions) => {
+                        changeSelectedValueId(0, item.value, item.unitId);
+                        setSelectedUnit(item);
+                      }}
+                      selectedUnit={selectedUnit}
+                      unitIds={options}
+                    />
+                    {selectedUnit ? (
+                      <>
+                        {selectedUnit.value ? (
+                          <div className='flex flex-col gap-[30px]'>
                             <RadioButton
-                              label={translate("locale.Other_Value")}
-                              onSelect={() =>
+                              label={`${Number(
+                                selectedUnit.value
+                              )?.toLocaleString()} ${translate(
+                                "locale.Pound"
+                              )} ${selectedUnit.text}`}
+                              onSelect={() => {
                                 changeSelectedValueId(
-                                  1,
-                                  1000,
+                                  0,
+                                  selectedUnit.value,
                                   selectedUnit.unitId
-                                )
-                              }
+                                );
+                              }}
                               selected={
-                                selectedItem?.selectedValueId == 1 &&
+                                selectedItem?.selectedValueId == 0 &&
                                 selectedItem?.id
                               }
                             />
-                            <div className='flex items-center gap-2.5'>
-                              <div className='flex items-center  rounded-md border-[1px]  bg-white focus:outline-THEME_PRIMARY_COLOR'>
-                                <NumberControl
-                                  changeAmount={() => {
-                                    if (selectedItem?.selectedValueId == 1) {
-                                      if (selectedItem?.value <= 1000) return;
-                                      else
+                            <div className='flex flex-col gap-2'>
+                              <div className='flex gap-2.5 items-center'>
+                                <RadioButton
+                                  label={translate("locale.Other_Value")}
+                                  onSelect={() =>
+                                    changeSelectedValueId(
+                                      1,
+                                      1000,
+                                      selectedUnit.unitId
+                                    )
+                                  }
+                                  selected={
+                                    selectedItem?.selectedValueId == 1 &&
+                                    selectedItem?.id
+                                  }
+                                />
+                                <div className='flex items-center gap-2.5'>
+                                  <div className='flex items-center  rounded-md border-[1px]  bg-white focus:outline-THEME_PRIMARY_COLOR'>
+                                    <NumberControl
+                                      changeAmount={() => {
+                                        if (
+                                          selectedItem?.selectedValueId == 1
+                                        ) {
+                                          if (selectedItem?.value <= 1000)
+                                            return;
+                                          else
+                                            setSelectedItem({
+                                              ...selectedItem,
+                                              value: selectedItem?.value - 1000,
+                                            });
+                                        }
+                                      }}
+                                      disabled={
+                                        selectedItem?.value <= 1000 ||
+                                        selectedItem?.value % 1000 != 0 ||
+                                        !selectedItem?.id
+                                      }
+                                      src='minus'
+                                      isSelected={
+                                        selectedItem?.selectedValueId != 1
+                                      }
+                                    />
+                                    <input
+                                      className='w-[80px] text-center h-8  bg-gray-200 focus:outline-THEME_PRIMARY_COLOR  text-THEME_PRIMARY_COLOR'
+                                      disabled={
+                                        selectedItem?.selectedValueId != 1
+                                      }
+                                      value={
+                                        selectedItem?.selectedValueId == 1
+                                          ? selectedItem?.value
+                                          : null
+                                      }
+                                      placeholder='1000'
+                                      onChange={(event) => {
+                                        var reg = /^\d+$/;
+                                        if (!reg.test(event.target.value))
+                                          return;
                                         setSelectedItem({
                                           ...selectedItem,
-                                          value: selectedItem?.value - 1000,
+                                          value: Number(event.target.value),
+                                          error:
+                                            Number(event.target.value) % 1000 !=
+                                            0
+                                              ? true
+                                              : false,
                                         });
-                                    }
-                                  }}
-                                  disabled={
-                                    selectedItem?.value <= 1000 ||
-                                    selectedItem?.value % 1000 != 0 ||
-                                    !selectedItem?.id
-                                  }
-                                  src='minus'
-                                  isSelected={
-                                    selectedItem?.selectedValueId != 1
-                                  }
-                                />
-                                <input
-                                  className='w-[80px] text-center h-8  bg-gray-200 focus:outline-THEME_PRIMARY_COLOR  text-THEME_PRIMARY_COLOR'
-                                  disabled={selectedItem?.selectedValueId != 1}
-                                  value={
-                                    selectedItem?.selectedValueId == 1
-                                      ? selectedItem?.value
-                                      : null
-                                  }
-                                  placeholder='1000'
-                                  onChange={(event) => {
-                                    var reg = /^\d+$/;
-                                    if (!reg.test(event.target.value)) return;
-                                    setSelectedItem({
-                                      ...selectedItem,
-                                      value: Number(event.target.value),
-                                      error:
-                                        Number(event.target.value) % 1000 != 0
-                                          ? true
-                                          : false,
-                                    });
-                                  }}
-                                />
-                                <NumberControl
-                                  changeAmount={() => {
-                                    if (selectedItem?.selectedValueId == 1) {
-                                      if (
-                                        selectedItem?.value ==
-                                        selectedUnit.value
-                                      )
-                                        return;
-                                      else
-                                        setSelectedItem({
-                                          ...selectedItem,
-                                          value: selectedItem?.value + 1000,
-                                        });
-                                    }
-                                  }}
-                                  disabled={
-                                    selectedItem?.value >=
-                                      maxPayment.maxValue ||
-                                    selectedItem?.value % 1000 != 0 ||
-                                    !selectedItem?.id
-                                  }
-                                  src='plus2'
-                                  isSelected={
-                                    selectedItem?.selectedValueId != 1
-                                  }
-                                />
+                                      }}
+                                    />
+                                    <NumberControl
+                                      changeAmount={() => {
+                                        if (
+                                          selectedItem?.selectedValueId == 1
+                                        ) {
+                                          if (
+                                            selectedItem?.value ==
+                                            selectedUnit.value
+                                          )
+                                            return;
+                                          else
+                                            setSelectedItem({
+                                              ...selectedItem,
+                                              value: selectedItem?.value + 1000,
+                                            });
+                                        }
+                                      }}
+                                      disabled={
+                                        selectedItem?.value >=
+                                          maxPayment.maxValue ||
+                                        selectedItem?.value % 1000 != 0 ||
+                                        !selectedItem?.id
+                                      }
+                                      src='plus2'
+                                      isSelected={
+                                        selectedItem?.selectedValueId != 1
+                                      }
+                                    />
+                                  </div>
+                                  <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium'>
+                                    {translate("locale.Pound")}
+                                  </p>
+                                </div>
                               </div>
-                              <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium'>
-                                {translate("locale.Pound")}
+                              <p className='text-base text-THEME_ERROR_COLOR'>
+                                {selectedItem?.error &&
+                                  translate("locale.Input_Error")}
                               </p>
                             </div>
                           </div>
-                          <p className='text-base text-THEME_ERROR_COLOR'>
-                            {selectedItem?.error &&
-                              translate("locale.Input_Error")}
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className='max-w-[495px] flex flex-col items-center gap-2.5'>
-                        <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium text-center'>
-                          {selectedUnit.memo}
-                        </p>
-                        {selectedUnit.action == "" ? null : (
-                          <div className='flex w-full justify-end '>
-                            <button
-                              onClick={() => {
-                                if (selectedUnit.action == "go") {
-                                  onClickGo();
-                                  closeModal();
-                                } else if (selectedUnit.action == "select") {
-                                  closeModal();
+                        ) : (
+                          <div className='max-w-[495px] flex flex-col items-center gap-2.5'>
+                            <p className='text-base md:text-xl text-[#74777F] font-semibold rtl:font-medium text-center'>
+                              {selectedUnit.memo}
+                            </p>
+                            {selectedUnit.action == "" ? null : (
+                              <div className='flex w-full justify-end '>
+                                <button
+                                  onClick={() => {
+                                    if (selectedUnit.action == "go") {
+                                      onClickGo();
+                                      closeModal();
+                                    } else if (
+                                      selectedUnit.action == "select"
+                                    ) {
+                                      closeModal();
 
-                                  router.push(`/${locale}/units#myunits`);
-                                }
-                              }}
-                              className='w-full md:w-[181px] flex justify-center items-center disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
-                              {selectedUnit.actionText}
-                            </button>
+                                      router.push(`/${locale}/units#myunits`);
+                                    }
+                                  }}
+                                  className='w-full md:w-[181px] flex justify-center items-center disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
+                                  {selectedUnit.actionText}
+                                </button>
+                              </div>
+                            )}
                           </div>
                         )}
-                      </div>
+                      </>
+                    ) : (
+                      ""
                     )}
-                  </>
-                ) : (
-                  ""
+                  </div>
                 )}
-              </div>
+              </>
             )}
-            {selectedUnit &&
-            (selectedUnit.action == "" ||
-              selectedUnit.action == "go" ||
-              selectedUnit.action == "select") ? null : (
+            {(selectedUnit &&
+              (selectedUnit.action == "" ||
+                selectedUnit.action == "go" ||
+                selectedUnit.action == "select")) ||
+            (activeTab == 1 && options?.length <= 1 && !dataLoading) ? null : (
               <div className='flex w-full justify-end mt-7'>
                 <button
                   disabled={!selectedItem?.value}

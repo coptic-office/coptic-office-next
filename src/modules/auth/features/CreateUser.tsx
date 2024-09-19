@@ -108,6 +108,7 @@ export const CreateUser = ({
         />
 
         <PasswordInput
+          onKeyUp={()=>{}}
           labelWidth={true}
           label={translate("locale.Password")}
           onChange={(e) => {

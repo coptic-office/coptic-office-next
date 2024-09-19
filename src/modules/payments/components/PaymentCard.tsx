@@ -95,8 +95,10 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               <p>{translate("locale.Booking_Code")}</p>
               <p
                 className={`${
-                  payment.unitId != "" ? "underline" : ""
-                } font-semibold  text-THEME_PRIMARY_COLOR cursor-pointer`}
+                  payment.unitId != ""
+                    ? "underline text-THEME_PRIMARY_COLOR cursor-pointer"
+                    : ""
+                } font-semibold  `}
                 onClick={() => {
                   router.push(`/${local}/units#myunits`);
                 }}

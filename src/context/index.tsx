@@ -10,18 +10,26 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     currentRunningModal: string;
     unitId?: string;
     refreshPage?: boolean;
+    notificationCount: number | undefined;
   }>({
     isLoggedIn: getCookie("user") ? true : false,
     currentRunningModal: "",
     unitId: undefined,
     refreshPage: false,
+    notificationCount: undefined,
   });
-  const setIsLoggedIn = (value:boolean) => {
-    setState({ ...state, isLoggedIn:value?value: true });
+  const setIsLoggedIn = (value: boolean) => {
+    setState({ ...state, isLoggedIn: value ? value : true });
   };
 
-  const refreshData = (value?:boolean) => {
-    setState({ ...state, refreshPage:value?? true,currentRunningModal:'' });
+  const refreshData = (value?: boolean) => {
+    setState({ ...state, refreshPage: value ?? true, currentRunningModal: "" });
+  };
+  const updateNotificationCount = (value: number) => {
+    setState({
+      ...state,
+      notificationCount: value,
+    });
   };
   const setCurrentModal = (value: string, unitId?: string) => {
     if (unitId) {
@@ -37,11 +45,13 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         isLoggedIn: state.isLoggedIn,
         currentRunningModal: state.currentRunningModal,
         unitId: state.unitId,
-        refreshPage:state.refreshPage,
+        refreshPage: state.refreshPage,
+        notifyCount:state.notificationCount,
         setCurrentModal,
         setIsLoggedIn,
         setUnitId,
         refreshData,
+        updateNotificationCount,
       }}>
       {children}
     </APPContext.Provider>

@@ -7,6 +7,7 @@ export const PasswordInput = ({
   placeholder,
   labelWidth,
   error,
+  onKeyUp,
 }: {
   label: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
@@ -14,6 +15,7 @@ export const PasswordInput = ({
   placeholder: string;
   labelWidth?: boolean;
   error?: boolean;
+  onKeyUp: (event: any) => void;
 }) => {
   const [passwordHidden, setPasswordHidden] = useState(true);
 
@@ -26,6 +28,7 @@ export const PasswordInput = ({
         {label}
       </label>
       <input
+        onKeyUp={(event) => onKeyUp(event as any)}
         onChange={onChange}
         type={passwordHidden ? "password" : "text"}
         className='py-3 ps-4 pe-10 block w-full bg-gray-50   rounded-lg focus:outline-none  text-base'

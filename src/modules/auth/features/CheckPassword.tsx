@@ -87,6 +87,11 @@ export const CheckPassword = ({
       <div className='mt-5 md:mt-10 mb-5 md:mb-10'>
         <div className='flex justify-center w-full'>
           <PasswordInput
+            onKeyUp={(event) => {
+              if (event.key === "Enter") {
+                submit();
+              }
+            }}
             error={error?.password}
             label={translate("locale.Password")}
             onChange={(e) => {

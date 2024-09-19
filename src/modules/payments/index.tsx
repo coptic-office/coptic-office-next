@@ -8,6 +8,8 @@ import BankCard from "./components/BankCard";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/src/context";
+import { io } from "socket.io-client";
+
 export default function MyPayments() {
   const [payments, setPayments] = useState<{
     payments: Payment[];
@@ -26,7 +28,10 @@ export default function MyPayments() {
   const translate = useTranslations();
   const locale = useLocale();
   const router = useRouter();
-  const isLoggedIn = getCookie("user");
+  const { isLoggedIn, updateNotificationCount } = useAppContext();
+  const socket = io("https://dev.copticoffice.com:3000");
+
+
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
     else {
@@ -45,6 +50,15 @@ export default function MyPayments() {
         .catch((err) => {
           setLoading(false);
         });
+       socket.on("connect", () => {
+         const user = JSON.parse(getCookie("user") as string);
+         console.log(" user?.mobile?.primary", user?.mobile?.primary?.number);
+         console.log("Connected with Coptic Office backend");
+         socket.emit("handshake", user?.mobile?.primary?.number);
+         socket.on("notifications", ({ newCount }) => {
+          updateNotificationCount(Number(newCount));
+         });
+       });
     }
   }, []);
 

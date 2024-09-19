@@ -62,7 +62,13 @@ export const ForgetPassword = ({
           <img src='/assets/egypt.png' width={"24px"} height={"24px"} />
         </div>
         <input
-          type="tel"
+          autoFocus
+          type='tel'
+          onKeyUp={(event) => {
+            if (event.key === "Enter") {
+              onSubmit();
+            }
+          }}
           value={mobileNumber}
           onChange={(e) => {
             setMobileNumber(e.target.value);
@@ -93,11 +99,7 @@ export const ForgetPassword = ({
       ) : (
         ""
       )}
-      {!error ? (
-       ''
-      ) : (
-        ""
-      )}
+      {!error ? "" : ""}
       <button
         disabled={!mobileNumber && !error}
         className={`h-[55px] w-full  bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${

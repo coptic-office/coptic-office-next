@@ -14,7 +14,7 @@ export default function Header() {
   const [isSelected, setIsSelected] = useState(0);
   const [openAuth, setOpenAuth] = useState(false);
   const pathname = usePathname();
-  const { currentRunningModal, setCurrentModal } = useAppContext();
+  const { currentRunningModal, setCurrentModal, notifyCount } = useAppContext();
   const [showNotifications, setShowNotifications] = useState(false);
   useEffect(() => {
     if (currentRunningModal == "Auth") {
@@ -94,7 +94,10 @@ export default function Header() {
                 url='units'
               />
               {userData ? (
-                <div className='p-2 border-[1px] border-white rounded-lg border-solid'>
+                <div className='p-2 border-[1px] relative border-white rounded-lg border-solid'>
+                  <p className='bg-white rounded-[50%] w-7 h-7 text-center p-1 font-semibold text-sm absolute -end-3 -top-3 text-THEME_PRIMARY_COLOR'>
+                    {notifyCount ?? userData?.notifications?.newCount}
+                  </p>
                   <img
                     src='/assets/notify.svg'
                     width={"24px"}

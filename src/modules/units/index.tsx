@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { getUnits } from "@/src/network/units";
 import UnitCard from "./components/UnitCard";
 import { useAppContext } from "@/src/context";
+import { io } from "socket.io-client";
+
 export default function MyUnits() {
   const [Units, setUnits] = useState<Unit[]>([]);
   const [loading, setLoading] = useState(true);
@@ -14,8 +16,22 @@ export default function MyUnits() {
   const translate = useTranslations();
   const locale = useLocale();
   const router = useRouter();
-  const isLoggedIn = getCookie("user");
+  const { isLoggedIn, updateNotificationCount } = useAppContext();
+  const socket = io("https://dev.copticoffice.com:3000");
 
+  useEffect(() => {
+    if (isLoggedIn && getCookie("user")) {
+      socket.on("connect", () => {
+        const user = JSON.parse(getCookie("user") as string);
+        console.log(" user?.mobile?.primary", user?.mobile?.primary?.number);
+        console.log("Connected with Coptic Office backend");
+        socket.emit("handshake", user?.mobile?.primary?.number);
+        socket.on("notifications", ({ newCount }) => {
+          updateNotificationCount(Number(newCount));
+        });
+      });
+    }
+  }, []);
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
     else {

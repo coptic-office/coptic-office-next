@@ -78,6 +78,11 @@ export const ResetPassword = ({
           <div className='mt-10 mb-10'>
             <div className='flex justify-center w-full'>
               <PasswordInput
+                onKeyUp={(event) => {
+                  if (event.key === "Enter") {
+                    onSubmit();
+                  }
+                }}
                 label={translate("locale.Password")}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='123456@'

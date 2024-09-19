@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { checkUser } from "@/src/network/auth";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { LoadingSpinner } from "../components/loading";
 import { Header } from "../components/Header";
 import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";
@@ -20,9 +20,15 @@ export const MobileNumber = ({
   const [error, setError] = useState<string | boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const translate = useTranslations();
+  const inputRef: any = useRef(null);
 
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
   const onSubmit = () => {
     setLoading(true);
     if (!mobileNumber) {
@@ -69,12 +75,19 @@ export const MobileNumber = ({
           />
         </div>
         <input
+          onKeyUp={(event) => {
+              if (event.key === "Enter") {
+                onSubmit();
+              }
+          }}
+          ref={inputRef}
           value={mobileNumber}
           type='tel'
           onChange={(e) => {
             setMobileNumber(e.target.value);
             if (error) setError(null);
           }}
+          autoFocus={true}
           className={`block w-full p-4 ps-10 md:ps-[60px] text-base text-gray-900 ${
             error ? "border-[1px] border-THEME_ERROR_COLOR" : ""
           } rounded-lg focus:outline-none bg-gray-50`}

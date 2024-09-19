@@ -54,7 +54,7 @@ export const SelectUnitModal = ({
     <div className=' min-w-full '>
       <div className='h-[56px] rounded-t-[4px] bg-THEME_PRIMARY_COLOR px-6 py-4 flex flex-row justify-between items-center'>
         <p className='font-semibold rtl:font-medium text-white text-base md:text-xl '>
-          {translate("locale.Select_Unit_Type")}
+          {translate("locale.Unit_Type")}
         </p>
         <img
           src='/assets/close.png'
@@ -68,7 +68,7 @@ export const SelectUnitModal = ({
       <div className='w-full bg-white rounded-b-[4px] px-6  md:px-12  '>
         {!isCatSelected ? (
           <p className='text-center text-THEME_PRIMARY_COLOR text-xl md:text-3xl font-semibold rtl:font-medium  pt-5 pb-2  md:py-7'>
-            {translate("locale.Unit_Type")}
+            {translate("locale.Select_Unit_Type")}
           </p>
         ) : null}
         <div className=' min-h-[350px] h-[370px] overflow-scroll md:overflow-hidden md:h-auto  flex flex-col md:flex-row gap-7'>

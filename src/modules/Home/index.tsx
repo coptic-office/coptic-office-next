@@ -1,16 +1,28 @@
-"use client";;
+"use client";
+import { useAppContext } from "@/src/context";
 import Categories from "./features/Categories";
 import Steps from "./features/Steps";
 import { useTranslations } from "next-intl";
 import { io } from "socket.io-client";
+import { useEffect } from "react";
+import { getCookie } from "cookies-next";
 
 export default function HomePage({ lang }: { lang: string }) {
+  const { isLoggedIn, updateNotificationCount } = useAppContext();
   const socket = io("https://dev.copticoffice.com:3000");
-  socket.on("connect", () => {
-    console.log("Connected with Coptic Office backend");
 
-    
-  });
+  useEffect(() => {
+    if (isLoggedIn && getCookie("user")) {
+      socket.on("connect", () => {
+        const user = JSON.parse(getCookie("user") as string);
+        console.log("Connected with Coptic Office backend");
+        socket.emit("handshake", user?.mobile?.primary?.number);
+        socket.on("notifications", ({ newCount }) => {
+          updateNotificationCount(Number(newCount));
+        });
+      });
+    }
+  }, []);
   const translate = useTranslations();
   return (
     <div className='z-10  flex-col gap-[60px] items-center justify-center  text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>

@@ -130,6 +130,7 @@ export const OtpStep = ({
       <div className='mt-5 md:mt-6 mb-5 md:mb-[38px]'>
         <div className='flex justify-center ' dir='ltr'>
           <OTPInput
+            
             value={otp}
             onChange={(otp) => {
               setError(false);

@@ -30,8 +30,12 @@ export default function NotificationModal({
           else newNotifications.push(item);
         });
         setData({
-          old: oldNotifications,
-          new: newNotifications,
+          old: oldNotifications.sort(
+            (a, b) => (new Date(b.date) as any) - (new Date(a.date) as any)
+          ),
+          new: newNotifications.sort(
+            (a, b) => (new Date(b.date) as any) - (new Date(a.date) as any)
+          ),
         });
       })
       .catch(() => {
@@ -76,7 +80,7 @@ export default function NotificationModal({
                   </p>
                 </div>
               ) : (
-                <div className='overflow-scroll max-h-[550px] h-auto mb-6'>
+                <div className='overflow-y-scroll overflow-x-hidden max-h-[550px] h-auto mb-6'>
                   {data?.new?.length > 0 ? (
                     <p className='px-6 text-[#1E293B] font-semibold rtl:font-medium text-base'>
                       {translate("locale.New_Notifications")}
