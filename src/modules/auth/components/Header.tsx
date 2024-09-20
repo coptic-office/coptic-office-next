@@ -14,7 +14,7 @@ export const Header = ({
   return (
     <>
       <p className='text-xl md:text-[22px] mb-2 text-black font-semibold rtl:font-medium'>
-        {translate(title)}
+        {title!=''?translate(title):''}
       </p>
       {description ? (
         <p

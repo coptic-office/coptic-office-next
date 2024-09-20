@@ -62,7 +62,7 @@ export interface Unit {
   totalAmount: number;
   totalChecksAmount: number;
   contractDate: string | null;
-  info:string
+  info: string;
 }
 
 export interface myUnit {
@@ -116,4 +116,29 @@ export interface PaymentOptions {
   memo: string;
   action: string;
   actionText: string;
+}
+
+export interface UserInfo {
+  mobile: Mobile;
+  email: Email;
+  notifications: userNotifications;
+  firstName: string;
+  lastName: string;
+  profilePhoto: string;
+}
+interface Mobile {
+  primary: {
+    country: string;
+    number: string;
+  };
+  isVerified: boolean;
+}
+
+interface Email {
+  isVerified: boolean;
+  primary: string;
+  alternate: string;
+}
+interface userNotifications {
+  newCount: number;
 }

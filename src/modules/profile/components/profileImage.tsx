@@ -4,7 +4,7 @@ import { deletePhoto, updatePhoto } from "@/src/network/auth";
 import { useTranslations } from "next-intl";
 import { getCookie, setCookie } from "cookies-next";
 import { LoadingSpinner } from "../../auth/components/loading";
-import { User } from "@/src/types";
+import { User, UserInfo } from "@/src/types";
 import { useRouter } from "next/navigation";
 
 export const ProfileImage = ({
@@ -12,7 +12,7 @@ export const ProfileImage = ({
 }: {
   userData: any;
   isEditOpen: boolean;
-  setUserData: Dispatch<SetStateAction<User | null | undefined>>;
+  setUserData: Dispatch<SetStateAction<UserInfo | null | undefined>>;
 }) => {
   const isLoggedIn = getCookie("user");
   const router = useRouter();

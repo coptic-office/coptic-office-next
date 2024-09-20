@@ -37,6 +37,10 @@ export default function MyUnits() {
       getUnits(locale)
         .then((response) => {
           setUnits(response.data?.message?.units);
+          updateNotificationCount(
+            Number(response.data.message?.notifications?.newCount)
+          );
+
           refreshData(false);
           setLoading(false);
         })

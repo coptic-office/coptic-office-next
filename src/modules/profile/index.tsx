@@ -1,56 +1,44 @@
 "use client";
 import { getCookie } from "cookies-next";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./components/Input";
-import { useDropzone } from "react-dropzone";
-import { User } from "@/src/types";
-import { updatePhoto } from "@/src/network/auth";
+import { UserInfo } from "@/src/types";
+import { getUserInfo, updateMobile } from "@/src/network/auth";
 import { ProfileImage } from "./components/profileImage";
+
+import NationalBack from "./components/NationalBack";
+import NationalFront from "./components/NationalFront";
 
 export default function PersonalProfile() {
   const translate = useTranslations();
   const isLoggedIn = getCookie("user");
-  const [userData, setUserData] = useState<User | null>();
-  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [userData, setUserData] = useState<UserInfo | null>();
   const router = useRouter();
-  const [file, setFile] = useState<any>();
-  const [national_ID, setNational_ID] = useState<any>();
+  const locale = useLocale();
+  const [uploadOpen, setUploadOpen] = useState(true);
+  const [national_ID, setNational_ID] = useState({
+    front: null,
+    back: null,
+  });
+
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
-    else setUserData(JSON.parse(isLoggedIn));
+    else {
+      getUserInfo(locale).then((response) => {
+        setUserData(response.data.Message.user);
+      });
+    }
   }, []);
 
-  const onDrop = useCallback((acceptedFiles: any) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      console.log("dataURL START");
+  const refreshData = (callback: VoidFunction) => {
+    getUserInfo(locale).then((response) => {
+      setUserData(response.data.Message.user);
+      callback();
+    });
+  };
 
-      const dataURL = reader.result;
-      console.log("dataURL", dataURL);
-      setFile(dataURL);
-    };
-  }, []);
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: {
-      "image/jpeg": [".jpeg"],
-      "image/jpg": [".jpg"],
-      "image/png": [".png"],
-    },
-    onDrop: (acceptedFiles) => {
-      var form_data = new FormData();
-      form_data.append("image", acceptedFiles?.[0]);
-      // updatePhoto(form_data, "en");
-      // setProfileImage(
-      //   acceptedFiles.map((file) =>
-      //     Object.assign(file, {
-      //       preview: URL.createObjectURL(file),
-      //     })
-      //   )
-      // );
-    },
-  });
   return (
     <div className='z-10  flex-col gap-4 items-center justify-center  text-sm lg:flex w-full px-4 md:px-[150px]  bg-transparent'>
       <div
@@ -60,107 +48,62 @@ export default function PersonalProfile() {
           <p className='text-base md:text-2xl text-[#183B56] font-semibold rtl:font-medium'>
             {translate("locale.Personal_Profile")}
           </p>
-          <button
-            onClick={() => {
-              setIsEditOpen(!isEditOpen);
-            }}
-            className='h-9 md:h-12 w-[135px] md:w-[181px] text-THEME_PRIMARY_COLOR border-[1px] border-THEME_PRIMARY_COLOR rounded-lg'>
-            {translate(`locale.${isEditOpen ? "Save" : "Edit"}`)}
-          </button>
         </div>
         <ProfileImage
           setUserData={setUserData}
-          isEditOpen={isEditOpen}
+          isEditOpen={true}
           userData={userData}
         />
         <div className='flex flex-col md:flex-row  gap-5 w-full'>
           <Input
-            disabled={!isEditOpen}
-            setValue={(value) => {
-              setUserData({
-                ...userData,
-                email: value,
-              } as User);
-            }}
-            value={userData?.email as string}
+            value={userData?.email?.primary as string}
             label='Email'
-            placeholder={translate(
-              isEditOpen ? "locale.Add_Email" : "locale.No_Email"
-            )}
+            refreshData={refreshData}
           />
           <Input
-            disabled={!isEditOpen}
-            setValue={(value) =>
-              setUserData({
-                ...userData,
-                mobile: {
-                  ...userData?.mobile,
-                  primary: {
-                    ...(userData?.mobile?.primary as any),
-                    number: value as string,
-                  },
-                },
-              } as User)
-            }
+            isRtl={true}
             value={userData?.mobile?.primary?.number as string}
             label='Mobile_Number'
-          />{" "}
+            refreshData={refreshData}
+          />
         </div>
         <div className='flex gap-5 w-full md:w-1/2'>
           <Input
             isPassword
-            disabled
-            setValue={() => {}}
             value={"1234567890"}
-            label={translate("locale.Password")}
+            label={"Password"}
+            refreshData={refreshData}
           />
         </div>
         <div className='w-full flex flex-col gap-[6px]'>
-          <p className='text-[#555F71] text-sm ms-1 '>
-            {translate(`locale.National_ID`)}
-          </p>
-          <div className='w-full flex-col md:flex-row gap-5 flex'>
-            <div
-              className={`flex-1 rounded-lg min-h-[287px] w-full md:w-1/2 bg-center bg-no-repeat cursor-pointer  ${
-                file?.[0]?.preview
-                  ? file?.[0]?.preview
-                  : "bg-hero-front bg-contain"
-              } border-[1px] border-[#E3E7EA] placeholder:hidden`}
-              {...getRootProps()}>
-              <input {...getInputProps()} className='' />
-              {file?.[0]?.preview ? (
-                <img
-                  src={file?.[0]?.preview}
-                  className='object-cover w-full h-[287px]'
-                />
-              ) : (
-                <div className='bg-[#ffffff66] h-[100px] min-w-full mt-[187px] flex flex-col justify-center items-center gap-4'>
-                  <img src='/assets/addImage.svg' />
-                  <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
-                    {translate("locale.Front_Side")}
-                  </p>
-                </div>
-              )}
-            </div>
-            <div
-              className='flex-1 rounded-lg min-h-[287px] w-full md:w-1/2 bg-center bg-no-repeat  bg-hero-Back bg-contain border-[1px] border-[#E3E7EA] placeholder:hidden'
-              {...getRootProps()}>
-              <input {...getInputProps()} className='' />
-              {file?.[0]?.preview ? (
-                <img
-                  src={file?.[0]?.preview}
-                  className='object-cover w-full h-[287px]'
-                />
-              ) : (
-                <div className='bg-[#ffffff66] h-[100px] min-w-full mt-[187px] flex flex-col justify-center items-center gap-4'>
-                  <img src='/assets/addImage.svg' />
-                  <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
-                    {translate("locale.Back_Side")}
-                  </p>
-                </div>
-              )}
-            </div>
+          <div
+            className={`flex flex-row justify-between items-center mb-3 w-1/2 pe-2.5`}>
+            <p className='text-[#555F71] text-sm ms-1 '>
+              {translate(`locale.National_ID`)}
+            </p>
+            <button
+              onClick={() => {
+                setUploadOpen(true);
+              }}
+              className='h-8 w-[90px] rounded-md text-center text-white bg-THEME_PRIMARY_COLOR'>
+              {translate("locale.Edit")}
+            </button>
           </div>
+          <div className='w-full flex-col md:flex-row gap-5 flex'>
+            <NationalFront
+              setEnabled={(value: boolean) => setUploadOpen(value)}
+              enabled={uploadOpen}
+              image={national_ID.front}
+            />
+            <NationalBack
+              setEnabled={(value: boolean) => setUploadOpen(value)}
+              enabled={uploadOpen}
+              image={national_ID.front}
+            />
+          </div>
+          <p className='text-sm text-THEME_ERROR_COLOR w-full text-center'>
+            {translate("locale.National_ID_Error")}
+          </p>
         </div>
       </div>
     </div>

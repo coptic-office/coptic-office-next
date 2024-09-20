@@ -49,6 +49,19 @@ export const resendOtpApi = (mobileNumber: string, lang: string) =>
       },
     }
   );
+  export const resendOtpApiEmail = (email: string, lang: string) =>
+    axiosInstance.post(
+      `users/resend-otp
+`,
+      {
+        email: email,
+      },
+      {
+        headers: {
+          "accept-language": lang ?? "ar",
+        },
+      }
+    );
 
 export const createUser = (
   data: {
@@ -143,6 +156,60 @@ export const deletePhoto = (lang: string) =>
   axiosInstance.post(
     `users/delete-photo`,
     {},
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+      },
+    }
+  );
+
+export const getUserInfo = (lang: string) =>
+  axiosInstance.post(
+    `users/get-profile-info`,
+    {},
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+      },
+    }
+  );
+
+export const updateNationalId = (data: any, lang: string) =>
+  axiosInstance.post(
+    `users/update-national-id
+`,
+    data,
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+export const updateMobile = (number: string, lang: string) =>
+  axiosInstance.post(
+    `users/update-mobile
+`,
+    {
+      mobile: {
+        countryCode: "EG",
+        number: number,
+      },
+    },
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+      },
+    }
+  );
+export const updateEmail = (email: string, lang: string) =>
+  axiosInstance.post(
+    `users/update-email
+`,
+    {
+      email: email,
+    },
     {
       headers: {
         "accept-language": lang ?? "ar",

@@ -76,6 +76,7 @@
     "Headquarters": "Coptic Orthodox Patriarchate in Abbasiya",
     "Home": "Home",
     "Failed_Payment": "Payment failed. Please try again",
+    "National_ID_Error": "you must upload font id and back id both",
     "Incomplete_Payment": "We could not complete your payment. Please contact customer service",
     "Unverified_Payment": "We could not verify your payment. Please contact customer service",
 
@@ -159,6 +160,7 @@
     "Units_Categories": "Units Categories",
     "Verification_Code": "Verification Code",
     "Verification_Code_Text": "We have sent the verification code to your mobile",
+    "Verification_Code_Text2": "We have sent the verification code to your email",
     "Verify": "Verify",
     "noPayments": "No payments yet",
     "security": "security"

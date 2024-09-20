@@ -46,6 +46,7 @@ export default function MyPayments() {
             totalPayments: response.data.message?.totalPayments,
           });
           setLoading(false);
+          updateNotificationCount(Number(response.data.message?.notifications?.newCount));
         })
         .catch((err) => {
           setLoading(false);
