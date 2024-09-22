@@ -105,6 +105,7 @@ body {
 
 .cropper-container {
   min-height: 220px !important;
+  max-height: 220px !important;
 
   @media (width <=768px) {
     min-height: 150px !important;

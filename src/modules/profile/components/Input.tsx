@@ -99,7 +99,7 @@ export const Input = ({
             label == "Email"
               ? disabled
                 ? translate("locale.Add_Email")
-                : translate("locale.No_Email")
+                : ''
               : ""
           }
           className={`w-full p-0 md:p-3 
