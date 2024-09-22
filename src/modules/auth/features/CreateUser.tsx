@@ -91,7 +91,7 @@ export const CreateUser = ({
             setData({ ...data, firstName: value });
             if (!value) setError({ ...(error as any), firstName: true });
           }}
-          placeholder='Ehab'
+          placeholder=''
           value={data?.firstName}
           error={error?.firstName}
         />
@@ -102,7 +102,7 @@ export const CreateUser = ({
             setData({ ...data, lastName: value });
             if (!value) setError({ ...(error as any), lastName: true });
           }}
-          placeholder='Saber'
+          placeholder=''
           value={data?.lastName}
           error={error?.lastName}
         />
@@ -117,7 +117,7 @@ export const CreateUser = ({
             if (!e.target.value)
               setError({ ...(error as any), password: true });
           }}
-          placeholder='123456@'
+          placeholder=''
           value={data.password}
           error={error?.password}
         />
