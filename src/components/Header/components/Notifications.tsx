@@ -1,3 +1,4 @@
+import { useAppContext } from "@/src/context";
 import { getNotifications } from "@/src/network/notifications";
 import { Notification } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
@@ -17,6 +18,8 @@ export default function NotificationModal({
     new: [],
     old: [],
   });
+  const { updateNotificationCount } = useAppContext();
+
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -37,6 +40,7 @@ export default function NotificationModal({
             (a, b) => (new Date(b.date) as any) - (new Date(a.date) as any)
           ),
         });
+        updateNotificationCount(0);
       })
       .catch(() => {
         setLoading(false);
