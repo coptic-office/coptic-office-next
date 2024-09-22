@@ -3,6 +3,7 @@ import Cropper, { ReactCropperElement } from "react-cropper";
 
 import "cropperjs/dist/cropper.css";
 import { createRef, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ImageCropper({
   imageSrc,
@@ -16,6 +17,7 @@ export default function ImageCropper({
   const [cropData, setCropData] = useState("#");
   const cropperRef = createRef<ReactCropperElement>();
   const [image, setImage] = useState(imageSrc);
+  const translate = useTranslations();
   useEffect(() => {
     setImage(imageSrc);
   }, [imageSrc]);
@@ -53,7 +55,7 @@ export default function ImageCropper({
           <button
             className='bg-THEME_PRIMARY_COLOR rounded-lg h-10 w-[181px] text-center text-white'
             onClick={getCropData}>
-            Confirm
+            {translate('locale.Confirm')}
           </button>
         </div>
       </div>

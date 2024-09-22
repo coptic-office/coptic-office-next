@@ -85,7 +85,7 @@ export const ResetPassword = ({
                 }}
                 label={translate("locale.Password")}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder='123456@'
+                placeholder=''
                 value={password}
               />
             </div>

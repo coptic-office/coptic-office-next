@@ -98,7 +98,7 @@ export const CheckPassword = ({
               setError({ ...(error as any), password: false });
               setPassword(e.target.value);
             }}
-            placeholder='123456@'
+            placeholder=''
             value={password}
           />
         </div>

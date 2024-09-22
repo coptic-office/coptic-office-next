@@ -75,7 +75,7 @@ export const ChangePassword = ({
               setError({ api: null, password: false });
               setPassword({ ...password, old: e.target.value });
             }}
-            placeholder='123456@'
+            placeholder=''
             value={password.old}
           />
         </div>
@@ -92,7 +92,7 @@ export const ChangePassword = ({
               setError({ api: null, password: false });
               setPassword({ ...password, new: e.target.value });
             }}
-            placeholder='123456@'
+            placeholder=''
             value={password.new}
           />
         </div>
@@ -109,7 +109,7 @@ export const ChangePassword = ({
           className={`h-[55px] w-full md:w-[181px]   bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
             loading ? "!opacity-45" : ""
           } rounded-lg flex justify-center items-center  text-white font-medium text-base `}>
-          {loading ? <LoadingSpinner /> : translate("locale.Login")}
+          {loading ? <LoadingSpinner /> : translate("locale.Confirm")}
         </button>
         <button
           onClick={closeModal}
