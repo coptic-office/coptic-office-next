@@ -57,7 +57,7 @@ function NationalBack({
   return (
     <div
       className={`flex-1 rounded-lg min-h-[287px] w-full md:w-1/2 bg-center bg-no-repeat cursor-pointer  ${
-        file?.[0]?.preview ? file?.[0]?.preview : "bg-hero-front bg-contain"
+        file?.[0]?.preview ? file?.[0]?.preview : "bg-hero-Back bg-contain"
       } border-[1px] border-[#E3E7EA] placeholder:hidden`}
       {...getRootProps()}>
       {enabled ? <input {...getInputProps()} /> : null}
@@ -70,8 +70,8 @@ function NationalBack({
               setImageSrc={(data) => {
                 setCropped(data);
                 setCropperOpen(false);
-                  (document.getElementById("body") as any).style.overflow =
-                    "scroll";
+                (document.getElementById("body") as any).style.overflow =
+                  "scroll";
                 setEnabled(true);
                 setNational_ID((prev) => {
                   return { ...prev, back: data };
