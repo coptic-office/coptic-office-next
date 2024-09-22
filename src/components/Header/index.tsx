@@ -97,7 +97,7 @@ export default function Header() {
               {userData ? (
                 <div className='p-2 border-[1px] relative border-white rounded-lg border-solid'>
                   <p className='bg-white rounded-[50%] min-w-7 min-h-7  text-center p-1 font-semibold text-sm absolute -end-3 -top-3 text-THEME_PRIMARY_COLOR'>
-                    {notifyCount ?? userData?.notifications?.newCount}
+                    {notifyCount ?? userData?.notifications?.newCount??0}
                   </p>
                   <img
                     src='/assets/notify.svg'
