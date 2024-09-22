@@ -49,19 +49,19 @@ export const resendOtpApi = (mobileNumber: string, lang: string) =>
       },
     }
   );
-  export const resendOtpApiEmail = (email: string, lang: string) =>
-    axiosInstance.post(
-      `users/resend-otp
+export const resendOtpApiEmail = (email: string, lang: string) =>
+  axiosInstance.post(
+    `users/resend-otp
 `,
-      {
-        email: email,
+    {
+      email: email,
+    },
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
       },
-      {
-        headers: {
-          "accept-language": lang ?? "ar",
-        },
-      }
-    );
+    }
+  );
 
 export const createUser = (
   data: {
@@ -120,14 +120,7 @@ export const forgotPassword = (number: string, lang: string) =>
       },
     }
   );
-export const resetPassword = (
-  data: {
-    mobileNumber: string;
-    verificationCode: string;
-    newPassword: string;
-  },
-  lang: string
-) =>
+export const resetPassword = (data: any, lang: string) =>
   axiosInstance.post(
     `users/change-password
 `,

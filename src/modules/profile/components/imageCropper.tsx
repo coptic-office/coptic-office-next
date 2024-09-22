@@ -7,9 +7,11 @@ import { createRef, useEffect, useState } from "react";
 export default function ImageCropper({
   imageSrc,
   setImageSrc,
+  isNational,
 }: {
   imageSrc: any;
   setImageSrc(data: any): void;
+  isNational: boolean;
 }) {
   const [cropData, setCropData] = useState("#");
   const cropperRef = createRef<ReactCropperElement>();
@@ -32,21 +34,24 @@ export default function ImageCropper({
     <div className='z-[1000]'>
       <div
         className={`fixed top-0 pt-0 md:pt-8  left-0 min-w-full  overflow-hidden flex justify-center  min-h-[100vh] bg-[#00000073]  z-[300] px-3 md:px-[150px] `}>
-        <div className='bg-white w-[380px] h-[380px] flex flex-col gap-3 justify-center items-center'>
+        <div className=' rounded-lg bg-white w-[95%] md:w-[380px] h-[300px] md:h-[380px] flex flex-col gap-3 justify-between p-6 items-center'>
           <Cropper
             ref={cropperRef}
-            zoomable={false}
+            zoomable={true}
             preview='.img-preview'
             src={image}
-            viewMode={2}
-            minCropBoxHeight={350}
-            minCropBoxWidth={220}
+            viewMode={1}
+            cropBoxResizable={false}
+            movable={true}
+            aspectRatio={isNational ? 2 : 1}
+            minCropBoxHeight={isNational ? 220 : 250}
+            minCropBoxWidth={isNational ? 350 : 250}
             background={false}
             responsive={true}
             checkOrientation={false}
           />
           <button
-            className='bg-THEME_PRIMARY_COLOR h-10 w-[181px] text-center text-white'
+            className='bg-THEME_PRIMARY_COLOR rounded-lg h-10 w-[181px] text-center text-white'
             onClick={getCropData}>
             Confirm
           </button>

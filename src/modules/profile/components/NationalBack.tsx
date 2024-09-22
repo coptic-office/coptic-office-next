@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { memo, useState } from "react";
+import { Dispatch, memo, SetStateAction, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ImageCropper from "./imageCropper";
 
@@ -8,16 +8,30 @@ function NationalBack({
   image,
   setEnabled,
   enabled,
+  setNational_ID,
+  setNationalType,
 }: {
   image: any;
   setEnabled: (value: any) => void;
   enabled: boolean;
+  setNational_ID: Dispatch<
+    SetStateAction<{
+      front: null;
+      back: null;
+    }>
+  >;
+  setNationalType: Dispatch<
+    SetStateAction<{
+      front: string;
+      back: string;
+    }>
+  >;
 }) {
   const translate = useTranslations();
   const [file, setFile] = useState<any>();
   const [cropped, setCropped] = useState(null);
   const [cropperOpen, setCropperOpen] = useState(false);
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     disabled: !enabled,
     accept: {
       "image/jpeg": [".jpeg"],
@@ -25,6 +39,9 @@ function NationalBack({
       "image/png": [".png"],
     },
     onDrop: (acceptedFiles) => {
+      setNationalType((prev) => {
+        return { ...prev, back: acceptedFiles?.[0]?.type };
+      });
       var form_data = new FormData();
       form_data.append("image", acceptedFiles?.[0]);
       acceptedFiles.map((file) =>
@@ -48,11 +65,17 @@ function NationalBack({
         <>
           {cropperOpen ? (
             <ImageCropper
+              isNational={true}
               imageSrc={file?.[0]?.preview}
               setImageSrc={(data) => {
                 setCropped(data);
                 setCropperOpen(false);
+                  (document.getElementById("body") as any).style.overflow =
+                    "scroll";
                 setEnabled(true);
+                setNational_ID((prev) => {
+                  return { ...prev, back: data };
+                });
               }}
             />
           ) : null}
@@ -62,11 +85,15 @@ function NationalBack({
           />
         </>
       ) : (
-        <div className='bg-[#ffffff66] h-[100px] min-w-full mt-[187px] flex flex-col justify-center items-center gap-4'>
-          <img src='/assets/addImage.svg' />
+        <div className='bg-[#d9d9d999] h-[50px] min-w-full mt-[237px] flex px-3 flex-row justify-between items-center gap-4'>
           <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
-            {translate("locale.Front_Side")}
+            {translate("locale.Back_Side")}
           </p>
+          <img
+            src='/assets/edit.png'
+            onClick={open}
+            className='cursor-pointer w-5 h-5  '
+          />
         </div>
       )}
     </div>

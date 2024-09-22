@@ -111,100 +111,102 @@ export const OtpStep = ({
   }, [resend]);
 
   return (
-    <div className='flex flex-col items-center w-full'>
+    <div className='flex flex-col items-start w-full p-6'>
       <Header
         description={
-          isEmail ? "Verification_Code_Text2" : "Verification_Code_Text"
+          isEmail ? "Verification_Code_Text_Email" : "Verification_Code_Text"
         }
-        title=''
+        title='Verification_Code'
         marginBottom={"mb-3"}
       />
-      <div
-        className='flex justify-center md:justify-start   mt-2 md:mt-0 w-full md:w-fit flex-row gap-1  items-center '
-        dir='ltr'>
-        <p className='text-sm text-black font-semibold rtl:font-semibold'>
-          {mobileNumber}
-        </p>
-      </div>
-      <div className='mt-5 md:mt-6 mb-5 md:mb-[38px]'>
-        <div className='flex justify-center ' dir='ltr'>
-          <OTPInput
-            value={otp}
-            onChange={(otp) => {
-              setError(false);
-              setOtp(otp);
-            }}
-            numInputs={6}
-            inputType='tel'
-            renderSeparator={<span className='mx-1' />}
-            renderInput={(props: any) => (
-              <input
-                {...props}
-                className={`bg-white !h-[50px] !w-[50px] text-black  !rounded-md  !border-[1px] !border-solid ${
-                  error
-                    ? "!border-THEME_ERROR_COLOR"
-                    : "!border-[#0000001f] focus:bg-[#88735026] focus:outline-none"
-                }`}
-                type='tel'
-              />
-            )}
-          />
+      <div className='w-full flex flex-col items-center'>
+        <div
+          className='flex justify-center md:justify-center   mt-2 md:mt-0 w-full md:w-fit flex-row gap-1  items-center '
+          dir='ltr'>
+          <p className='text-sm text-black font-semibold rtl:font-semibold'>
+            {mobileNumber}
+          </p>
         </div>
-        {error && typeof error == "string" ? (
-          <p className='text-THEME_ERROR_COLOR text-sm  mt-4 text-center'>
-            {error}
-          </p>
-        ) : (
-          ""
-        )}
-      </div>
-      <div className='flex justify-center flex-col gap-0 items-center '>
-        <p className='text-sm  text-[#00000099]  text-center '>
-          {translate("locale.Code_Not_Received")}
-        </p>
-        {resendTime && resendTime > 0 ? (
-          <p className='text-sm  text-[#00000099]  text-center '>
-            {translate("locale.Please_Wait")}{" "}
-            <span className='text-sm text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium'>
-              {`${
-                resendTime > 60
-                  ? `${Math.floor(resendTime / 60)}:${
-                      resendTime % 60 < 10
-                        ? `0${resendTime % 60}`
-                        : resendTime % 60
-                    }`
-                  : `00:${resendTime < 10 ? `0${resendTime}` : resendTime}`
-              }`}
-            </span>
-          </p>
-        ) : (
-          <>
-            {resendTime != null ? (
-              <p
-                className='text-sm text-center  text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium mt-3 cursor-pointer'
-                onClick={resendOtp}>
-                {" "}
-                {translate("locale.Resend_Code")}
-              </p>
-            ) : (
-              ""
-            )}
-          </>
-        )}
-      </div>
-      <div className='flex justify-center w-full'>
-        <button
-          disabled={!otp && !error && !loading.verifyLoading}
-          onClick={verify}
-          className={`h-[55px] w-full md:w-[343px]  bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
-            loading.verifyLoading ? "!opacity-45" : ""
-          } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[25px] mb-4 md:mt-[60px]`}>
-          {loading.verifyLoading ? (
-            <LoadingSpinner />
+        <div className='mt-5 md:mt-6 mb-5 md:mb-[38px]'>
+          <div className='flex justify-center ' dir='ltr'>
+            <OTPInput
+              value={otp}
+              onChange={(otp) => {
+                setError(false);
+                setOtp(otp);
+              }}
+              numInputs={6}
+              inputType='tel'
+              renderSeparator={<span className='mx-1' />}
+              renderInput={(props: any) => (
+                <input
+                  {...props}
+                  className={`bg-white !h-[40px] !w-[40px] md:!h-[50px] md:!w-[50px] text-black  !rounded-md  !border-[1px] !border-solid ${
+                    error
+                      ? "!border-THEME_ERROR_COLOR"
+                      : "!border-[#0000001f] focus:bg-[#88735026] focus:outline-none"
+                  }`}
+                  type='tel'
+                />
+              )}
+            />
+          </div>
+          {error && typeof error == "string" ? (
+            <p className='text-THEME_ERROR_COLOR text-sm  mt-4 text-center'>
+              {error}
+            </p>
           ) : (
-            translate("locale.Verify")
+            ""
           )}
-        </button>
+        </div>
+        <div className='flex justify-center flex-col gap-0 items-center '>
+          <p className='text-sm  text-[#00000099]  text-center '>
+            {translate("locale.Code_Not_Received")}
+          </p>
+          {resendTime && resendTime > 0 ? (
+            <p className='text-sm  text-[#00000099]  text-center '>
+              {translate("locale.Please_Wait")}{" "}
+              <span className='text-sm text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium'>
+                {`${
+                  resendTime > 60
+                    ? `${Math.floor(resendTime / 60)}:${
+                        resendTime % 60 < 10
+                          ? `0${resendTime % 60}`
+                          : resendTime % 60
+                      }`
+                    : `00:${resendTime < 10 ? `0${resendTime}` : resendTime}`
+                }`}
+              </span>
+            </p>
+          ) : (
+            <>
+              {resendTime != null ? (
+                <p
+                  className='text-sm text-center  text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium mt-3 cursor-pointer'
+                  onClick={resendOtp}>
+                  {" "}
+                  {translate("locale.Resend_Code")}
+                </p>
+              ) : (
+                ""
+              )}
+            </>
+          )}
+        </div>
+        <div className='flex justify-center w-full'>
+          <button
+            disabled={!otp && !error && !loading.verifyLoading}
+            onClick={verify}
+            className={`h-[55px] w-full md:w-[343px]  bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
+              loading.verifyLoading ? "!opacity-45" : ""
+            } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-[25px] mb-4 md:mt-[60px]`}>
+            {loading.verifyLoading ? (
+              <LoadingSpinner />
+            ) : (
+              translate("locale.Verify")
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
