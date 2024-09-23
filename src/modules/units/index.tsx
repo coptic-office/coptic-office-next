@@ -86,7 +86,7 @@ export default function MyUnits() {
                     </p>
                   </div>
                 ) : (
-                  <div className='flex flex-row gap-x-4 gap-y-6 flex-wrap px-4 md:px-6 justify-between '>
+                  <div className='flex w-full flex-row gap-x-4 gap-y-6 flex-wrap px-4 md:px-6 justify-between '>
                     {Units.map((item) => (
                       <UnitCard item={item} />
                     ))}
