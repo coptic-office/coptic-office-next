@@ -13,11 +13,13 @@ export const OtpStep = ({
   setOpenOtp,
   setResend,
   onClose,
+  isResend,
 }: {
   mobileNumber: string;
   resend: string;
   isEmail: boolean;
-  setResend: (value: any) => void;
+    setResend: (value: any) => void;
+  isResend?:boolean
   setOpenOtp: Dispatch<
     SetStateAction<{
       open: boolean;
@@ -28,6 +30,8 @@ export const OtpStep = ({
   onClose: VoidFunction;
 }) => {
   const [error, setError] = useState(false);
+  const [resended, setResended] = useState(false);
+
   const [loading, setLoading] = useState({
     resendLoading: false,
     verifyLoading: false,
@@ -112,6 +116,13 @@ export const OtpStep = ({
     }, 1000);
   }, [resend]);
 
+  useEffect(() => {
+    if (isResend && !resended)
+    {
+      setResended(true)
+      resendOtp();
+      }
+  }, [isResend]);
   return (
     <div className='flex flex-col items-start w-full p-6'>
       <Header

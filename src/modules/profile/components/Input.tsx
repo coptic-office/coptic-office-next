@@ -29,6 +29,7 @@ export const Input = ({
     open: boolean;
     resend: string;
     success: null | string;
+    isResend?: boolean;
   }>({
     open: false,
     resend: "",
@@ -56,7 +57,14 @@ export const Input = ({
       })
       .catch((error) => {
         setLoading(false);
-        setError(error.response.data.error);
+        if (error.response.data.error == "sameMobile") {
+          setOpenOtp({
+            open: true,
+            success: null,
+            resend: "",
+            isResend: true,
+          });
+        } else setError(error.response.data.error);
       });
   };
   const onChangeEmail = () => {
@@ -75,7 +83,18 @@ export const Input = ({
       })
       .catch((error) => {
         setLoading(false);
+        console.log("error.response.data.error", error.response.data.error);
+        if (error.response.data.error == "sameEmail") {
+          setOpenOtp({
+            open: true,
+            success: null,
+            resend: "",
+            isResend: true,
+          });
+        }
+        else
         setError(error.response.data.error);
+
       });
   };
   return (
@@ -194,22 +213,23 @@ export const Input = ({
                       height={20}
                       className='absolute top-4 start-6 cursor-pointer'
                       onClick={() => {
-                        setDisabled(false);
-                        setOpenOtp({
-                          success: null,
-                          open: false,
-                          resend: "",
+                        refreshData(() => {
+                          setDisabled(true);
+                          setOpenOtp({
+                            success: null,
+                            open: false,
+                            resend: "",
+                          });
+                          setCurrentValue(value);
+                          (
+                            document.getElementById("body") as any
+                          ).style.overflow = "scroll";
                         });
-                        (
-                          document.getElementById("body") as any
-                        ).style.overflow = "scroll";
-                        setTimeout(() => {
-                          document.getElementById(label)?.focus();
-                        }, 500);
                       }}
                     />
                   </div>
                   <OtpStep
+                    isResend={openOtp?.isResend}
                     setResend={(value) => {
                       setOpenOtp({ ...openOtp, resend: value });
                     }}
