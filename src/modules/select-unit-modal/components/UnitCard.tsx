@@ -90,7 +90,7 @@ export const SelectUnitCard = ({
           }`}>
           {translate("locale.Cash_Discount")} :{" "}
           <span className='font-semibold rtl:font-medium'>
-            {Number(unit.grossAmount - unit.cashAmount).toLocaleString()}{" "}
+            {Number( unit.cashAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
         </p>

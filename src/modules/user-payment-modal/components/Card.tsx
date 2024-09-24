@@ -1,7 +1,6 @@
 "use client";
-import { getCookie } from "cookies-next";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 export const PaymentOptionCard = ({
   method,
@@ -32,39 +31,69 @@ export const PaymentOptionCard = ({
         : null;
     let numbers = [];
     if (method == 1)
-      [1, 2, 3].map((item) => {
+      [12, 1, 2, 3].map((item) => {
         numbers.push(
-          <div className='my-2 items-center flex flex-row gap-0.5'>
-            <p className=' text-sm  text-THEME_PRIMARY_COLOR '>
-              {translate(`locale.Payment_Method1_Text1_Currency${item}`)}
-              {item == 3 ? "  " : ""}:
-            </p>
-            <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
-              {translate(`locale.Payment_Method1_Text1_Account${item}`)}
-              <img
-                src={`/assets/${
-                  copied == item ? "copied.png" : "copyPrimary.svg"
-                }`}
-                className='cursor-pointer !w-4 !h-4'
-                width={"16px"}
-                height={"16px"}
-                onClick={() => {
-                  setCopied(item);
-                  setTimeout(() => {
-                    setCopied(0);
-                  }, 2000);
-                  navigator.clipboard.writeText(
-                    translate(`locale.Payment_Method1_Text1_Account${item}`)
-                  );
-                }}
-              />
-            </p>
-          </div>
+          item == 12 ? (
+            <div className='items-center flex flex-row gap-0.5'>
+              <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
+                {`${locale == "en" ? '' : "..."}${translate(
+                  `locale.Payment_Method1_Text1_IBAN`
+                )?.slice(0, 20)}${locale == "en" ? "..." : ""}`}
+                <img
+                  src={`/assets/${
+                    copied == item ? "copied.png" : "copyPrimary.svg"
+                  }`}
+                  className='cursor-pointer !w-4 !h-4'
+                  width={"16px"}
+                  height={"16px"}
+                  onClick={() => {
+                    setCopied(item);
+                    setTimeout(() => {
+                      setCopied(0);
+                    }, 2000);
+                    navigator.clipboard.writeText(
+                      translate(`locale.Payment_Method1_Text1_IBAN`)?.replace(
+                        "IBAN: ",
+                        ""
+                      )
+                    );
+                  }}
+                />
+              </p>
+            </div>
+          ) : (
+            <div className='my-2 items-center flex flex-row gap-0.5'>
+              <p className=' text-sm  text-THEME_PRIMARY_COLOR '>
+                {translate(`locale.Payment_Method1_Text1_Currency${item}`)}
+                {item == 3 ? "  " : ""}:
+              </p>
+              <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
+                {translate(`locale.Payment_Method1_Text1_Account${item}`)}
+                <img
+                  src={`/assets/${
+                    copied == item ? "copied.png" : "copyPrimary.svg"
+                  }`}
+                  className='cursor-pointer !w-4 !h-4'
+                  width={"16px"}
+                  height={"16px"}
+                  onClick={() => {
+                    setCopied(item);
+                    setTimeout(() => {
+                      setCopied(0);
+                    }, 2000);
+                    navigator.clipboard.writeText(
+                      translate(`locale.Payment_Method1_Text1_Account${item}`)
+                    );
+                  }}
+                />
+              </p>
+            </div>
+          )
         );
       });
     if (method == 2) {
       numbers.push(
-        <p className=' flex flex-row gap-2 text-lg text-end mt-0 md:mt-3 text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
+        <p className=' flex flex-row gap-2 text-lg items-center text-end mt-0 md:mt-3 text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
           {translate("locale.Payment_Method2_Text1_Account")}
           <img
             src={`/assets/${copied == 21 ? "copied.png" : "copyPrimary.svg"}`}
@@ -88,11 +117,7 @@ export const PaymentOptionCard = ({
     let step2 =
       method == 3 ? null : translate(`locale.Payment_Method${method}_Text2`);
     let icon =
-      method == 1
-        ? "bankTransfer.svg"
-        : method == 2
-        ? "instapay2.webp"
-        : "credit.svg";
+      method == 1 ? "Banque.png" : method == 2 ? "instapay2.webp" : "visa.png";
     return {
       step1,
       numbers,
@@ -122,7 +147,7 @@ export const PaymentOptionCard = ({
             <div
               className={`flex relative flex-row items-end gap-1  mt-[2px] ${
                 method == 2
-                  ? "md:mt-[53px] rtl:md:mt-[33px]"
+                  ? "md:mt-[60px] rtl:md:mt-[43px]"
                   : method == 3
                   ? "justify-end"
                   : ""
@@ -131,7 +156,11 @@ export const PaymentOptionCard = ({
               <img
                 src={`/assets/${icon}`}
                 className={`${
-                  method == 2 ? `!w-20 !h-20` : `!w-[43px] !h-[49px]`
+                  method == 2
+                    ? `!w-20 !h-20`
+                    : method == 3
+                    ? `!w-20 !h-5`
+                    : `!w-[40px] !h-[40px]`
                 } `}
               />
             </div>
@@ -146,7 +175,7 @@ export const PaymentOptionCard = ({
           <div className='flex justify-center w-full mt-0 md:mt-[33px] '>
             <button
               onClick={onClick}
-              className=' mt-5 rtl:mt-[30px] rtl:md:mt-[30px]  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
+              className=' mt-5 rtl:mt-[40px] rtl:md:mt-[30px] md:mt-10  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
               {translate("locale.PayNow")}
               <img
                 src='/assets/leftWhite.svg'

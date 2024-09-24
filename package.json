@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/react-avatar-editor": "^13.0.3",
     "@types/socket.io-client": "^3.0.0",
     "accept-language": "^3.0.20",
     "axios": "^1.7.5",
@@ -22,11 +21,8 @@
     "next-intl": "^3.19.0",
     "react": "^18",
     "react-advanced-cropper": "^0.20.0",
-    "react-avatar-editor": "^13.0.2",
-    "react-cropper": "^2.3.3",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
-    "react-easy-crop": "^5.0.8",
     "react-i18next": "^15.0.1",
     "react-otp-input": "^3.1.1",
     "react-select": "^5.8.0",

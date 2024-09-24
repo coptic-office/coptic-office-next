@@ -54,7 +54,7 @@ export const CategoryCard = ({
           {translate("locale.Cash_Discount")} :{" "}
           <span className='font-semibold rtl:font-medium'>
             {Number(
-              category.grossAmount - category.cashAmount
+              category.cashAmount
             ).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
