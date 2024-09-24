@@ -99,7 +99,7 @@ export const Input = ({
             label == "Email"
               ? disabled
                 ? translate("locale.Add_Email")
-                : ''
+                : ""
               : ""
           }
           className={`w-full p-0 md:p-3 
@@ -194,7 +194,7 @@ export const Input = ({
                       height={20}
                       className='absolute top-4 start-6 cursor-pointer'
                       onClick={() => {
-                        setCurrentValue(value);
+                        setDisabled(false);
                         setOpenOtp({
                           success: null,
                           open: false,
@@ -203,6 +203,9 @@ export const Input = ({
                         (
                           document.getElementById("body") as any
                         ).style.overflow = "scroll";
+                        setTimeout(() => {
+                          document.getElementById(label)?.focus();
+                        }, 500);
                       }}
                     />
                   </div>
@@ -214,6 +217,19 @@ export const Input = ({
                     isEmail={label == "Email"}
                     resend={openOtp?.resend}
                     mobileNumber={currentValue}
+                    onClose={() => {
+                      setDisabled(false);
+                      setOpenOtp({
+                        success: null,
+                        open: false,
+                        resend: "",
+                      });
+                      (document.getElementById("body") as any).style.overflow =
+                        "scroll";
+                      setTimeout(() => {
+                        document.getElementById(label)?.focus();
+                      }, 500);
+                    }}
                   />
                 </>
               )}

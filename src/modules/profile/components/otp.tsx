@@ -12,6 +12,7 @@ export const OtpStep = ({
   isEmail,
   setOpenOtp,
   setResend,
+  onClose,
 }: {
   mobileNumber: string;
   resend: string;
@@ -24,6 +25,7 @@ export const OtpStep = ({
       success: string | null;
     }>
   >;
+  onClose: VoidFunction;
 }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState({
@@ -121,11 +123,18 @@ export const OtpStep = ({
       />
       <div className='w-full flex flex-col items-center'>
         <div
-          className='flex justify-center md:justify-center   mt-2 md:mt-0 w-full md:w-fit flex-row gap-1  items-center '
+          className='flex justify-center   mt-2 md:mt-0 w-full md:w-fit flex-row gap-1  items-center '
           dir='ltr'>
           <p className='text-sm text-black font-semibold rtl:font-semibold'>
             {mobileNumber}
           </p>
+          <img
+            src='/assets/Edit.svg'
+            className='cursor-pointer'
+            onClick={onClose}
+            width={"24px"}
+            height={"24px"}
+          />
         </div>
         <div className='mt-5 md:mt-6 mb-5 md:mb-[38px]'>
           <div className='flex justify-center ' dir='ltr'>

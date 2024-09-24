@@ -112,7 +112,7 @@ export const ProfileImage = ({
         })
       );
       setCropperOpen(true);
-       (document.getElementById("body") as any).style.overflow = "hidden";
+      (document.getElementById("body") as any).style.overflow = "hidden";
       setFile(acceptedFiles);
 
       setEnabled(false);
@@ -139,16 +139,24 @@ export const ProfileImage = ({
                   setImageSrc={(data) => {
                     setCropped(data);
                     setCropperOpen(false);
-                     (document.getElementById("body") as any).style.overflow =
-                       "scroll";
+                    (document.getElementById("body") as any).style.overflow =
+                      "scroll";
                     setEnabled(true);
                     setIsUploadDisabled(false);
                   }}
-                
+                  onCancel={() => {
+                    setFile(null);
+                     (document.getElementById("body") as any).style.overflow =
+                       "scroll";
+                                        setCropperOpen(false);
+
+                     setEnabled(true);
+                     setIsUploadDisabled(true);
+                  }}
                 />
               ) : null}
               <img
-                src={cropped ?? file?.[0]?.preview}
+                src={cropped??userData?.profilePhoto}
                 className='object-cover w-full h-[250px]'
               />
             </>
@@ -180,7 +188,7 @@ export const ProfileImage = ({
           />
         </div>
       </div>
-      <div className='flex flex-col h-auto md:h-[250px] justify-between'>
+      <div className='flex  flex-col-reverse md:flex-col h-auto md:h-[250px] justify-between'>
         <p className='text-sm font-semibold rtl:font-medium mt-5'>
           {userData?.firstName} {userData?.lastName}
         </p>
@@ -188,7 +196,7 @@ export const ProfileImage = ({
           <button
             disabled={isUploadDisabled}
             onClick={onSave}
-            className=' px-1 md:px-3  flex items-center justify-center disabled:opacity-45  py-[3px] md:py-[6px]   rounded-sm md:rounded-lg text-xs md:text-base text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium    text-center'>
+            className=' px-1 md:px-3  flex items-center justify-center disabled:opacity-45  py-[3px] md:py-[6px]   rounded-sm md:rounded-lg text-base md:text-base text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium    text-center'>
             {loading.update ? <LoadingSpinner /> : translate("locale.Save")}
           </button>
         )}

@@ -49,6 +49,7 @@ function NationalBack({
           preview: URL.createObjectURL(file),
         })
       );
+      (document.getElementById("body") as any).style.overflow = "hidden";
       setCropperOpen(true);
       setEnabled(false);
       setFile(acceptedFiles);
@@ -65,6 +66,14 @@ function NationalBack({
         <>
           {cropperOpen ? (
             <ImageCropper
+              onCancel={() => {
+                setFile(null);
+                (document.getElementById("body") as any).style.overflow =
+                  "scroll";
+                setCropperOpen(false);
+
+                setEnabled(true);
+              }}
               isNational={true}
               imageSrc={file?.[0]?.preview}
               setImageSrc={(data) => {
