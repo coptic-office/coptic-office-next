@@ -49,7 +49,7 @@ function NationalFront({
           preview: URL.createObjectURL(file),
         })
       );
-            (document.getElementById("body") as any).style.overflow = "hidden";
+      (document.getElementById("body") as any).style.overflow = "hidden";
       setCropperOpen(true);
       setEnabled(false);
       setFile(acceptedFiles);
@@ -57,7 +57,7 @@ function NationalFront({
   });
   return (
     <div
-      className={`flex-1 rounded-lg min-h-[287px] w-full md:w-1/2 bg-center bg-no-repeat cursor-pointer  ${
+      className={`flex-1 rounded-lg  h-[250px] w-full md:w-[350px]  bg-center bg-no-repeat cursor-pointer  ${
         file?.[0]?.preview ? file?.[0]?.preview : "bg-hero-front bg-contain"
       } border-[1px] border-[#E3E7EA] placeholder:hidden`}
       {...getRootProps()}>
@@ -94,7 +94,7 @@ function NationalFront({
           />
         </>
       ) : (
-        <div className='bg-[#d9d9d999] h-[50px] min-w-full mt-[237px] flex px-3 flex-row justify-between items-center gap-4'>
+        <div className='bg-[#d9d9d999] h-[50px] min-w-full mt-[200px] flex px-3 flex-row justify-between items-center gap-4'>
           <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
             {translate("locale.Front_Side")}
           </p>

@@ -1,6 +1,5 @@
 import { myUnit } from "@/src/types";
 import { useTranslations } from "next-intl";
-import { RadioButton } from "../../user-payment-modal/components/RadioButton";
 
 export const SelectUnitCard = ({
   unit,

@@ -16,13 +16,14 @@ export default function HomePage({ lang }: { lang: string }) {
       socket.on("connect", () => {
         const user = JSON.parse(getCookie("user") as string);
         console.log("Connected with Coptic Office backend");
-        socket.on(user?.mobile?.primary?.number, ({ newCount  }:any) => {
+        socket.on(user?.mobile?.primary?.number, ({ newCount }: any) => {
           updateNotificationCount(Number(newCount));
         });
       });
     }
   }, []);
   const translate = useTranslations();
+  console.log("TR", translate("Project_Feature1"));
   return (
     <div className='z-10  flex-col gap-[60px] items-center justify-center  text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0'>
@@ -36,7 +37,10 @@ export default function HomePage({ lang }: { lang: string }) {
               height={"16px"}
               className='mt-2.5'
             />
-            <p>{translate("locale.Project_Feature1")}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: translate("locale.Project_Feature1")?.replace('dd','<a target="_blank" class="text-THEME_PRIMARY_COLOR"')?.replace('hh','</a>'),
+              }}></p>
           </div>
           <div className='flex flex-row gap-[14px] items-start text-lg font-medium text-THEME_SECONDARY_COLOR'>
             <img

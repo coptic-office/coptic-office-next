@@ -29,7 +29,7 @@ export const ImageSlider = () => {
     "/6-Gates.jpg",
   ];
   useEffect(() => {
-    if (currentRunningModal.includes("payment")) {
+    if (currentRunningModal?.includes("payment")) {
       if (getCookie("user")) setIsModalOpen(true);
       else setCurrentModal("Auth");
     }
@@ -71,7 +71,7 @@ export const ImageSlider = () => {
       {isModalOpen || currentRunningModal?.includes("payment") ? (
         <Modal
           isTopCentered={
-           ( isPayOpen || currentRunningModal?.includes("payNow")) ? false : true
+            isPayOpen || currentRunningModal?.includes("payNow") ? false : true
           }>
           {isPayOpen || currentRunningModal?.includes("payNow") ? (
             <PaymentModal
@@ -103,6 +103,7 @@ export const ImageSlider = () => {
         <Modal isTopCentered={false}>
           <SelectUnitModal
             closeModal={() => {
+              setCurrentModal("");
               (document.getElementById("body") as any).style.overflow =
                 "scroll";
             }}

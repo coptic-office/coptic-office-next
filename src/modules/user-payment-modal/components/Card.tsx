@@ -27,7 +27,7 @@ export const PaymentOptionCard = ({
       method == 1
         ? translate(`locale.Payment_Method1_Text1`)
         : method == 2
-        ? translate(`locale.Payment_Method1_Text2`)
+        ? translate(`locale.Payment_Method2_Text1`)
         : null;
     let numbers = [];
     if (method == 1)
@@ -36,7 +36,7 @@ export const PaymentOptionCard = ({
           item == 12 ? (
             <div className='items-center flex flex-row gap-0.5'>
               <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
-                {`${locale == "en" ? '' : "..."}${translate(
+                {`${locale == "en" ? "" : "..."}${translate(
                   `locale.Payment_Method1_Text1_IBAN`
                 )?.slice(0, 20)}${locale == "en" ? "..." : ""}`}
                 <img
@@ -159,7 +159,7 @@ export const PaymentOptionCard = ({
                   method == 2
                     ? `!w-20 !h-20`
                     : method == 3
-                    ? `!w-20 !h-5`
+                    ? `!w-[120px] !h-[30px]`
                     : `!w-[40px] !h-[40px]`
                 } `}
               />
