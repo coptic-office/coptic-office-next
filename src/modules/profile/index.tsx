@@ -10,6 +10,7 @@ import { ProfileImage } from "./components/profileImage";
 
 import NationalBack from "./components/NationalBack";
 import NationalFront from "./components/NationalFront";
+import { LoadingSpinner } from "../auth/components/loading";
 
 export default function PersonalProfile() {
   const translate = useTranslations();
@@ -27,6 +28,7 @@ export default function PersonalProfile() {
      back: '',
    });
   const [isNationalChanged, setIsNationalChanged] = useState(false)
+  const [isNationalLoading, setIsNationalLoading] = useState(false);
   const [National_ID_Error,setNational_ID_Error]=useState(false)
 
   useEffect(() => {
@@ -46,9 +48,11 @@ export default function PersonalProfile() {
   };
   const submitNational = () =>
   {
+    setIsNationalLoading(true)
     if (!national_ID.front || !national_ID.back)
     {
       setNational_ID_Error(true)
+      setIsNationalLoading(false)
     }
     else
     {
@@ -68,9 +72,14 @@ export default function PersonalProfile() {
         form_data.append("images", file2);
       
       updateNationalId(form_data, locale).then(() => {
+              setIsNationalLoading(false);
         refreshData(() => {
+          setIsNationalChanged(false)
           router.refresh();
         });
+      }).catch((err) => {
+              setIsNationalLoading(false);
+
       });
 
       }
@@ -144,8 +153,12 @@ export default function PersonalProfile() {
             {!isNationalChanged ? null : (
               <button
                 onClick={submitNational}
-                className='h-8 w-[90px] rounded-md text-center text-white bg-THEME_PRIMARY_COLOR'>
-                {translate("locale.Save")}
+                className='h-8 w-[90px] flex flex-row justify-center items-center rounded-md text-center text-white bg-THEME_PRIMARY_COLOR'>
+                {isNationalLoading ? (
+                  <LoadingSpinner />
+                ) : (
+                  translate("locale.Save")
+                )}
               </button>
             )}
           </div>

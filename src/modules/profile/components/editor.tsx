@@ -1,5 +1,8 @@
 import { useRef, useState } from "react";
-import { FixedCropper, ImageRestriction } from "react-advanced-cropper";
+import {
+  FixedCropper,
+  ImageRestriction,
+} from "react-advanced-cropper";
 import "react-advanced-cropper/dist/style.css";
 import "react-advanced-cropper/dist/themes/compact.css";
 import { useTranslations } from "next-intl";
@@ -29,7 +32,7 @@ const Example = ({
     const cropper = cropperRef.current;
     if (cropper) {
       const canvas = cropper.getCanvas();
-      setNewImage(canvas.toDataURL());
+      setNewImage(canvas.toDataURL("image/jpeg", 0.7));
     }
   };
 
@@ -37,6 +40,7 @@ const Example = ({
     <div className='example flex flex-col items-center gap-3'>
       <div className='example__cropper-wrapper'>
         <FixedCropper
+         
           ref={cropperRef}
           src={src}
           stencilSize={{
