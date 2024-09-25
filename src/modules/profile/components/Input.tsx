@@ -121,11 +121,11 @@ export const Input = ({
                 : ""
               : ""
           }
-          className={`w-full p-0 md:p-3 
+          className={`w-full p-0 md:p-3  text-base
           
           ${
             isRtl ? `${locale == "en" ? "text-start" : "text-end"}` : ""
-          } rounded-lg border-[1px] bg-transparent ps-3 border-[#E3E7EA] h-[50px]  text-black disabled:text-[#555F71] focus:outline-none ${
+          } rounded-lg border-[1px] bg-transparent px-2 border-[#E3E7EA] h-[50px]  text-black disabled:text-[#555F71] focus:outline-none ${
             disabled ? "text-gray-700 " : "placeholder:text-black"
           }`}
           value={currentValue}
