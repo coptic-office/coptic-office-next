@@ -12,12 +12,12 @@ import { usePathname } from "next/navigation";
 import { SelectUnitModal } from "../modules/select-unit-modal";
 import { getCookie } from "cookies-next";
 import { InfoModal } from "../modules/user-payment-modal/infoModal";
+import { DiscountModal } from "../modules/user-payment-modal/DiscountModal";
 
 export const ImageSlider = () => {
   const translate = useTranslations();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
-  const pathname = usePathname();
 
   const { isLoggedIn, setCurrentModal, currentRunningModal } = useAppContext();
   const slides = [
@@ -107,6 +107,20 @@ export const ImageSlider = () => {
               (document.getElementById("body") as any).style.overflow =
                 "scroll";
             }}
+          />
+        </Modal>
+      ) : null}
+      {currentRunningModal.includes('Discount_') ? (
+        <Modal isTopCentered={false}>
+          <DiscountModal
+            closeModal={() => {
+              setCurrentModal("");
+              setIsModalOpen(false);
+              (document.getElementById("body") as any).style.overflow =
+                "scroll";
+              setIsPayOpen(false);
+            }}
+            label={currentRunningModal?.replace("Discount_", "")}
           />
         </Modal>
       ) : null}

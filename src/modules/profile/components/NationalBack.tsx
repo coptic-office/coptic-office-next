@@ -57,7 +57,7 @@ function NationalBack({
   });
   return (
     <div
-      className={`flex-1 rounded-lg h-[250px] w-full md:w-[350px] bg-center bg-no-repeat cursor-pointer  ${
+      className={` rounded-lg h-[250px] w-full md:w-[350px] bg-center bg-no-repeat cursor-pointer  ${
         file?.[0]?.preview ? file?.[0]?.preview : "bg-hero-Back bg-contain"
       } border-[1px] border-[#E3E7EA] placeholder:hidden`}
       {...getRootProps()}>
@@ -90,7 +90,7 @@ function NationalBack({
           ) : null}
           <img
             src={cropped ?? file?.[0]?.preview}
-            className='object-cover w-full h-[287px]'
+            className='object-contain w-full h-[250px]'
           />
         </>
       ) : (

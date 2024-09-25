@@ -159,7 +159,7 @@ export const PaymentOptionCard = ({
                   method == 2
                     ? `!w-20 !h-20`
                     : method == 3
-                    ? `!w-[120px] !h-[30px]`
+                    ? `!w-[170px] !h-[40px]`
                     : `!w-[40px] !h-[40px]`
                 } `}
               />

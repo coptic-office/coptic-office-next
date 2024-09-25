@@ -53,7 +53,8 @@
     "Cash_Discount": "Cash Price",
     "Payment_Method1_Text1": "You can make a bank deposit or transfer to our account at Banque Misr, number:",
     "Payment_Method1_Text1_IBAN": "IBAN: EG380019000500000000263180002",
-
+    "Discount": "Deal",
+    "Discount_Title": "Cash Discount",
     "Cash_Price": "Cash Price",
     "Change_Password": "Change password",
     "Change_Unit_Type_Text": "You can change the unit type as long as the contracting procedures have not been completed.",

@@ -134,7 +134,8 @@
     "Payment_Method_Hint": "يمكنك بشكل عام الدفع باستخدام أكثر من طريقة دفع وسنقوم بتجميع المبالغ المدفوعة في حسابك.",
     "Payment_Methods": "طرق الدفع",
     "Payment_Options": "اختر قيمة الدفع",
-
+    "Discount": "خصم",
+    "Discount_Title": "خصم الدفع النقدي",
     "Personal_Profile": "الملف الشخصي",
     "Cash_Discount": "سعر الكاش",
     "Payment_Method1_Text1_IBAN": "IBAN: EG380019000500000000263180002",

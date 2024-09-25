@@ -12,11 +12,17 @@ import { io } from "socket.io-client";
 export default function MyUnits() {
   const [Units, setUnits] = useState<Unit[]>([]);
   const [loading, setLoading] = useState(true);
-  const { refreshPage, setCurrentModal, refreshData } = useAppContext();
+  const {
+    refreshPage,
+    setCurrentModal,
+    refreshData,
+    currentRunningModal,
+    isLoggedIn,
+    updateNotificationCount,
+  } = useAppContext();
   const translate = useTranslations();
   const locale = useLocale();
   const router = useRouter();
-  const { isLoggedIn, updateNotificationCount } = useAppContext();
   const socket = io("https://dev.copticoffice.com:3000");
 
   useEffect(() => {
@@ -28,11 +34,15 @@ export default function MyUnits() {
           updateNotificationCount(Number(newCount));
         });
       });
+
+    
     }
+    
   }, []);
   useEffect(() => {
-    if (!isLoggedIn) router.push("/");
-    else {
+    if (!isLoggedIn) {
+      router.push("/");
+    } else {
       setLoading(true);
       getUnits(locale)
         .then((response) => {
@@ -40,15 +50,16 @@ export default function MyUnits() {
           updateNotificationCount(
             Number(response.data.message?.notifications?.newCount)
           );
-
-          refreshData(false);
+          if (refreshPage) {
+            refreshData(false);
+          }
           setLoading(false);
         })
         .catch((err) => {
           setLoading(false);
         });
     }
-  }, [refreshPage]);
+  }, [refreshPage, currentRunningModal]);
   return (
     <div className='z-10   flex-col gap-[60px]  items-center justify-center  text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0 '>
@@ -87,8 +98,8 @@ export default function MyUnits() {
                   </div>
                 ) : (
                   <div className='flex w-full flex-row gap-x-4 gap-y-6 flex-wrap px-4 md:px-6 justify-between '>
-                    {Units.map((item) => (
-                      <UnitCard item={item} />
+                    {Units.map((item, indx) => (
+                      <UnitCard item={item} key={`MY_UNITS_${indx}`} />
                     ))}
                   </div>
                 )}

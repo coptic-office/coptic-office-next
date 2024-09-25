@@ -45,12 +45,25 @@ export default function UnitCard({ item }: { item: Unit }) {
             />
           )}
         </div>
-        <p className='mt-1 text-[#555F71] text-sm md:text-lg flex flex-row items-center rtl:gap-[21px] ltr:gap-2.5 '>
-          {translate("locale.Booking_Code")}{" "}
-          <span className='text-THEME_PRIMARY_COLOR' dir='ltr'>
-            {item.id}
-          </span>
-        </p>
+        <div className='flex flex-row justify-between items-center'>
+          <p className='mt-1 text-[#555F71] text-sm md:text-lg flex flex-row items-center rtl:gap-[21px] ltr:gap-2.5 '>
+            {translate("locale.Booking_Code")}{" "}
+            <span className='text-THEME_PRIMARY_COLOR' dir='ltr'>
+              {item.id}
+            </span>
+          </p>
+          {item?.discount ? (
+            <button
+              onClick={() => {
+                setCurrentModal(`Discount_${item?.discount}`);
+              }}
+              className='bg-THEME_PRIMARY_COLOR  py-1 px-3 text-white text-sm rounded-lg'>
+              {translate("locale.Discount")}
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
         <hr className='border-[0.5px]  my-2.5 md:my-5 md:block border-[#E5EAF4] w-full ' />
 
         <div className='flex flex-row gap-[55px] rtl:gap-6 '>

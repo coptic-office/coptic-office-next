@@ -6,6 +6,7 @@ import { useAppContext } from "@/src/context";
 import { myUnit } from "@/src/types";
 import { SelectUnitCard } from "./components/UnitCard";
 import { LoadingSpinner } from "../auth/components/loading";
+import { useRouter } from "next/navigation";
 
 export const SelectUnitModal = ({
   closeModal,
@@ -21,6 +22,7 @@ export const SelectUnitModal = ({
   const [units, setUnits] = useState<myUnit[]>([]);
   const [error, setError] = useState("");
   const locale = useLocale();
+  const router = useRouter();
   useEffect(() => {
     document.addEventListener("keyup", (e) => {
       if (e.keyCode == 27) {
@@ -96,6 +98,7 @@ export const SelectUnitModal = ({
                     )
                     ?.map((item, index: number) => (
                       <SelectUnitCard
+                        key={`card_${index}`}
                         onSelect={() => {
                           setSelectedType(index);
                         }}

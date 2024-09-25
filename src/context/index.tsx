@@ -23,6 +23,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   };
 
   const refreshData = (value?: boolean) => {
+    console.log("value", value);
     setState({ ...state, refreshPage: value ?? true, currentRunningModal: "" });
   };
   const updateNotificationCount = (value: number) => {

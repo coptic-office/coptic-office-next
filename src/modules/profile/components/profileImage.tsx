@@ -189,7 +189,7 @@ export const ProfileImage = ({
         </div>
       </div>
       <div className='flex  flex-col-reverse md:flex-col h-auto md:h-[250px] justify-between'>
-        <p className='text-sm font-semibold rtl:font-medium mt-5'>
+        <p className='text-lg font-semibold rtl:font-medium mt-5'>
           {userData?.firstName} {userData?.lastName}
         </p>
         {isUploadDisabled ? null : (
