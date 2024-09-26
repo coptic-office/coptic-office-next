@@ -14,7 +14,7 @@ export const SelectUnitModal = ({
   closeModal: VoidFunction;
 }) => {
   const translate = useTranslations();
-  const { unitId, setCurrentModal, refreshData } = useAppContext();
+  const { unitId, setCurrentModal, refreshData, fetchData } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedType, setSelectedType] = useState<number | null>(null);
@@ -115,7 +115,7 @@ export const SelectUnitModal = ({
           {isCatSelected ? (
             <button
               onClick={() => {
-                refreshData(true);
+                fetchData?.();
                 closeModal();
               }}
               className='w-full md:w-[181px] mb-6 mt-3 flex justify-center items-center rounded-lg h-12 disabled:opacity-40 bg-THEME_PRIMARY_COLOR text-white text-center'>

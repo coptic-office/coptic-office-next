@@ -4,7 +4,7 @@ import { Unit } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
 import Tooltip from "./tooltip";
 
-export default function UnitCard({ item }: { item: Unit }) {
+export default function UnitCard({ item, fetchData }: { item: Unit; fetchData:VoidFunction }) {
   const translate = useTranslations();
   const local = useLocale();
   const { setCurrentModal, setUnitId } = useAppContext();
@@ -30,7 +30,7 @@ export default function UnitCard({ item }: { item: Unit }) {
               className='cursor-pointer'
               src='/assets/edit2.svg'
               onClick={() => {
-                setCurrentModal("select", item.id);
+                setCurrentModal("select", item.id, fetchData);
               }}
             />
           ) : (

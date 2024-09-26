@@ -11,12 +11,14 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     unitId?: string;
     refreshPage?: boolean;
     notificationCount: number | undefined;
+    fetchData: VoidFunction | null;
   }>({
     isLoggedIn: getCookie("user") ? true : false,
     currentRunningModal: "",
     unitId: undefined,
     refreshPage: false,
     notificationCount: undefined,
+    fetchData:null
   });
   const setIsLoggedIn = (value: boolean) => {
     setState({ ...state, isLoggedIn: value ? value : true });
@@ -32,9 +34,14 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
       notificationCount: value,
     });
   };
-  const setCurrentModal = (value: string, unitId?: string) => {
+  const setCurrentModal = (value: string, unitId?: string, fetchData?:VoidFunction) => {
     if (unitId) {
-      setState({ ...state, currentRunningModal: value, unitId: unitId });
+      setState({
+        ...state,
+        currentRunningModal: value,
+        unitId: unitId,
+        fetchData: fetchData ? fetchData:null,
+      });
     } else setState({ ...state, currentRunningModal: value });
   };
   const setUnitId = (value: string) => {
@@ -47,7 +54,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         currentRunningModal: state.currentRunningModal,
         unitId: state.unitId,
         refreshPage: state.refreshPage,
-        notifyCount:state.notificationCount,
+        notifyCount: state.notificationCount,
+        fetchData:state.fetchData,
         setCurrentModal,
         setIsLoggedIn,
         setUnitId,

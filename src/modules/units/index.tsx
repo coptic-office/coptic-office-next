@@ -34,10 +34,7 @@ export default function MyUnits() {
           updateNotificationCount(Number(newCount));
         });
       });
-
-    
     }
-    
   }, []);
   useEffect(() => {
     if (!isLoggedIn) {
@@ -59,7 +56,24 @@ export default function MyUnits() {
           setLoading(false);
         });
     }
-  }, [refreshPage, currentRunningModal]);
+  }, [refreshPage]);
+
+  const fetchData = () => {
+       getUnits(locale)
+         .then((response) => {
+           setUnits(response.data?.message?.units);
+           updateNotificationCount(
+             Number(response.data.message?.notifications?.newCount)
+           );
+           if (refreshPage) {
+             refreshData(false);
+           }
+           setLoading(false);
+         })
+         .catch((err) => {
+           setLoading(false);
+         });
+  }
   return (
     <div className='z-10   flex-col gap-[60px]  items-center justify-center  text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0 '>
@@ -99,7 +113,7 @@ export default function MyUnits() {
                 ) : (
                   <div className='flex w-full flex-row gap-x-4 gap-y-6 flex-wrap px-4 md:px-6 justify-between '>
                     {Units.map((item, indx) => (
-                      <UnitCard item={item} key={`MY_UNITS_${indx}`} />
+                      <UnitCard fetchData={fetchData}  item={item} key={`MY_UNITS_${indx}`} />
                     ))}
                   </div>
                 )}
