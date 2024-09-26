@@ -90,7 +90,7 @@ function NationalBack({
           ) : null}
           <img
             src={cropped ?? file?.[0]?.preview}
-            className='object-contain w-full h-[250px]'
+            className=' w-full h-[250px]'
           />
         </>
       ) : (

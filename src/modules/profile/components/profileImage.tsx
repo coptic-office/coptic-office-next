@@ -32,6 +32,7 @@ export const ProfileImage = ({
   const [isUploadDisabled, setIsUploadDisabled] = useState(true);
   const translate = useTranslations();
   const [enabled, setEnabled] = useState(true);
+  const [isDelete, setIsDelete] = useState(false);
   const onDelete = () => {
     setLoading({ ...loading, delete: true });
     deletePhoto("en")
@@ -47,7 +48,12 @@ export const ProfileImage = ({
             ...userData,
             profilePhoto: response?.data?.message?.profilePhoto,
           })
+          
         );
+         refreshData(() => {
+           setIsDelete(false)
+           router.refresh();
+         });
       })
       .catch((err) => {
         setLoading({ ...loading, delete: false });
@@ -61,7 +67,6 @@ export const ProfileImage = ({
       type as string
     );
     var form_data = new FormData();
-
     form_data.append("image", felo);
     updatePhoto(form_data, "en")
       .then((response) => {
@@ -79,8 +84,9 @@ export const ProfileImage = ({
           })
         );
         refreshData(() => {
-          router.refresh()
-        })
+          setFile(null);
+          router.refresh();
+        });
       })
       .catch(() => {
         setLoading({ ...loading, update: false });
@@ -146,23 +152,23 @@ export const ProfileImage = ({
                   }}
                   onCancel={() => {
                     setFile(null);
-                     (document.getElementById("body") as any).style.overflow =
-                       "scroll";
-                                        setCropperOpen(false);
+                    (document.getElementById("body") as any).style.overflow =
+                      "scroll";
+                    setCropperOpen(false);
 
-                     setEnabled(true);
-                     setIsUploadDisabled(true);
+                    setEnabled(true);
+                    setIsUploadDisabled(true);
                   }}
                 />
               ) : null}
               <img
-                src={cropped??userData?.profilePhoto}
+                src={cropped ?? userData?.profilePhoto}
                 className='object-cover w-full h-[250px]'
               />
             </>
           ) : (
             <img
-              src={
+              src={isDelete?'https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/app/default_profile.jpg':
                 profileImage?.preview?.[0]?.preview ?? userData?.profilePhoto
               }
               className='object-cover w-[247px] h-[247px]'
@@ -171,12 +177,12 @@ export const ProfileImage = ({
         </div>
 
         <div className='bg-[#d9d9d999] h-[50px] min-w-full absolute left-0 -bottom-[3px]   flex justify-center items-center '>
-          {userData?.profilePhoto?.includes("default_profile") ? null : (
+          {(userData?.profilePhoto?.includes("default_profile")|| isDelete) ? null : (
             <img
               src='/assets/delete.png'
               onClick={(e) => {
                 e.preventDefault();
-                onDelete();
+               setIsDelete(true)
               }}
               className='cursor-pointer w-5 h-5 absolute bottom-[15px] start-1.5  '
             />
@@ -192,12 +198,12 @@ export const ProfileImage = ({
         <p className='text-lg font-semibold rtl:font-medium mt-5'>
           {userData?.firstName} {userData?.lastName}
         </p>
-        {isUploadDisabled ? null : (
+        {(isUploadDisabled && !isDelete) ? null : (
           <button
-            disabled={isUploadDisabled}
-            onClick={onSave}
+            disabled={isUploadDisabled && !isDelete}
+            onClick={isDelete?onDelete:onSave}
             className=' px-1 md:px-3  flex items-center justify-center disabled:opacity-45  py-[3px] md:py-[6px]   rounded-sm md:rounded-lg text-base md:text-base text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium    text-center'>
-            {loading.update ? <LoadingSpinner /> : translate("locale.Save")}
+            {(loading.update||loading.delete) ? <LoadingSpinner /> : translate("locale.Save")}
           </button>
         )}
       </div>
@@ -205,7 +211,7 @@ export const ProfileImage = ({
   );
 };
 
- function base64ToBlob(base64: string, contentType = "", sliceSize = 512) {
+function base64ToBlob(base64: string, contentType = "", sliceSize = 512) {
   const byteCharacters = atob(base64);
   const byteArrays = [];
 
@@ -223,7 +229,7 @@ export const ProfileImage = ({
 }
 
 // Function to convert Base64 to a File object
- function base64ToFile(base64: string, filename: string, mimeType: string) {
+function base64ToFile(base64: string, filename: string, mimeType: string) {
   const blob = base64ToBlob(base64, mimeType);
 
   // Create the File object from the Blob

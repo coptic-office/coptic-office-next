@@ -161,7 +161,7 @@ export const OtpStep = ({
               renderInput={(props: any) => (
                 <input
                   {...props}
-                  className={`bg-white !h-[40px] !w-[40px] md:!h-[50px] md:!w-[50px] text-black  !rounded-md  !border-[1px] !border-solid ${
+                  className={`bg-white text-base !h-[40px] !w-[40px] md:!h-[50px] md:!w-[50px] text-black  !rounded-md  !border-[1px] !border-solid ${
                     error
                       ? "!border-THEME_ERROR_COLOR"
                       : "!border-[#0000001f] focus:bg-[#88735026] focus:outline-none"
