@@ -6,11 +6,13 @@ export const NavLink = ({
   label,
   url,
   toggleNav,
+  isMobile
 }: {
   isSelected: boolean;
   label: string;
   url?: string;
-  toggleNav?: VoidFunction;
+    toggleNav?: VoidFunction;
+  isMobile?:boolean
 }) => {
   const router = useRouter();
   const locale = useLocale();
@@ -23,7 +25,9 @@ export const NavLink = ({
         });
         toggleNav?.();
       }}
-      className={`[text-shadow:1px_1px_1px_var(--tw-shadow-color)] shadow-gray-700  h-[33px] px-3 py-[6px] md:px-0 md:py-0 rounded-[4px] md:rounded-none  md:h-auto w-full md:w-auto ${
+      className={`${
+        isMobile ? "" : "[text-shadow:1px_1px_1px_var(--tw-shadow-color)]"
+      } shadow-gray-700  h-[33px] px-3 py-[6px] md:px-0 md:py-0 rounded-[4px] md:rounded-none  md:h-auto w-full md:w-auto ${
         isSelected ? "bg-[#F7F8FC] md:bg-transparent" : ""
       } cursor-pointer ${
         isSelected

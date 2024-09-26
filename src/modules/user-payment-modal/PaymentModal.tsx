@@ -9,7 +9,7 @@ import { NumberControl } from "./components/NumberControl";
 import { ReactSelect } from "./Select";
 import { LoadingSpinner } from "../auth/components/loading";
 
-export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
+export const PaymentModal = ({ closeModal }: { closeModal: VoidFunction }) => {
   const translate = useTranslations();
   const [activeTab, setActiveTab] = useState(0);
   const [bookingItem, setBookingItem] = useState<PaymentOptions | null>(null);
@@ -34,6 +34,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
   const locale = useLocale();
 
   const changeActiveTab = (index: number) => {
+    console.log("OPTIONS", options);
     setSelectedUnit(undefined);
     setSelectedItem(null);
     setActiveTab(index);
@@ -60,6 +61,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     setDataLoading(true);
     getPaymentsOptions(locale)
       .then((response) => {
+        let bookingItem = false;
         let maxNumber = 0;
         let maxIndex = 0;
         response.data.message?.paymentOptions.map(
@@ -68,7 +70,10 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
               maxNumber = item.value;
               maxIndex = index;
             }
-            if (item.unitId == "" || item?.unitId == null) setBookingItem(item);
+            if (item.unitId == "" || item?.unitId == null) {
+              setBookingItem(item);
+              bookingItem = true;
+            }
           }
         );
         setOptions(response.data.message?.paymentOptions);
@@ -76,6 +81,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
           maxValue: maxNumber,
           maxIndex: maxIndex,
         });
+
         setDataLoading(false);
       })
       .catch(() => {
@@ -91,6 +97,11 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
     getAllOptions();
   }, []);
 
+  useEffect(() => {
+    if (options.length > 0 && bookingItem) {
+      changeActiveTab(1);
+    }
+  }, [options]);
   const submitPayment = () => {
     setLoading(true);
     let object: {

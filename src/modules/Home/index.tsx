@@ -23,7 +23,6 @@ export default function HomePage({ lang }: { lang: string }) {
     }
   }, []);
   const translate = useTranslations();
-  console.log("TR", translate("Project_Feature1"));
   return (
     <div className='z-10  flex-col gap-[60px] items-center justify-center  text-sm lg:flex w-full px-0 md:px-[150px]  bg-transparent'>
       <div className='w-full px-4 md:px-0'>

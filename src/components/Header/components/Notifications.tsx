@@ -48,6 +48,12 @@ export default function NotificationModal({
     document.addEventListener("click", (event) => {
       if ((event.target as any)?.id == "back") closeNotification();
     });
+    document.addEventListener("contextmenu", function (e) {
+      console.log("e?.target as any)?.tagName", (e?.target as any)?.tagName);
+      if ((e?.target as any)?.tagName === "IMG") {
+        e.preventDefault();
+      }
+    });
   }, []);
 
   return (

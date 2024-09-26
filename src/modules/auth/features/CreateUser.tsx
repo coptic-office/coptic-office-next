@@ -8,6 +8,7 @@ import { createUser } from "@/src/network/auth";
 import { usePathname } from "next/navigation";
 import { checkUserModal } from "@/src/types";
 import { setCookie } from "cookies-next";
+import { useAppContext } from "@/src/context";
 
 export const CreateUser = ({
   checkUserData,
@@ -35,6 +36,8 @@ export const CreateUser = ({
   const [loading, setLoading] = useState(false);
   const translate = useTranslations();
   const pathname = usePathname();
+    const { updateNotificationCount } = useAppContext();
+
   const submit = () => {
     if (
       data.firstName == "" ||
@@ -64,6 +67,9 @@ export const CreateUser = ({
         setCookie("user", JSON.stringify(response?.data?.message?.user));
         setCookie("authToken", response?.data?.message?.accessToken);
         localStorage.setItem("authToken", response?.data?.message?.accessToken);
+          updateNotificationCount(
+            Number(response.data.message?.notifications?.newCount)
+          );
 
         window.location.reload();
         closeModal();

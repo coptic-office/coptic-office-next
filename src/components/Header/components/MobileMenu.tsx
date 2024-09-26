@@ -66,18 +66,21 @@ export default function MobileMenu({
               isSelected={isSelected == 0}
               label={translate("locale.Home")}
               toggleNav={toggleNav}
+              isMobile={true}
             />
             <NavLink
               isSelected={isSelected == 1}
               label={translate("locale.My_Payments")}
               url='payments'
               toggleNav={toggleNav}
+              isMobile={true}
             />
             <NavLink
               isSelected={isSelected == 2}
               label={translate("locale.My_Units")}
               toggleNav={toggleNav}
               url='units'
+              isMobile={true}
             />
           </div>
           <hr className='border-[0.5px] w-full border-[#74777F] opacity-25 border-solid ' />

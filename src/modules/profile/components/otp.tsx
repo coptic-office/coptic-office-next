@@ -18,8 +18,8 @@ export const OtpStep = ({
   mobileNumber: string;
   resend: string;
   isEmail: boolean;
-    setResend: (value: any) => void;
-  isResend?:boolean
+  setResend: (value: any) => void;
+  isResend?: boolean;
   setOpenOtp: Dispatch<
     SetStateAction<{
       open: boolean;
@@ -84,8 +84,14 @@ export const OtpStep = ({
                 err?.response?.data?.error) ??
                 true
             );
-            if (err?.response?.data?.message?.otpResend) {
-            }
+             if (err?.response?.data?.message?.otpResend) {
+               setOpenOtp((prev) => {
+                 return {
+                   ...prev,
+                   resend: err?.response?.data?.message?.otpResend,
+                 };
+               });
+             }
 
             setLoading({ ...loading, resendLoading: false });
           });
@@ -101,6 +107,12 @@ export const OtpStep = ({
                 true
             );
             if (err?.response?.data?.message?.otpResend) {
+              setOpenOtp((prev) => {
+                return {
+                  ...prev,
+                  resend: err?.response?.data?.message?.otpResend,
+                };
+              });
             }
 
             setLoading({ ...loading, resendLoading: false });
@@ -117,11 +129,10 @@ export const OtpStep = ({
   }, [resend]);
 
   useEffect(() => {
-    if (isResend && !resended)
-    {
-      setResended(true)
+    if (isResend && !resended) {
+      setResended(true);
       resendOtp();
-      }
+    }
   }, [isResend]);
   return (
     <div className='flex flex-col items-start w-full p-6'>
@@ -183,7 +194,7 @@ export const OtpStep = ({
           <p className='text-sm  text-[#00000099]  text-center '>
             {translate("locale.Code_Not_Received")}
           </p>
-          {resendTime && resendTime > 0 ? (
+          {resendTime && !Number.isNaN(resendTime) &&resendTime > 0 ? (
             <p className='text-sm  text-[#00000099]  text-center '>
               {translate("locale.Please_Wait")}{" "}
               <span className='text-sm text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium'>
@@ -205,7 +216,7 @@ export const OtpStep = ({
                   className='text-sm text-center  text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium mt-3 cursor-pointer'
                   onClick={resendOtp}>
                   {" "}
-                  {translate("locale.Resend_Code")}
+                  {loading?.resendLoading?<LoadingSpinner/>:translate("locale.Resend_Code")}
                 </p>
               ) : (
                 ""
