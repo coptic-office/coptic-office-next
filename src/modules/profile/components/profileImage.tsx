@@ -129,7 +129,7 @@ export const ProfileImage = ({
     <div className='mt-4  flex flex-col md:flex-row gap-[19px] items-center md:items-start '>
       <div
         aria-disabled={true}
-        className='relative cursor-pointer h-[250px] w-[250px] bg-center bg-no-repeat  border-[1px] border-[#E3E7EA] placeholder:hidden'>
+        className='relative h-[250px] w-[250px] bg-center bg-no-repeat  border-[1px] border-[#E3E7EA] placeholder:hidden'>
         <div className='h-[200px]' >
           <input
             className='cursor-pointer'

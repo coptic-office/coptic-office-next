@@ -57,7 +57,7 @@ function NationalFront({
   });
   return (
     <div
-      className={`rounded-lg  h-[220px] max-w-[350px] w-full md:w-[350px]  bg-center bg-no-repeat cursor-pointer  ${
+      className={`rounded-lg  h-[220px] max-w-[350px] w-full md:w-[350px]  bg-center bg-no-repeat   ${
         file?.[0]?.preview ? "" : "bg-hero-front bg-contain"
       } border-[1px] border-[#E3E7EA] placeholder:hidden`}>
       {enabled ? <input {...getInputProps()} /> : null}
