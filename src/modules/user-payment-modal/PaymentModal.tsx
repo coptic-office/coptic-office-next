@@ -210,7 +210,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                         />
                         <input
                           type='tel'
-                          className='w-[80px] text-center h-8  bg-gray-200  focus:outline-THEME_PRIMARY_COLOR   text-THEME_PRIMARY_COLOR'
+                          className='w-[80px] text-base text-center h-8  bg-gray-200  focus:outline-THEME_PRIMARY_COLOR   text-THEME_PRIMARY_COLOR'
                           disabled={selectedItem?.selectedValueId != 1}
                           value={
                             selectedItem?.selectedValueId == 1
@@ -344,7 +344,7 @@ export const PaymentModal = ({ closeModal }: { closeModal(): void }) => {
                                       }
                                     />
                                     <input
-                                      className='w-[80px] text-center h-8  bg-gray-200 focus:outline-THEME_PRIMARY_COLOR  text-THEME_PRIMARY_COLOR'
+                                      className='w-[80px] text-base text-center h-8  bg-gray-200 focus:outline-THEME_PRIMARY_COLOR  text-THEME_PRIMARY_COLOR'
                                       disabled={
                                         selectedItem?.selectedValueId != 1
                                       }

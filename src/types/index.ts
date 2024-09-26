@@ -101,6 +101,7 @@ export interface User {
   };
   profilePhoto: string;
   email: string;
+  
 }
 
 export interface Notification {
@@ -126,6 +127,12 @@ export interface UserInfo {
   firstName: string;
   lastName: string;
   profilePhoto: string;
+  identification: {
+    nationalId: {
+      back: string;
+      front: string;
+    };
+  };
 }
 interface Mobile {
   primary: {

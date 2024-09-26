@@ -181,6 +181,7 @@
     "Email_Update": "تحديث البريد الالكتروني",
     "Password_Update": "تحديث كلمة المرور",
     "Mobile_Update": "تحديث رقم الهاتف",
-    "Cancel": "الغاء"
+    "Cancel": "الغاء",
+    "Information": "معلومات"
   }
 }

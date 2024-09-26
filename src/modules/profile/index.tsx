@@ -133,7 +133,7 @@ export default function PersonalProfile() {
             <NationalFront
               setEnabled={(value: boolean) => setUploadOpen(value)}
               enabled={uploadOpen}
-              image={national_ID.front}
+              image={userData?.identification?.nationalId?.front}
               setNational_ID={(value) => {
                 setNational_ID(value);
                 setIsNationalChanged(true);
@@ -143,7 +143,7 @@ export default function PersonalProfile() {
             <NationalBack
               setEnabled={(value: boolean) => setUploadOpen(value)}
               enabled={uploadOpen}
-              image={national_ID.front}
+              image={userData?.identification?.nationalId?.back}
               setNational_ID={(value) => {
                 setNational_ID(value);
                 setIsNationalChanged(true);

@@ -57,13 +57,13 @@ function NationalBack({
   });
   return (
     <div
-      className={` rounded-lg  h-[250px] max-w-[350px] w-full md:w-[350px] bg-center bg-no-repeat cursor-pointer  ${
+      className={` rounded-lg  h-[220px] max-w-[350px] w-full md:w-[350px] bg-center bg-no-repeat cursor-pointer  ${
         file?.[0]?.preview ? file?.[0]?.preview : "bg-hero-Back bg-contain"
       } border-[1px] border-[#E3E7EA] placeholder:hidden`}
-      {...getRootProps()}>
+      >
       {enabled ? <input {...getInputProps()} /> : null}
-      {file?.[0]?.preview ? (
-        <>
+      {(file?.[0]?.preview || image) ? (
+        <div className="relative">
           {cropperOpen ? (
             <ImageCropper
               onCancel={() => {
@@ -88,13 +88,20 @@ function NationalBack({
               }}
             />
           ) : null}
-          <img
-            src={cropped ?? file?.[0]?.preview}
-            className=' w-full h-[250px]'
-          />
-        </>
+          <img src={cropped ? cropped : image} className=' w-full h-[220px]' />
+          <div className='bg-[#d9d9d999] h-[50px] min-w-full absolute bottom-0 left-0 flex px-3 flex-row justify-between items-center gap-4'>
+            <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
+              {translate("locale.Back_Side")}
+            </p>
+            <img
+              src='/assets/edit.png'
+              onClick={open}
+              className='cursor-pointer w-5 h-5  '
+            />
+          </div>
+        </div>
       ) : (
-        <div className='bg-[#d9d9d999] h-[50px] min-w-full mt-[200px] flex px-3 flex-row justify-between items-center gap-4'>
+        <div className='bg-[#d9d9d999] h-[50px] min-w-full mt-[170px] flex px-3 flex-row justify-between items-center gap-4'>
           <p className='text-base font-semibold rtl:font-medium text-THEME_PRIMARY_COLOR'>
             {translate("locale.Back_Side")}
           </p>

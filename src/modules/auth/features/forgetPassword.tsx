@@ -74,7 +74,7 @@ export const ForgetPassword = ({
             setMobileNumber(e.target.value);
             if (error) setError(null);
           }}
-          className={`block w-full p-4 ps-10 text-sm text-gray-900 ${
+          className={`text-base block w-full p-4 ps-10  text-gray-900 ${
             error ? "border-[1px] border-THEME_ERROR_COLOR" : ""
           } rounded-lg focus:outline-none bg-gray-50`}
           placeholder='100 123 456'
