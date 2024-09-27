@@ -43,7 +43,6 @@ export default function MobileMenu({
         toggle = prev;
         return prev;
       });
-      console.log("toggle", toggle);
 
       if (
         divRef.current &&

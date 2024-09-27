@@ -36,7 +36,7 @@ export const CreateUser = ({
   const [loading, setLoading] = useState(false);
   const translate = useTranslations();
   const pathname = usePathname();
-    const { updateNotificationCount } = useAppContext();
+  const { updateNotificationCount } = useAppContext();
 
   const submit = () => {
     if (
@@ -67,9 +67,9 @@ export const CreateUser = ({
         setCookie("user", JSON.stringify(response?.data?.message?.user));
         setCookie("authToken", response?.data?.message?.accessToken);
         localStorage.setItem("authToken", response?.data?.message?.accessToken);
-          updateNotificationCount(
-            Number(response.data.message?.notifications?.newCount)
-          );
+        updateNotificationCount(
+          Number(response.data.message?.notifications?.newCount)
+        );
 
         window.location.reload();
         closeModal();
@@ -91,6 +91,7 @@ export const CreateUser = ({
           <p className='text-sm text-THEME_ERROR_COLOR '>{error?.api}</p>
         )}
         <TextInput
+          autoFocus={true}
           label={translate("locale.First_Name")}
           onChange={(value) => {
             setError({ ...(error as any), firstName: false });
@@ -114,7 +115,7 @@ export const CreateUser = ({
         />
 
         <PasswordInput
-          onKeyUp={()=>{}}
+          onKeyUp={() => {}}
           labelWidth={true}
           label={translate("locale.Password")}
           onChange={(e) => {
