@@ -37,6 +37,7 @@ export const ImageSlider = () => {
   return (
     <>
       <div className=' h-[350px] md:h-[700px] w-full absolute top-0 z-50'>
+       
         <Swiper
           pagination={{
             dynamicBullets: true,

@@ -33,6 +33,7 @@ instance.interceptors.request.use(
 // Add a response interceptor
 instance.interceptors.response.use(
   function (response) {
+    
     return response;
   },
   function (error) {

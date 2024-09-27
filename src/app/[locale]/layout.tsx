@@ -5,7 +5,6 @@ import { ImageSlider } from "../../components/Slider";
 import { Footer } from "../../components/footer";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import ReCAPTCHA from "react-google-recaptcha";
 import Header from "@/src/components/Header";
 import { AppWrapper } from "@/src/context";
 
@@ -41,11 +40,7 @@ export default async function RootLayout({
             {children}
           </AppWrapper>
           <Footer lang={locale} />
-          {/* <ReCAPTCHA
-            sitekey='YOUR_SITE_KEY' // Add your reCAPTCHA site key here
-            onChange={() => { }}
-            
-          /> */}
+        
         </NextIntlClientProvider>
       </body>
     </html>

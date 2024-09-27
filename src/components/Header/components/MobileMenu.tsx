@@ -1,5 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { deleteCookie, getCookie } from "cookies-next";
 import { NavLink } from "./NavLink";
@@ -15,12 +15,14 @@ export default function MobileMenu({
   const [isSelected, setIsSelected] = useState(0);
   const [openNav, setOpenNav] = useState(false);
   const { setIsLoggedIn, notifyCount } = useAppContext();
-  
+
   const pathname = usePathname();
   const toggleNav = () => {
     setOpenNav(!openNav);
   };
   const translate = useTranslations();
+  const divRef = useRef(null); // Create a ref to the div
+
   useEffect(() => {
     if (pathname?.includes("payments")) setIsSelected(1);
     else if (pathname.includes("units")) setIsSelected(2);
@@ -33,7 +35,33 @@ export default function MobileMenu({
 
   const router = useRouter();
   const locale = useLocale();
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+    
+      let toggle:boolean = false;
+      setOpenNav((prev) => {
+        toggle = prev;
+        return prev;
+      });
+      console.log("toggle", toggle);
 
+      if (
+        divRef.current &&
+        !(divRef?.current as any)?.contains(event.target) &&
+        toggle 
+      ) {
+       setOpenNav(false)
+      }
+    };
+
+    // Add a click event listener to the document
+    document.addEventListener("click", handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <div className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
       <img src='/assets/logo.svg' width={"79px"} height={"49px"} />
@@ -60,7 +88,7 @@ export default function MobileMenu({
         className={`w-[216px] py-3 bg-white absolute top-[75px] rounded-lg end-0 z-[150] shadow-2xl ${
           openNav ? "flex" : "hidden"
         }`}>
-        <div className='flex   flex-col gap-3 items-start w-full'>
+        <div ref={divRef} className='flex   flex-col gap-3 items-start w-full'>
           <div className='flex flex-col gap-1 items-start px-3 w-full'>
             <NavLink
               isSelected={isSelected == 0}

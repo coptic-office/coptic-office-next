@@ -11,12 +11,14 @@ export const Input = ({
   isPassword,
   isRtl,
   refreshData,
+  isVerified = true,
 }: {
   label: string;
   value: string;
   isPassword?: boolean;
   isRtl?: boolean;
   refreshData: (callback: VoidFunction) => void;
+  isVerified?: boolean;
 }) => {
   const translate = useTranslations();
   const [disabled, setDisabled] = useState(true);
@@ -91,10 +93,7 @@ export const Input = ({
             resend: "",
             isResend: true,
           });
-        }
-        else
-        setError(error.response.data.error);
-
+        } else setError(error.response.data.error);
       });
   };
   return (
@@ -131,7 +130,7 @@ export const Input = ({
           value={currentValue}
           onChange={(e) => setCurrentValue(e.target.value)}
         />
-        {!disabled ? (
+        {!disabled || !isVerified ? (
           <>
             {loading ? (
               <LoadingSpinner />

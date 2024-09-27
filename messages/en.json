@@ -7,7 +7,6 @@
     "Payment_Method2": "using our mobile number 01222222883, mentioning your reference number, which is the mobile number registered with us, in the reason for the transfer.",
     "Bank_Cash": "Bank deposit or bank transfer",
     "instaPay": "Transfer via the InstaPay application",
-    "Add_Email": "Add Email Address",
     "Upload_Image": "Upload Image",
     "Delete_Image": "Delete Image",
     "Front_Side": "Front side",
@@ -50,6 +49,7 @@
     "Cafeteria": "Cafeteria",
     "Call_Us": "Call us now",
     "Information": "Information",
+    "Add_Email": "Add email address",
 
     "Cameras": "Surveillance cameras",
     "Cash_Discount": "Cash Price",

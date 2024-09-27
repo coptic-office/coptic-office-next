@@ -2,6 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { getCookie } from "cookies-next";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const Footer = ({ lang }: { lang: string }) => {
   const pathname = usePathname();
@@ -93,7 +94,7 @@ export const Footer = ({ lang }: { lang: string }) => {
             </div>
             <a
               href='https://www.google.com/maps/place/%D8%A7%D9%84%D9%83%D8%A7%D8%AA%D8%AF%D8%B1%D8%A7%D8%A6%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%B1%D9%82%D8%B3%D9%8A%D8%A9+%D8%A8%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D8%B3%D9%8A%D8%A9%E2%80%AD/@30.0722871,31.2747066,803m/data=!3m2!1e3!4b1!4m6!3m5!1s0x14583f91730e6615:0xacbdb083f7f9b6b9!8m2!3d30.0722871!4d31.2747066!16s%2Fg%2F11sk5sy36x?hl=en-US&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D'
-              target="_blank"
+              target='_blank'
               className='flex  flex-row w-full rtl:flex-row-reverse md:flex-row md:w-auto  justify-center md:justify-items-end  items-center gap-2 cursor-pointer'>
               <img
                 src='/assets/location.png'
@@ -106,6 +107,7 @@ export const Footer = ({ lang }: { lang: string }) => {
           </div>
         </div>
       </div>
+      <ReCAPTCHA sitekey='6LfXJlAqAAAAAJs9AfovQ0ftINCUPp9caTjyZxyX'  size="invisible"  hidden/>
     </div>
   );
 };
