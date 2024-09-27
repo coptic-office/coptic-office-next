@@ -48,8 +48,8 @@ export const MobileNumber = ({
           setLoading(false);
           handleChangeStep(
             (response.data as any)?.message?.isExisted
-              ? AUTH_STEP_ENUM.CREATE_USER
-              : AUTH_STEP_ENUM.CREATE_USER
+              ? AUTH_STEP_ENUM.VERIFY_PASSWORD
+              : AUTH_STEP_ENUM.OTP
           );
         })
         .catch((err) => {
@@ -76,9 +76,9 @@ export const MobileNumber = ({
         </div>
         <input
           onKeyUp={(event) => {
-            if (event.key === "Enter") {
-              onSubmit();
-            }
+              if (event.key === "Enter") {
+                onSubmit();
+              }
           }}
           ref={inputRef}
           value={mobileNumber}
