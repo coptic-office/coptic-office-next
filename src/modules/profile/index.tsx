@@ -103,7 +103,7 @@ export default function PersonalProfile() {
         <div className='flex flex-col md:flex-row  gap-5 md:gap-[50px] w-full'>
           <Input
             value={userData?.email?.primary as string}
-            isVerified={userData?.email.isVerified}
+            isVerified={userData?.email?.isVerified}
             label='Email'
             refreshData={refreshData}
           />
