@@ -3,6 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { getCookie } from "cookies-next";
 import ReCAPTCHA from "react-google-recaptcha";
+import React from "react";
 
 export const Footer = ({ lang }: { lang: string }) => {
   const pathname = usePathname();
@@ -16,8 +17,8 @@ export const Footer = ({ lang }: { lang: string }) => {
       <div className='bg-THEME_PRIMARY_COLOR text-white flex flex-col w-full items-center  pt-5 pb-8 '>
         <div className='flex flex-col md:flex-row justify-between items-center w-full px-9 md:px-[150px] mb-[38px] md:mb-4'>
           <img
-            src='/assets/logo.svg'
-            className='cursor-pointer w-[104px] md:w-[120px] h-[64px] md:h-[65px]'
+            src='https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/logo_white_256x158.svg'
+            className='cursor-pointer w-[150px] md:w-[150px] h-[80px] md:h-[80px]'
             onClick={() => {
               router.push(`/${lang}`);
             }}
@@ -107,7 +108,11 @@ export const Footer = ({ lang }: { lang: string }) => {
           </div>
         </div>
       </div>
-      <ReCAPTCHA sitekey='6LfXJlAqAAAAAJs9AfovQ0ftINCUPp9caTjyZxyX'  size="invisible"  hidden/>
+      <ReCAPTCHA
+        sitekey='6LfXJlAqAAAAAJs9AfovQ0ftINCUPp9caTjyZxyX'
+        size='invisible'
+        hidden
+      />
     </div>
   );
 };

@@ -37,8 +37,7 @@ export default function MobileMenu({
   const locale = useLocale();
   useEffect(() => {
     const handleClickOutside = (event: any) => {
-    
-      let toggle:boolean = false;
+      let toggle: boolean = false;
       setOpenNav((prev) => {
         toggle = prev;
         return prev;
@@ -47,9 +46,9 @@ export default function MobileMenu({
       if (
         divRef.current &&
         !(divRef?.current as any)?.contains(event.target) &&
-        toggle 
+        toggle
       ) {
-       setOpenNav(false)
+        setOpenNav(false);
       }
     };
 
@@ -63,7 +62,11 @@ export default function MobileMenu({
   }, []);
   return (
     <div className='flex  md:hidden justify-between items-center mx-6 py-4 relative  z-[100]  '>
-      <img src='/assets/logo.svg' width={"79px"} height={"49px"} />
+      <img
+        src='https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/logo_white_256x158.svg'
+        width={"110px"}
+        height={"100px"}
+      />
 
       {userData ? (
         <img

@@ -9,6 +9,7 @@ import NotificationModal from "./components/Notifications";
 import { NavLink } from "./components/NavLink";
 import UserMenu from "./components/userMenu";
 import { useAppContext } from "@/src/context";
+import React from "react";
 
 export default function Header() {
   const [isSelected, setIsSelected] = useState(0);
@@ -66,7 +67,7 @@ export default function Header() {
               : "justify-between w-full px-4 md:px-[150px]"
           }  `}>
           <img
-            src='/assets/logo.svg'
+            src='https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/logo_white_256x158.svg'
             className='cursor-pointer'
             onClick={() => {
               router.push(`/${locale}`);
@@ -97,7 +98,7 @@ export default function Header() {
               {userData ? (
                 <div className='p-2 border-[1px] relative border-white rounded-lg border-solid'>
                   <p className='bg-white rounded-[50%] min-w-7 min-h-7  text-center p-1 font-semibold text-sm absolute -end-3 -top-3 text-THEME_PRIMARY_COLOR'>
-                    {notifyCount ?? userData?.notifications?.newCount??0}
+                    {notifyCount ?? userData?.notifications?.newCount ?? 0}
                   </p>
                   <img
                     src='/assets/notify.svg'
