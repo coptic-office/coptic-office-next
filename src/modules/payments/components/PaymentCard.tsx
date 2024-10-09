@@ -1,6 +1,6 @@
 import { Payment } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function PaymentCard({ payment }: { payment: Payment }) {
@@ -23,7 +23,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             <img
               src={
                 payment?.paymentMethod == "instaPay"
-                  ? "/assets/instapay.svg"
+                  ? "/assets/instapay1.svg"
                   : payment.paymentMethod == "bankTransfer"
                   ? "/assets/bank_transfer.svg"
                   : "/assets/credit.svg"
