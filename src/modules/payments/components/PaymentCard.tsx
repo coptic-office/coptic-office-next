@@ -1,6 +1,6 @@
 import { Payment } from "@/src/types";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function PaymentCard({ payment }: { payment: Payment }) {
@@ -19,7 +19,12 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               {translate("locale.Pound")}
             </span>
           </p>
-          <div className='flex flex-row gap-3 items-start'>
+          <div
+            className={`flex flex-row gap-3 ${
+              payment.paymentMethod == "instaPay"
+                ? "items-center"
+                : "items-start"
+            }`}>
             <img
               src={
                 payment?.paymentMethod == "instaPay"
