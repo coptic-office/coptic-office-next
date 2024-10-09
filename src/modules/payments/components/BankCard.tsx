@@ -36,9 +36,9 @@ export default function BankCard({ payment }: { payment: bankChecks }) {
             <p>{translate("locale.Check_Status")}</p>
             <p
               className={`font-semibold ${
-                payment?.status == "outstanding"
+                payment?.status?.current == "outstanding"
                   ? "text-[#FF9500]"
-                  : payment?.status == "rejected"
+                  : payment?.status?.current == "rejected"
                   ? "text-THEME_ERROR_COLOR"
                   : "text-[#048951]"
               }`}>

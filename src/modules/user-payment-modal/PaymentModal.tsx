@@ -34,7 +34,6 @@ export const PaymentModal = ({ closeModal }: { closeModal: VoidFunction }) => {
   const locale = useLocale();
 
   const changeActiveTab = (index: number) => {
-    console.log("OPTIONS", options);
     setSelectedUnit(undefined);
     setSelectedItem(null);
     setActiveTab(index);
@@ -98,7 +97,7 @@ export const PaymentModal = ({ closeModal }: { closeModal: VoidFunction }) => {
   }, []);
 
   useEffect(() => {
-    if (options.length > 0 && bookingItem) {
+    if (options.length > 1 && bookingItem) {
       changeActiveTab(1);
     }
   }, [options]);
@@ -138,7 +137,10 @@ export const PaymentModal = ({ closeModal }: { closeModal: VoidFunction }) => {
 
         <img
           src='/assets/close.png'
-          onClick={closeModal}
+          onClick={() => {
+            changeActiveTab(0)
+            closeModal()
+          }}
           className='w-4 h-4 cursor-pointer'
         />
       </div>

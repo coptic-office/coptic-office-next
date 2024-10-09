@@ -11,12 +11,14 @@ import ImageCropper from "./imageCropper";
 export const ProfileImage = ({
   isEditOpen,
   refreshData,
+  user,
 }: {
-  userData: any;
+  user: any;
   isEditOpen: boolean;
   setUserData: Dispatch<SetStateAction<UserInfo | null | undefined>>;
   refreshData: (callback: VoidFunction) => void;
-}) => {
+  }) => {
+  console.log("USER",user)
   const isLoggedIn = getCookie("user");
   const router = useRouter();
   const [userData, setUserData] = useState<User>();
@@ -48,12 +50,11 @@ export const ProfileImage = ({
             ...userData,
             profilePhoto: response?.data?.message?.profilePhoto,
           })
-          
         );
-         refreshData(() => {
-           setIsDelete(false)
-           router.refresh();
-         });
+        refreshData(() => {
+          setIsDelete(false);
+          router.refresh();
+        });
       })
       .catch((err) => {
         setLoading({ ...loading, delete: false });
@@ -95,8 +96,8 @@ export const ProfileImage = ({
 
   useEffect(() => {
     if (!isLoggedIn) router.push("/");
-    else setUserData(JSON.parse(isLoggedIn));
-  }, []);
+    else setUserData(user?user:JSON.parse(isLoggedIn));
+  }, [user]);
   useEffect(() => {
     if (profileImage?.file) {
       setIsUploadDisabled(false);
@@ -130,7 +131,7 @@ export const ProfileImage = ({
       <div
         aria-disabled={true}
         className='relative h-[250px] w-[250px] bg-center bg-no-repeat  border-[1px] border-[#E3E7EA] placeholder:hidden'>
-        <div className='h-[200px]' >
+        <div className='h-[200px]'>
           <input
             className='cursor-pointer'
             {...getInputProps()}
@@ -168,8 +169,11 @@ export const ProfileImage = ({
             </>
           ) : (
             <img
-              src={isDelete?'https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/app/default_profile.jpg':
-                profileImage?.preview?.[0]?.preview ?? userData?.profilePhoto
+              src={
+                isDelete
+                  ? "https://s3.eu-west-3.amazonaws.com/images.copticoffice.com/app/default_profile.jpg"
+                  : profileImage?.preview?.[0]?.preview ??
+                    userData?.profilePhoto
               }
               className='object-cover w-[247px] h-[247px]'
             />
@@ -177,12 +181,13 @@ export const ProfileImage = ({
         </div>
 
         <div className='bg-[#d9d9d999] h-[50px] min-w-full absolute left-0 -bottom-[3px]   flex justify-center items-center '>
-          {(userData?.profilePhoto?.includes("default_profile")|| isDelete) ? null : (
+          {userData?.profilePhoto?.includes("default_profile") ||
+          isDelete ? null : (
             <img
               src='/assets/delete.png'
               onClick={(e) => {
                 e.preventDefault();
-               setIsDelete(true)
+                setIsDelete(true);
               }}
               className='cursor-pointer w-5 h-5 absolute bottom-[15px] start-1.5  '
             />
@@ -198,12 +203,16 @@ export const ProfileImage = ({
         <p className='text-lg font-semibold rtl:font-medium mt-5'>
           {userData?.firstName} {userData?.lastName}
         </p>
-        {(isUploadDisabled && !isDelete) ? null : (
+        {isUploadDisabled && !isDelete ? null : (
           <button
             disabled={isUploadDisabled && !isDelete}
-            onClick={isDelete?onDelete:onSave}
+            onClick={isDelete ? onDelete : onSave}
             className=' px-1 md:px-3  flex items-center justify-center disabled:opacity-45  py-[3px] md:py-[6px]   rounded-sm md:rounded-lg text-base md:text-base text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium    text-center'>
-            {(loading.update||loading.delete) ? <LoadingSpinner /> : translate("locale.Save")}
+            {loading.update || loading.delete ? (
+              <LoadingSpinner />
+            ) : (
+              translate("locale.Save")
+            )}
           </button>
         )}
       </div>

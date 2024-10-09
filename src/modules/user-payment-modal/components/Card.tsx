@@ -1,4 +1,5 @@
 "use client";
+import { PaymentIban } from "@/src/components/select";
 import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 
@@ -30,67 +31,9 @@ export const PaymentOptionCard = ({
         ? translate(`locale.Payment_Method2_Text1`)
         : null;
     let numbers = [];
-    if (method == 1)
-      [12, 1, 2, 3].map((item) => {
-        numbers.push(
-          item == 12 ? (
-            <div className='items-center flex flex-row gap-0.5'>
-              <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
-                {`${locale == "en" ? "" : "..."}${translate(
-                  `locale.Payment_Method1_Text1_IBAN`
-                )?.slice(0, 20)}${locale == "en" ? "..." : ""}`}
-                <img
-                  src={`/assets/${
-                    copied == item ? "copied.png" : "copyPrimary.svg"
-                  }`}
-                  className='cursor-pointer !w-4 !h-4'
-                  width={"16px"}
-                  height={"16px"}
-                  onClick={() => {
-                    setCopied(item);
-                    setTimeout(() => {
-                      setCopied(0);
-                    }, 2000);
-                    navigator.clipboard.writeText(
-                      translate(`locale.Payment_Method1_Text1_IBAN`)?.replace(
-                        "IBAN: ",
-                        ""
-                      )
-                    );
-                  }}
-                />
-              </p>
-            </div>
-          ) : (
-            <div className='my-2 items-center flex flex-row gap-0.5'>
-              <p className=' text-sm  text-THEME_PRIMARY_COLOR '>
-                {translate(`locale.Payment_Method1_Text1_Currency${item}`)}
-                {item == 3 ? "  " : ""}:
-              </p>
-              <p className=' flex items-center flex-row gap-2 text-base text-end text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
-                {translate(`locale.Payment_Method1_Text1_Account${item}`)}
-                <img
-                  src={`/assets/${
-                    copied == item ? "copied.png" : "copyPrimary.svg"
-                  }`}
-                  className='cursor-pointer !w-4 !h-4'
-                  width={"16px"}
-                  height={"16px"}
-                  onClick={() => {
-                    setCopied(item);
-                    setTimeout(() => {
-                      setCopied(0);
-                    }, 2000);
-                    navigator.clipboard.writeText(
-                      translate(`locale.Payment_Method1_Text1_Account${item}`)
-                    );
-                  }}
-                />
-              </p>
-            </div>
-          )
-        );
-      });
+    if (method == 1) {
+      numbers.push(<PaymentIban />);
+    }
     if (method == 2) {
       numbers.push(
         <p className=' flex flex-row gap-2 text-lg items-center text-end mt-0 md:mt-3 text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium justify-end'>
@@ -169,7 +112,7 @@ export const PaymentOptionCard = ({
       </div>
       <div
         className={`${
-          method != 3 ? (method == 1 ? "mt-2.5" : "mt-[25px]") : ""
+          method != 3 ? (method == 1 ? "mt-2.5" : "mt-2") : ""
         }`}>
         {method == 3 ? (
           <div className='flex justify-center w-full mt-0 md:mt-[33px] '>

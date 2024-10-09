@@ -1,5 +1,5 @@
 "use client";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -36,6 +36,7 @@ export default function PersonalProfile() {
     else {
       getUserInfo(locale).then((response) => {
         setUserData(response.data.Message.user);
+          setCookie("user", JSON.stringify(response.data.Message.user));
       });
     }
   }, []);
@@ -97,7 +98,7 @@ export default function PersonalProfile() {
         <ProfileImage
           setUserData={setUserData}
           isEditOpen={true}
-          userData={userData}
+          user={userData}
           refreshData={refreshData}
         />
         <div className='flex flex-col md:flex-row  gap-5 md:gap-[50px] w-full'>
@@ -110,6 +111,7 @@ export default function PersonalProfile() {
           <Input
             isRtl={true}
             value={userData?.mobile?.primary?.number as string}
+            isVerified={userData?.mobile?.isVerified}
             label='Mobile_Number'
             refreshData={refreshData}
           />

@@ -25,7 +25,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
                 payment?.paymentMethod == "instaPay"
                   ? "/assets/instapay.svg"
                   : payment.paymentMethod == "bankTransfer"
-                  ? "/assets/bankTransfer.svg"
+                  ? "/assets/bank_transfer.svg"
                   : "/assets/credit.svg"
               }
               className={`${
