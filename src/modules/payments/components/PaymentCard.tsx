@@ -30,7 +30,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
               }
               className={`${
                 payment?.paymentMethod == "bankTransfer"
-                  ? "w-[29px]  h-[29px] md:w-[64px] md:h-[64px]"
+                  ? "w-[29px]  h-[29px] md:w-[35px] md:h-[35px]"
                   : "w-[29px]  h-[24px] md:w-[38px] md:h-[41px]"
               }`}
             />
