@@ -23,7 +23,7 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
             className={`flex flex-row gap-3 ${
               payment.paymentMethod == "instaPay"
                 ? "items-center"
-                : "items-start"
+                : "items-center"
             }`}>
             <img
               src={
@@ -31,6 +31,8 @@ export default function PaymentCard({ payment }: { payment: Payment }) {
                   ? "/assets/instapay1.svg"
                   : payment.paymentMethod == "bankTransfer"
                   ? "/assets/bank_transfer.svg"
+                  : payment.paymentMethod == "bankDeposit"
+                  ? "/assets/bank_deposit.svg"
                   : "/assets/credit.svg"
               }
               className={`${
