@@ -44,6 +44,7 @@ export default function PersonalProfile() {
   const refreshData = (callback: VoidFunction) => {
     getUserInfo(locale).then((response) => {
       setUserData(response.data.Message.user);
+        setCookie("user", JSON.stringify(response.data.Message.user));
       callback();
     });
   };

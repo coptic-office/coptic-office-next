@@ -23,12 +23,14 @@ export const verifyOtp = (
     otp: string;
   },
   lang: string
-) =>
-  axiosInstance.post(
+) => {
+  let number = data.mobileNumber?.replace("20", "")?.replace("+", "");
+  return axiosInstance.post(
     `users/verify-otp
 `,
     {
       ...data,
+      mobileNumber: `+2${number?.[0] == "0" ? number : `0${number}`}`,
     },
     {
       headers: {
@@ -36,12 +38,16 @@ export const verifyOtp = (
       },
     }
   );
+};
 export const resendOtpApi = (mobileNumber: string, lang: string) =>
-  axiosInstance.post(
+{
+    let number = mobileNumber?.replace("20", "")?.replace("+", "");
+
+  return axiosInstance.post(
     `users/resend-otp
 `,
     {
-      mobileNumber: mobileNumber,
+      mobileNumber: `+2${number?.[0] == "0" ? number : `0${number}`}`,
     },
     {
       headers: {
@@ -49,6 +55,7 @@ export const resendOtpApi = (mobileNumber: string, lang: string) =>
       },
     }
   );
+}
 export const resendOtpApiEmail = (email: string, lang: string) =>
   axiosInstance.post(
     `users/resend-otp

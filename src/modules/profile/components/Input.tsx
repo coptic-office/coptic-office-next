@@ -44,6 +44,7 @@ export const Input = ({
   useEffect(() => {
     if (value != currentValue) setIsEdited(true);
   }, [currentValue]);
+  console.log(`"isVerified" ${label}`, isVerified);
   const onChangeMobile = () => {
     setLoading(true);
     setError(null);
@@ -189,6 +190,7 @@ export const Input = ({
                           resend: "",
                           success: null,
                         });
+                           setDisabled(true);
                         (
                           document.getElementById("body") as any
                         ).style.overflow = "scroll";
