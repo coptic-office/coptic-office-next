@@ -27,10 +27,12 @@ export const CheckPassword = ({
   const translate = useTranslations();
   const pathname = usePathname();
   const [nextTrail, setNextTrail] = useState(null);
+  console.log("NEXT TRAILS",nextTrail)
   useEffect(() => {
     if (interval && nextTrail) clearInterval(interval);
     if (nextTrail)
     {
+      console.log("NEXTTTT",nextTrail)
         interval = setInterval(() => {
           let newDiff =
             (new Date(nextTrail as any) as any) - (new Date() as any);
