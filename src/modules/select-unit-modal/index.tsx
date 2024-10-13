@@ -19,7 +19,7 @@ export const SelectUnitModal = ({
   const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedType, setSelectedType] = useState<number | null>(null);
   const [isCatSelected, setIsCatSelected] = useState(false);
-  const [units, setUnits] = useState<myUnit[]>([]);
+  const [units, setUnits] = useState<any[]>([]);
   const [error, setError] = useState("");
   const locale = useLocale();
   const router = useRouter();
@@ -104,6 +104,7 @@ export const SelectUnitModal = ({
                         }}
                         isSelected={selectedType == index}
                         unit={item}
+                        isActive={item?.isActive}
                       />
                     ))}
                 </>

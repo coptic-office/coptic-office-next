@@ -1,6 +1,7 @@
 import { useAppContext } from "@/src/context";
 import { getNotifications } from "@/src/network/notifications";
 import { Notification } from "@/src/types";
+import { getCookie, setCookie } from "cookies-next";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -41,6 +42,11 @@ export default function NotificationModal({
           ),
         });
         updateNotificationCount(0);
+        try {
+          let user = JSON.parse(getCookie("user") as string);
+          user.notifications.newCount = 0;
+          setCookie("user", JSON.stringify(user));
+        } catch {}
       })
       .catch(() => {
         setLoading(false);

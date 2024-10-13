@@ -112,7 +112,7 @@ export const ImageSlider = () => {
           />
         </Modal>
       ) : null}
-      {currentRunningModal.includes("Discount_") ? (
+      {currentRunningModal?.includes("Discount_") ? (
         <Modal isTopCentered={false}>
           <DiscountModal
             closeModal={() => {

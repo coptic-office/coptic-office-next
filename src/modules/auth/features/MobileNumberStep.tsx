@@ -20,8 +20,8 @@ export const MobileNumber = ({
   const [error, setError] = useState<string | boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const translate = useTranslations();
-  const inputRef: any = useRef(null);
 
+  const inputRef: any = useRef(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -58,6 +58,7 @@ export const MobileNumber = ({
               err?.response?.data?.error) ??
               true
           );
+        
           setLoading(false);
         });
     }
@@ -76,9 +77,9 @@ export const MobileNumber = ({
         </div>
         <input
           onKeyUp={(event) => {
-              if (event.key === "Enter") {
-                onSubmit();
-              }
+            if (event.key === "Enter") {
+              onSubmit();
+            }
           }}
           ref={inputRef}
           value={mobileNumber}

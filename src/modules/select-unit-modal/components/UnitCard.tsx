@@ -5,21 +5,29 @@ export const SelectUnitCard = ({
   unit,
   isSelected,
   onSelect,
+  isActive,
 }: {
   unit: myUnit;
   isSelected: boolean;
   onSelect: () => void;
+  isActive:boolean
 }) => {
   const translate = useTranslations();
 
   return (
     <div
-      onClick={onSelect}
-      className={`relative cursor-pointer border-[1px] border-solid border-[#E5EAF4] w-full md:flex-1 rtl:px-6 ltr:px-6 pt-6 pb-6 rounded-2xl flex flex-col gap-6 ${
+      onClick={() => {
+        if (isActive) onSelect();
+      }}
+      className={`relative cursor-pointer border-[1px] border-solid ${
+        !isActive ? "opacity-65" : ""
+      } border-[#E5EAF4] w-full md:flex-1 rtl:px-6 ltr:px-6 pt-6 pb-6 rounded-2xl flex flex-col gap-6 ${
         isSelected ? "bg-THEME_PRIMARY_COLOR" : "bg-white"
       }`}>
       <div
-        onClick={onSelect}
+        onClick={() => {
+          if (isActive) onSelect();
+        }}
         className={`w-7 h-7 absolute end-6 top-6 rounded-[20px] flex flex-row justify-center items-center border-[2px] ${
           isSelected ? " border-white" : " border-[#D1DAE6]"
         }  `}>
@@ -89,7 +97,7 @@ export const SelectUnitCard = ({
           }`}>
           {translate("locale.Cash_Discount")} :{" "}
           <span className='font-semibold rtl:font-medium'>
-            {Number( unit.cashAmount).toLocaleString()}{" "}
+            {Number(unit.cashAmount).toLocaleString()}{" "}
             {translate("locale.Pound")}
           </span>
         </p>

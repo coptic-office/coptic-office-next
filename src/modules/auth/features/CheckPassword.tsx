@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { AUTH_STEP_ENUM, checkUserModal } from "@/src/types";
 import { LoadingSpinner } from "../components/loading";
@@ -7,7 +7,7 @@ import { PasswordInput } from "../components/passwordInput";
 import { Login } from "@/src/network/auth";
 import { usePathname } from "next/navigation";
 import { setCookie } from "cookies-next";
-
+let interval: any = null;
 export const CheckPassword = ({
   handleChangeStep,
   checkUserData,
@@ -22,10 +22,22 @@ export const CheckPassword = ({
     api: null;
   }>(null);
   const [loading, setLoading] = useState(false);
+  const [resendTime, setResendTime] = useState<number | null>();
   const [password, setPassword] = useState("");
   const translate = useTranslations();
   const pathname = usePathname();
-
+  const [nextTrail, setNextTrail] = useState(null);
+  useEffect(() => {
+    if (interval && nextTrail) clearInterval(interval);
+    if (nextTrail)
+    {
+        interval = setInterval(() => {
+          let newDiff =
+            (new Date(nextTrail as any) as any) - (new Date() as any);
+          setResendTime(Math.floor(newDiff / 1000));
+        }, 1000);
+    }
+  }, [nextTrail]);
   const submit = () => {
     if (password == "" || password.length < 6) {
       setError({ ...(error as any), password: true });
@@ -58,6 +70,9 @@ export const CheckPassword = ({
             api:
               err?.response?.data?.message?.info || err?.response?.data?.error,
           });
+          if (err?.response?.data?.message?.nextTrial) {
+            setNextTrail(err?.response?.data?.message?.nextTrial);
+          }
         });
     }
   };
@@ -109,13 +124,29 @@ export const CheckPassword = ({
         ) : (
           ""
         )}
+        {resendTime != null ? (
+          <p className='text-sm  text-[#00000099]  text-center  mt-2'>
+            {translate("locale.Please_Wait")}{" "}
+            <span className='text-sm text-THEME_PRIMARY_COLOR font-semibold rtl:font-medium'>
+              {`${
+                resendTime > 60
+                  ? `${Math.floor(resendTime / 60)}:${
+                      resendTime % 60 < 10
+                        ? `0${resendTime % 60}`
+                        : resendTime % 60
+                    }`
+                  : `00:${resendTime < 10 ? `0${resendTime}` : resendTime}`
+              }`}
+            </span>
+          </p>
+        ) : null}
       </div>
 
       <button
         onClick={submit}
         className={`h-[55px] w-full   bg-THEME_PRIMARY_COLOR disabled:opacity-45 ${
           loading ? "!opacity-45" : ""
-        } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-5 md:mt-[90px] mb-2`}>
+        } rounded-lg flex justify-center items-center  text-white font-medium text-base mt-5 md:mt-[65px] mb-2`}>
         {loading ? <LoadingSpinner /> : translate("locale.Login")}
       </button>
       <button
