@@ -39,6 +39,7 @@ export const verifyOtp = (
     }
   );
 };
+
 export const resendOtpApi = (mobileNumber: string, lang: string) =>
 {
     let number = mobileNumber?.replace("20", "")?.replace("+", "");
@@ -56,6 +57,27 @@ export const resendOtpApi = (mobileNumber: string, lang: string) =>
     }
   );
 }
+export const verifyOtpEmail = (
+  data: {
+    email: string;
+    otp: string;
+  },
+  lang: string
+) => {
+  return axiosInstance.post(
+    `users/verify-otp
+`,
+    {
+      ...data,
+      email: data.email,
+    },
+    {
+      headers: {
+        "accept-language": lang ?? "ar",
+      },
+    }
+  );
+};
 export const resendOtpApiEmail = (email: string, lang: string) =>
   axiosInstance.post(
     `users/resend-otp

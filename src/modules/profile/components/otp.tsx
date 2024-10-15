@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
-import { resendOtpApi, resendOtpApiEmail, verifyOtp } from "@/src/network/auth";
+import { resendOtpApi, resendOtpApiEmail, verifyOtp, verifyOtpEmail } from "@/src/network/auth";
 import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "../../auth/components/loading";
 import { Header } from "../../auth/components/Header";
@@ -47,25 +47,50 @@ export const OtpStep = ({
       setLoading({ ...loading, verifyLoading: false });
       return;
     } else {
-      verifyOtp(
-        {
-          mobileNumber: mobileNumber,
-          otp: otp,
-        },
-        pathname?.includes("/ar") ? "ar" : "en"
-      )
-        .then((response) => {
-          setLoading({ ...loading, verifyLoading: false });
-          setOpenOtp({
-            open: true,
-            resend: "",
-            success: response.data.message.info,
-          });
-        })
-        .catch((err) => {
-          setError(err?.response?.data?.error ?? true);
-          setLoading({ ...loading, resendLoading: false });
-        });
+      if (isEmail)
+      { 
+         verifyOtpEmail(
+           {
+             email: mobileNumber,
+             otp: otp,
+           },
+           pathname?.includes("/ar") ? "ar" : "en"
+         )
+           .then((response) => {
+             setLoading({ ...loading, verifyLoading: false });
+             setOpenOtp({
+               open: true,
+               resend: "",
+               success: response.data.message.info,
+             });
+           })
+           .catch((err) => {
+             setError(err?.response?.data?.error ?? true);
+             setLoading({ ...loading, resendLoading: false });
+           });
+      }
+      else
+      {
+         verifyOtp(
+           {
+             mobileNumber: mobileNumber,
+             otp: otp,
+           },
+           pathname?.includes("/ar") ? "ar" : "en"
+         )
+           .then((response) => {
+             setLoading({ ...loading, verifyLoading: false });
+             setOpenOtp({
+               open: true,
+               resend: "",
+               success: response.data.message.info,
+             });
+           })
+           .catch((err) => {
+             setError(err?.response?.data?.error ?? true);
+             setLoading({ ...loading, resendLoading: false });
+           });
+        }
     }
   };
   const resendOtp = () => {
