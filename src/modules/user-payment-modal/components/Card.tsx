@@ -90,7 +90,7 @@ export const PaymentOptionCard = ({
             <div
               className={`flex relative flex-row items-end gap-1  mt-[2px] ${
                 method == 2
-                  ? "md:mt-[60px] rtl:md:mt-[43px]"
+                  ? "md:mt-[20px] rtl:md:mt-0"
                   : method == 3
                   ? "justify-end"
                   : ""
@@ -111,14 +111,12 @@ export const PaymentOptionCard = ({
         </div>
       </div>
       <div
-        className={`${
-          method != 3 ? (method == 1 ? "mt-2.5" : "mt-2") : ""
-        }`}>
+        className={`${method != 3 ? (method == 1 ? "mt-2.5" : "mt-2") : ""}`}>
         {method == 3 ? (
           <div className='flex justify-center w-full mt-0 md:mt-[33px] '>
             <button
               onClick={onClick}
-              className=' mt-5 rtl:mt-[40px] rtl:md:mt-[30px] md:mt-10  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
+              className=' mt-5 rtl:mt-[40px] rtl:md:mt-[30px] md:mt-[30px]  w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
               {translate("locale.PayNow")}
               <img
                 src='/assets/leftWhite.svg'
@@ -129,7 +127,23 @@ export const PaymentOptionCard = ({
             </button>
           </div>
         ) : null}
-        {method != 3 ? (
+        {method == 2 ? (
+          <div className='flex justify-center w-full mt-0 md:mt-5'>
+            <a
+              href='https://ipn.eg/S/esaber.cib.saving/instapay/1kwHj7'
+              target="_blank"
+              className='w-[181px] text-base text-white  h-12 items-center bg-THEME_PRIMARY_COLOR rounded-lg justify-center flex flex-row gap-1'>
+              {translate("locale.PayNow")}
+              <img
+                src='/assets/leftWhite.svg'
+                className='hidden md:flex ltr:rotate-180'
+                width={"13px"}
+                height={"16px"}
+              />
+            </a>
+          </div>
+        ) : null}
+        {method == 1 ? (
           <hr className={`border-[0.5px]   border-[#E5EAF4]`} />
         ) : (
           ""

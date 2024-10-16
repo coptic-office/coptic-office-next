@@ -464,7 +464,7 @@ export const PaymentModal = ({ closeModal }: { closeModal: VoidFunction }) => {
             (activeTab == 1 && options?.length <= 1 && !dataLoading) ? null : (
               <div className='flex w-full justify-end mt-7'>
                 <button
-                  disabled={!selectedItem?.value}
+                  disabled={!selectedItem?.value||selectedItem?.error}
                   onClick={submitPayment}
                   className='w-full md:w-[181px] flex justify-center items-center disabled:opacity-75 rounded-lg h-12 bg-THEME_PRIMARY_COLOR text-white text-center'>
                   {loading ? <LoadingSpinner /> : translate("locale.PayNow")}
